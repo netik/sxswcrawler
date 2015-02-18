@@ -1,134 +1,138 @@
 #!/usr/bin/python
-# 25/04/13
+# March 8, 2014
 import urllib, urllib2
 import sys
 import argparse
 import re
-import lxml.html
+import requests
 import time
+import os.path
+import soundcloud
+import math
+import os
 
 from ID3 import *
 
 class SoundCloudDownload:
-  def __init__(self, url, verbose, tags, related, nodownload):
-    self.url = url
-    self.verbose = verbose
-    self.tags = tags
-    self.related = related
-    self.musicInfo = {}
-    self.download_progress = 0
-    self.nodownload = nodownload
+   def __init__(self, url, verbose, tags):
+      self.url = url
+      self.verbose = verbose
+      self.tags = tags
+      self.download_progress = 0
+      self.current_time = time.time()
+      self.titleList = []
+      self.artistList = []
+      self.likes = False   
+      self.streamURLlist = self.getStreamURLlist(self.url)
 
-    self.getInfo(self.url)
+   def getStreamURLlist(self, url):
+      streamList = []
+      tracks = []
+      if "/likes" in url:
+         url = url[:-6]
+         self.likes = True
+      api = "http://api.soundcloud.com/resolve.json?url={0}&client_id=YOUR_CLIENT_ID".format(url)
+      r = requests.get(api)
+      try:
+         user = r.json()['username']
+         user = r.json()['id']
+         span = math.ceil(r.json()['public_favorites_count']/float(200)) if self.likes else math.ceil(r.json()['track_count']/float(200))
 
-  def addID3(self, filename, title, artist):
-    try:
-      id3info = ID3(filename)
-      id3info['TITLE'] = title
-      id3info['ARTIST'] = artist
-      print "\nID3 tags added"
-    except InvalidTagError, err:
-      print "\nInvalid ID3 tag: {0}".format(err)
+         for x in range(0, int(span)):
+            if self.likes:
+               api = "http://api.soundcloud.com/users/" + str(user) + "/favorites.json?client_id=fc6924c8838d01597bab5ab42807c4ae&limit=200&offset=" + str(x * 200)
+            else:
+               api = "http://api.soundcloud.com/users/" + str(user) + "/tracks.json?client_id=fc6924c8838d01597bab5ab42807c4ae&limit=200&offset=" + str(x * 200)
+            r = requests.get(api)
+            tracks.extend(r.json())
+      except:
+         try:
+            tracks = r.json()['tracks']
+            # If this isn't a playlist, just make a list of
+            # a single element (the track)
+         except:
+            tracks = [r.json()]
+      for track in tracks:
+         waveform_url = track['waveform_url']
+         self.titleList.append(self.getTitleFilename(track['title']))
+         self.artistList.append(track['user']['username'])
+         regex = re.compile("\/([a-zA-Z0-9]+)_")
+         r = regex.search(waveform_url)
+         stream_id = r.groups()[0]
+         streamList.append("http://media.soundcloud.com/stream/{0}".format(stream_id))
+      return streamList
 
-    return 0
+   def addID3(self, title, artist):
+      try:
+         id3info = ID3("{0}.mp3".format(title))
+         # Slicing is to get the whole track name
+         # because SoundCloud titles usually have
+         # a dash between the artist and some name
+         split = title.find("-")
+         if not split == -1:
+            id3info['TITLE'] = title[(split + 2):] 
+            id3info['ARTIST'] = title[:split] 
+         else:
+            id3info['TITLE'] = title
+            id3info['ARTIST'] = artist
+         print "\nID3 tags added"
+      except InvalidTagError, err:
+         print "\nInvalid ID3 tag: {0}".format(err)
+   
+   def downloadSongs(self):
+      done = False
+      for artist, title, streamURL in zip(self.artistList, self.titleList, self.streamURLlist):
+         if not done:
+            filename = "{0}.mp3".format(title)
+            sys.stdout.write("\nDownloading: {0}\n".format(filename))
+            try:
+               if not os.path.isfile(filename):
+                  filename, headers = urllib.urlretrieve(url=streamURL, filename=filename, reporthook=self.report)
+                  self.addID3(title, artist)
+                  # reset download progress to report multiple track download progress correctly
+                  self.download_progress = 0
+               elif self.likes:
+                  print "File Exists"
+                  done = True
+               else:
+                  print "File Exists"
+            except:
+               print "ERROR: Author has not set song to streamable, so it cannot be downloaded"
+   
+   def report(self, block_no, block_size, file_size):
+      self.download_progress += block_size
+      if int(self.download_progress / 1024 * 8) > 1000:
+         speed = "{0} Mbps".format(round((self.download_progress / 1024 / 1024 * 8) / (time.time() - self.current_time), 2))
+      else:
+         speed = "{0} Kbps".format(round((self.download_progress / 1024 * 8) / (time.time() - self.current_time), 2))
+      rProgress = round(self.download_progress/1024.00/1024.00, 2)
+      rFile = round(file_size/1024.00/1024.00, 2)
+      percent = round(100 * float(self.download_progress)/float(file_size))
+      sys.stdout.write("\r {3} ({0:.2f}/{1:.2f}MB): {2:.2f}%".format(rProgress, rFile, percent, speed))
+      sys.stdout.flush()
 
-  def makeURL(self, src):
-    regexp = 'http://[^/]*/(\w*)_m.png'
-    match = re.search(regexp, src)
-
-    if match:
-      songid = match.group(1)
-      url = "http://media.soundcloud.com/stream/{0}".format(songid)
-    else:
-      sys.stderr.write("Stream URL not found for source {0}.\n".format(src))
-
-    return url
-
-  def downloadSong(self, title, src):
-    valid_chars = '-_.() abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-    #print src
-    url = self.makeURL(src)
-    match = re.search("(.+)\sby\s(.+)\son\sSoundCloud.*", title)
-    try:
-      songTitle = match.group(1)
-      artist = match.group(2).capitalize()
-      songTitle = ''.join(c for c in songTitle if c in valid_chars)
-      artist = ''.join(c for c in artist if c in valid_chars)
-    except AttributeError:
-      sys.stderr.write("\nError finding title\n")
-      songTitle = "Not Found"
-      artist = "Not Found"
-      return 1
-    mp3 = "{0} - {1}.mp3".format(songTitle, artist)
-    if self.nodownload == False:
-      sys.stdout.write("\nDownloading: {0}\n".format(mp3))
-      filename, headers = urllib.urlretrieve(url=url, filename=mp3, reporthook=self.report)
-      self.addID3(mp3, songTitle, artist)
-    else:
-      sys.stdout.write("|%s|%s\n" % ( url, format(mp3)))
-
-  def getInfo(self, url):
-    try:
-      # Opens the URL, using urllib2 for https support
-      self.html = lxml.html.parse(urllib2.urlopen(url))
-    except IOError:
-      # If the URL can not be read, exit
-      sys.exit('Error: The URL \'{0}\' is borked'.format(url))
-
-    # Retrieve the page's title
-    pageTitle = self.html.xpath('//title/text()')[0]
-    musicSrc = self.html.xpath("//img[@class='waveform']/@src")[0]
-    self.musicInfo[pageTitle] = musicSrc
-
-    return 0
-
-  def report(self, block_no, block_size, file_size):
-    self.download_progress += block_size
-    if int(self.download_progress / 1024 * 8) > 1000:
-      speed = "{0} Mbps".format(round((self.download_progress / 1024 / 1024 * 8) / (time.time() - self.current_time), 2))
-    else:
-      speed = "{0} Kbps".format(round((self.download_progress / 1024 * 8) / (time.time() - self.current_time), 2))
-    rProgress = round(self.download_progress/1024.00/1024.00, 2)
-    rFile = round(file_size/1024.00/1024.00, 2)
-    percent = round(100 * float(self.download_progress)/float(file_size))
-    sys.stdout.write("\r {3} ({0:.2f}/{1:.2f}MB): {2:.2f}% ".format(rProgress, rFile, percent, speed))
-    sys.stdout.flush()
-
-def main(url, verbose, tags, related, nodownload):
-  down = SoundCloudDownload(url, verbose, tags, related, nodownload)
-
-  if down.related:
-    down.relatedURLs = down.html.xpath("//div[contains(@class, 'player')]//h3//a/@href")
-    for i in range(len(down.relatedURLs)):
-        if not down.relatedURLs[i].startswith('http://soundcloud.com'):
-          down.relatedURLs[i] = 'http://soundcloud.com{0}'.format(down.relatedURLs[i])
-    for a in down.relatedURLs:
-      down.getInfo(a)
-  for mp3 in down.musicInfo:
-    down.download_progress = 0
-    down.current_time = time.time()
-    down.downloadSong(mp3, down.musicInfo[mp3])
-    if nodownload == False:
-      sys.stdout.write("Downloaded in: {0} Seconds\n".format(round(time.time() - down.current_time, 2)))
-
-  return 0
+        ## Convenience Methods
+   def getTitleFilename(self, title):
+                '''
+                Cleans a title from Soundcloud to be a guaranteed-allowable filename in any filesystem.
+                '''
+                allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789-_()"
+                return ''.join(c for c in title if c in allowed)
 
 if __name__ == "__main__":
-  # parse arguments
-  parser = argparse.ArgumentParser()
-  parser.add_argument("-v", "--verbose", help="increase output verbosity",
-    action="store_true")
-  parser.add_argument("-t", "--id3tags", help="add id3 tags",
-    action="store_true")
-  parser.add_argument("-r", "--related", help="download related songs",
-    action="store_true")
-  parser.add_argument("-n", "--nodownload", help="do not download anything just get data",
-    action="store_true")
-  parser.add_argument("SOUND_URL", help="Soundcloud URL")
-  args = parser.parse_args()
-  verbose = bool(args.verbose)
-  tags = bool(args.id3tags)
-  related = bool(args.related)
-  nodownload = bool(args.nodownload)
+   if (int(requests.__version__[0]) == 0):
+      print "Your version of Requests needs updating\nTry: '(sudo) pip install -U requests'"
+      sys.exit()
 
-  main(args.SOUND_URL, verbose, tags, related, nodownload)
+   # parse arguments
+   parser = argparse.ArgumentParser()
+   parser.add_argument("-v", "--verbose", help="increase output verbosity",
+      action="store_true")
+   parser.add_argument("-t", "--id3tags", help="add id3 tags",
+      action="store_true")
+   parser.add_argument("SOUND_URL", help="Soundcloud URL")
+   args = parser.parse_args()
+   verbose = bool(args.verbose)
+   tags = bool(args.id3tags)
+   download = SoundCloudDownload(args.SOUND_URL, verbose, tags)
+   download.downloadSongs()

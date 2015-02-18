@@ -1,14 +1,10 @@
 #!/bin/sh
 
-touch scdl-secondpull.log
+SDGET="../soundcloud-downloader.py"
 
-SDCL="/Users/jna/Dropbox/sxsw_crawler/scripts/soundcloud-downloader.py"
-SDGETURL="/Users/jna/Dropbox/sxsw_crawler/scripts/soundcloud-downloader.py -n"
-
-for URL in `cat sc_detail_dedupe.log | egrep -v ^\# | awk -F\| '{ print $(NF-1) }'`;
+for URL in `cat data/sc_data.txt | sort | uniq | egrep -v ^\# | awk -F\| '{ print $(NF-1) }'`;
 do
    /bin/echo -n ${URL}
-   /bin/echo ${URL} >> scdl-second-pull.log
-   ${SDGETURL} ${URL}
+   ( cd music; ${SDGET} ${URL} ) 
    echo
 done

@@ -56,9 +56,11 @@ show.
 
 We need to find their most popular song and download it.
 
-Dependencies:
+Python Dependencies:
   easy_install requests
   easy_install soundcloud
+  easy_install lxml
+  easy_install ID3 -- or id3-py-1.2/ included in this directory
 
   Valid soundcloud API keys. Get them from Soundcloud and put them in
   a file called soundcloud_api_keys.py. make sure the file looks like
