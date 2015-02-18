@@ -6,7 +6,7 @@ import mutagen.mp3
 from mutagen.mp3 import * 
 
 
-BASEDIR="/Volumes/field_photos/SXSW_2014_MP3s/soundcloud"
+BASEDIR="./music"
 files = os.listdir(BASEDIR)
 
 for f in files:
@@ -21,18 +21,12 @@ for f in files:
   fn = re.sub("^0[\d]+_","",fn)
 
   # all of these tracks are reversed, so take the last - if we have one.
-
-  parts = fn.rsplit("-",1)
-  artist = parts[1].replace(".mp3","").rstrip("_").lstrip("_")
-  song = parts[0]
-
-  print artist
-  print song
-
   if audio.get("artist",None) != None:
     artist_id3 = audio.get("artist")
     if artist_id3 != artist:
       print "Has id3, but %s != %s" % ( artist_id3, artist)
+
+  print artist_id3
 
   song = re.sub("^0[\d]-_","",song).rstrip("_").lstrip("_")
   song = re.sub("^0[\d]_-_","",song).rstrip("_").lstrip("_")

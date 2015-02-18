@@ -24,7 +24,7 @@ echo "soundcloud in none state:"
 
    for i in `cat data/none.txt | awk '{ print $1 }'`; 
    do
-      grep -H soundcloud cache/events/`basename $i` >> data/sc_missed.txt
+      grep -H soundcloud cache/events/`basename $i` | uniq >> data/sc_missed.txt
    done
 
 
@@ -37,7 +37,7 @@ echo "youtube in none state:"
 
    for i in `cat data/none.txt | awk '{ print $1 }'`; 
    do
-      grep -H youtube cache/events/`basename $i` >> data/yt_missed.txt
+      grep -H youtube cache/events/`basename $i` | uniq >> data/yt_missed.txt
    done
 
 echo
@@ -48,11 +48,9 @@ echo "mp3 in none state:"
    dtcreate "mp3_missed.txt"
    for i in `cat data/none.txt | awk '{ print $1 }'`; 
    do
-      grep -H mp3 cache/events/`basename $i` >> data/mp3_missed.txt
+      grep -H mp3 cache/events/`basename $i` | uniq >> data/mp3_missed.txt
    done
 
 echo
 echo "==="
 echo
-
-./dedupe.sh > data/final.txt

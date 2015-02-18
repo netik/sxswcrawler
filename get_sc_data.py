@@ -22,6 +22,7 @@ headers = {'Accept'          : 'text/json',
            'Cache-Control'   : 'max-age=0',
            'User-Agent'      : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.68 Safari/537.22' } 
 
+# as it turns out, we missed every single soundcloud song this year. Go get them anyway. 
 f = open("data/sc_missed.txt","r")
 outf = open("data/sc_data.txt","w")
 
@@ -45,6 +46,7 @@ for line in f:
       print "skip (no uid): %s" % url
       continue
 
+   
     # no tracks? 
     if len(tracks) == 0:
       print "skip (notracks): %s" % url
@@ -65,7 +67,11 @@ for line in f:
 
     except AttributeError:
       besttrack = track
-    print >> outf, "%s|%s|%s|%s|%s" % ( ml.group(0), udata['id'], besttrack.id, besttrack.permalink_url,parts[0] ) 
+
+    user = client.get("/users/%d" % udata['id'])
+    print user.username
+
+    print >> outf, "%s|%s|%s|%s|%s|%s|%s" % ( ml.group(0), udata['id'], besttrack.id, besttrack.permalink_url,parts[0], user.username.encode('utf-8'), besttrack.title.encode('utf-8')) 
 
   else:
     print "skip (no_url_in_line): %s" % line.rstrip()
