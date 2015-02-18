@@ -1,15 +1,16 @@
 #!/bin/bash
 #
-# Download all of the files possible in 
+# Downloads all of the videos in the youtube queue. 
+# Converts mp4s to mp3s
 #
 
 SUFFIX=ad
 
-for url in `cat ../data/queue-youtube.${SUFFIX} | egrep -v ^\# | awk '{ print $NF }'`; 
+for url in `cat data/download_queue.txt | grep youtube | egrep -v ^\# | awk '{ print $NF }'`; 
 do 
 
 IFS=$(echo -en "\n\b")
-  cd "/Volumes/Field Photos/sxsw_youtube_dl"
+  cd "music/yt"
   echo $url
   youtubedown --fmt 18 $url 
 
