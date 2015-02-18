@@ -2,7 +2,7 @@ SXSW Crawler 2015
 =======================
 
 This is a set of hacked-together scripts for crawling SXSW and getting
-music for all the bands. The site format changes every year, differet
+music for all the bands. The site format changes every year, different
 sites change their APIs and shit breaks. There is no guarantee this
 will work. It is, however, a good starting place.
 
