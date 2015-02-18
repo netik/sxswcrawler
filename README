@@ -60,8 +60,9 @@ Dependencies:
   easy_install requests
   easy_install soundcloud
 
-  Valid soundcloud API keys. Get them from Soundcloud and put them in a file called 
-  soundcloud_api_keys.py. make sure the file looks like this:
+  Valid soundcloud API keys. Get them from Soundcloud and put them in
+  a file called soundcloud_api_keys.py. make sure the file looks like
+  this:
 
      client_id='xxxxx'
      client_secret='xxxxx'
