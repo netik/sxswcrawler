@@ -30,9 +30,9 @@ for line in f:
   parts = line.split(" ")
 
   ml = re.search("(http://soundcloud\.com/[a-zA-Z0-9_\- ]+)", line)
-  url = "http://api.soundcloud.com/resolve.json?url=%s&client_id=%s" % ( ml.group(0), client_id ) 
 
   if ml != None: 
+    url = "http://api.soundcloud.com/resolve.json?url=%s&client_id=%s" % ( ml.group(0), client_id ) 
     with Timer() as t:
       print "open: %s" % url 
       r = requests.get(url, headers=headers)

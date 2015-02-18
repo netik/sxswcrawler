@@ -12,8 +12,7 @@ import sys
 sys.path.append(".")
 from Timer import Timer
 
-client_id='d41075a4b28e8657a46f31f4bfa46b48'
-client_secret='e2823a06e2e2affd631a552686002b4e'
+import soundcloud_api_keys
 
 client = soundcloud.Client(client_id=client_id)
 

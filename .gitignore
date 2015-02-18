@@ -1,4 +1,6 @@
 ./data
 ./cache
 ./soundcloud_api_keys.py
+*~
+#*#
 
