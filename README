@@ -1,0 +1,54 @@
+SXSW Crawler 2015
+=======================
+
+This is a set of hacked-together scripts for crawling SXSW and getting
+music for all the bands. The site formats change every year, and there
+is no guarantee this will work. It is, however, a good starting place.
+
+The process (For me, anyway) works like this:
+
+  1. Download all songs.
+  2. Feed into iTunes
+  3. Rate with iTunes rater (github.com/netik/iTunesRater)
+  4. Take that library and convert it into a schedule using jwz's
+     scrape-sxsw.pl script
+  5. Take that schedule (as an ICS file) and put it into your 
+     phone to have during the event. 
+
+Caveats: I am not responsible for what you do with these scripts. Most
+of the music is copyrighted and you shouldn't steal it. Please don't
+abuse the bandwidth of any of these sites. 
+
+1. Run the crawl to get data.
+
+  cd scripts
+  ./1_run_crawl.sh
+
+2. Collect metadata
+
+There are usually a few different sources of music. 
+
+Youtube 
+========
+
+We'll use jwz's youtubedown to get these files as mp4s. We'll then
+convert them to mp3s
+
+
+none - You can deal
+  with this yourself, at a later date.
+
+  soundcloud - special case. 
+
+  Soundclound artists do not have songs, they have artist data listed,
+  but we want to hear them to know if we should bother going to the show.
+
+  We need to find their most popular song and download it.
+
+Dependencies:
+  easy_install requests
+  easy_install soundcloud
+
+./get_sc_data.py
+
+

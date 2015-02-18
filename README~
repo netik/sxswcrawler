@@ -1,0 +1,26 @@
+SXSW Crawler 2015
+
+This is a set of scripts for crawling SXSW and getting music for all
+the bands.  It changes every year, and there is no guarantee this will
+work.
+
+I'm even going to check this in with the latest crawl data so you
+don't have to abuse SXSW anymore.
+
+1. Run the crawl to get data.
+
+  cd scripts
+  ./1_run_crawl.sh
+
+2. Collect metadata
+
+Soundclound artists do not have songs, they have artist data listed,
+so we need to find their most popular song and download it.
+
+Dependencies:
+  easy_install requests
+  easy_install soundcloud
+
+./get_sc_data.py
+
+

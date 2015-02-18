@@ -1,0 +1,76 @@
+#!/usr/bin/python
+#
+# this gets the first song of every artist
+#
+
+import soundcloud
+import requests
+import json
+import re 
+import sys
+
+sys.path.append(".")
+from Timer import Timer
+
+client_id='d41075a4b28e8657a46f31f4bfa46b48'
+client_secret='e2823a06e2e2affd631a552686002b4e'
+
+client = soundcloud.Client(client_id=client_id)
+
+headers = {'Accept'          : 'text/json',
+           'Accept-Charset'  : 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+           'Accept-Language' : 'en-US,en;q=0.8',
+           'Cache-Control'   : 'max-age=0',
+           'User-Agent'      : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.68 Safari/537.22' } 
+
+f = open("data/sc_missed.txt","r")
+outf = open("data/sc_data.txt","w")
+
+for line in f: 
+  parts = line.split(" ")
+
+  ml = re.search("(http://soundcloud\.com/[a-zA-Z0-9_\- ]+)", line)
+  url = "http://api.soundcloud.com/resolve.json?url=%s&client_id=%s" % ( ml.group(0), client_id ) 
+
+  if ml != None: 
+    with Timer() as t:
+      print "open: %s" % url 
+      r = requests.get(url, headers=headers)
+      udata = json.loads(r.text)
+    
+    # /users/id/tracks
+    try:
+      print "get tracks"
+      tracks = client.get("/users/%s/tracks" % udata['id'])
+    except KeyError:
+      print "skip (no uid): %s" % url
+      continue
+
+    # no tracks? 
+    if len(tracks) == 0:
+      print "skip (notracks): %s" % url
+      continue
+
+    besttrack = None
+    cnt = 0 
+
+    try: 
+
+      for track in tracks:
+        if besttrack == None:
+          besttrack = track
+
+        if track.playback_count > cnt:
+          besttrack = track
+          cnt = track.playback_count
+
+    except AttributeError:
+      besttrack = track
+    print >> outf, "%s|%s|%s|%s|%s" % ( ml.group(0), udata['id'], besttrack.id, besttrack.permalink_url,parts[0] ) 
+
+  else:
+    print "skip (no_url_in_line): %s" % line.rstrip()
+
+  sys.stdout.flush()
+
+
