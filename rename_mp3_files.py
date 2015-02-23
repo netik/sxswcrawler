@@ -3,27 +3,30 @@
 import mutagen.mp3 
 from mutagen.mp3 import * 
 import re
+import sys 
 import os.path
 
-BASEDIR="music/external_drive"
+BASEDIR="music/sx"
 CACHE_DIR ="cache"
-
-bandre = re.compile('<div class=\'data\'><h1>(.+)</h1>')
-idre   = re.compile('<img alt="(\d+)"')
+bandre = re.compile(r"\content=\'(.*)\' name=\'twitter\:title\'")
+idre   = re.compile(r"/bands/(\d+).jpg")
+titlere = re.compile(r"<h4>Listen to <i>(.+)</i></h4>")
 artistmap = {}
+titlemap = {}
 
 print "phase I... get ID to artist map"
 
-for day in range(6,16):
-  files = os.listdir("%s/%d" % (CACHE_DIR, day))
+for day in ["events"]:
+  files = os.listdir("%s/%s" % (CACHE_DIR, day))
 
   for f in files:
     if f.find(".html") > -1 and f[0] == "_":
 
-      id=""
-      artist=""
+      id = ""
+      artist = ""
+      title = ""
 
-      fh = open("%s/%d/%s" % (CACHE_DIR, day, f))
+      fh = open("%s/%s/%s" % (CACHE_DIR, day, f))
 
       for line in fh:
         m = bandre.search(line)
@@ -34,13 +37,18 @@ for day in range(6,16):
         if m != None:
           id = m.group(1)
 
+        m = titlere.search(line)
+        if m != None:
+          title = m.group(1)
+
       fh.close()
 
       if id == "":
-        print "FAIL: %d/%s" % (day, f)
+        print "FAIL: %s/%s" % (day, f)
       else: 
-#        print "%s - %s" % (id,artist)
+#        print "%s - %s - %s" % (id,artist,title)
         artistmap[id] = artist
+        titlemap[id] = title
 
 print "phase II... process MP3s"
 
@@ -51,36 +59,43 @@ for fn in os.listdir(BASEDIR):
   except mutagen.mp3.HeaderNotFoundError:
     print "Cannot process: %s" % fn
 
-  songfn = ""
+  artist = ""
   title  = ""
 
-  if audio == None:
-    continue
-
+  try:
+    if audio == None:
+      continue
+  except  mutagen.easyid3.EasyID3KeyError:
+    print "ignoring key error"
 
   if audio.get("artist",None) != None:
-    songfn = audio.get("artist")
+    artist = audio.get("artist")
   else:
     if audio.get("performer",None) != None:
-      songfn = audio.get("performer")
+      artist = audio.get("performer")
     else:
       id = fn.replace(".mp3","")
       if artistmap.get(id, None) != None:
-        songfn = artistmap.get(id)
+        artist = artistmap.get(id)
       else: 
-        songfn = "Unknown_%s" % id
+        artist = artistmap.get(id)
         print "%s debug:" % fn
         print audio
+        failcnt = failcnt + 1
 
-      failcnt = failcnt + 1
+  title = audio.get("title", 'unknown')
+  if (title == 'unknown'):
+    id = fn.replace(".mp3","")
+    try:
+      title = titlemap[id]
+    except KeyError:
+      title = "Unknown"
+  
+  if type(artist) is list: 
+    artist = artist[0]
 
-  title = audio.get("title", "Unknown")
-
-  if type(songfn) is list: 
-    songfn = songfn[0]
-
-  if isinstance(songfn, unicode):
-    songfn = songfn.encode('ascii','ignore')
+  if isinstance(artist, unicode):
+    artist = artist.encode('ascii','ignore')
 
   if isinstance(title, unicode):
     title = title.encode('ascii','ignore')
@@ -88,12 +103,44 @@ for fn in os.listdir(BASEDIR):
   if type(title) is list: 
     title  = title[0]
 
-  songfn = songfn.replace("/","")
+  if artist == None:
+    artist = "Unknown %s" % id
+
+  artist = artist.replace("/","")
   title = title.replace("/","")
 
-  print "%s -> %s - %s" % (fn, songfn, title)
+  print "%s -> %s - %s" % (fn, artist, title)
+
+  # write this information back into the MP3
+  try: 
+    audio["title"] = title
+    audio["artist"] = artist
+    print audio.pprint()
+    print
+    audio.save()
+  except:
+    print "couldn't read/update ID3"
+
+  # rename the file
+  print "%s %s/%s --> %s/%s - %s" % (id, BASEDIR, fn, BASEDIR, artist, title)
+  
   os.rename("%s/%s" % (BASEDIR,fn),
-            "%s/%s - %s" % (BASEDIR, songfn, title))
+            "%s/%s - %s.mp3" % (BASEDIR, artist, title))
+
+# we're done
   
 print "%d mp3s with no artist" % failcnt
   
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,8 +11,7 @@ The process (For me, anyway) works like this:
   1. Download all songs.
   2. Feed into iTunes
   3. Rate with iTunes rater (github.com/netik/iTunesRater)
-  4. Take that library and convert it into a schedule using jwz's
-     scrape-sxsw.pl script
+  4. Take that library and convert it into a schedule  (./sxsw_to_ical.py)
   5. Take that schedule (as an ICS file) and put it into your 
      phone to have during the event. 
 
@@ -76,14 +75,22 @@ Run:
 From here you can do:
 
   ./download_sc.sh - download all the soundcloud songs to music/
-
   ./download_yt.sh - download all the youtube songs to music/
-
   ./download_sx.sh - download all of the sxsw to music/
+
+There are a whole series of scripts in these folders for cleaning up the
+music/ directory. (rename_* and fix_*.) Using them is beyond the scope of 
+this README. 
 
 After you've imported and listened to all of the songs:
 
-  ./scrape-sxsw.pl - generate an ICS file 
+  ./sxsw_to_ical.py -h 
+
+I usually rate 2 stars and 3 stars if I really want to go. Rarely, if
+ever do I rate 4 or 5 stars unless the band is amazing. Note that the
+sxsw_to_ical script processes ALL bands in iCal. It does not pick off
+just the SXSW ratings. If you rate multiple songs for a single band,
+it will use the HIGHEST rating you've given to that band. 
 
 There is a bunch of other junk in here that frankly, I forget what
 they do.

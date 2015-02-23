@@ -68,14 +68,14 @@ my $version = q{ $Revision: 1.22 $ }; $version =~ s/^[^\d]+([\d.]+).*/$1/;
 my $verbose = 1;
 my $debug_p = 0;
 
-my $itunes_xml = $ENV{HOME} . "/Music/iTunes/iTunes Music Library.xml";
+my $itunes_xml = "/Volumes/SafeRoom/MP3s/iTunes/iTunes\ Library.xml";
 my $base_url   = ('http://schedule.sxsw.com/' .
                   '?conference=music&lsort=name&day=ALL&event_type=Showcase');
+# jna: ignored
 my $sched_url  = ('http://austin' . ((localtime)[5] + 1900) .
                   '.sched.org/all.ics');
 
 my $zone = 'US/Central';
-
 
 # Converts &, <, >, " and any UTF8 characters to HTML entities.
 #
