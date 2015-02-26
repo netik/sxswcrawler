@@ -11,7 +11,12 @@ function dtcreate {
    fi
 }
 
+
+# actully crawls sxsw , takes a long time.
 #./stage1.py > data/crawl_log.txt
+# ( cd cache; mkdir events; find 2015 -name \*.html -exec mv {} events \; )
+
+
 cat data/crawl_log.txt | egrep ^cache/ > data/queue.txt
 
 cat data/queue.txt | grep none > data/none.txt

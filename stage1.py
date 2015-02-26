@@ -23,8 +23,7 @@ def fetch(url,fn,daynumber,nocache = True):
   print "fetch: %s" % cachefn
 
   if os.path.isfile(cachefn) and nocache == False:
-    if DEBUG: 
-      print "return cached content for url (%s)" % fn
+    print "return cached content for url (%s)" % fn
 
     text = open(cachefn,'r').read()
     return text
