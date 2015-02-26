@@ -60,6 +60,7 @@ events = {}
 icsentries = []
 badtime = 0 
 ics_seq = 0 
+perfdates = {}
 
 class MLStripper(HTMLParser):
     def __init__(self):
@@ -181,6 +182,7 @@ def get_venue(venue, venue_url):
 def parse_event(filename):
   global args
   global events
+  global perfdates
   global badtime
   global venues
 
@@ -264,14 +266,19 @@ def parse_event(filename):
   events[filename] = { "artist": artist, 
                        "artisturl": artisturl,
                        "time_s": time_s, 
-                       "time_start" : a_start,
-                       "time_end" : a_end,
+                       "time_start" : sxsw_datefix(a_start),
+                       "time_end" : sxsw_datefix(a_end),
                        "genre": genre,
                        "venue": venue,
                        "description": description,
                        "url": url,
                        "venueurl": venueurl,
                        "hometown": hometown } 
+
+  if a_start != None: 
+    if not perfdates.has_key(simplify(artist)):
+      perfdates[simplify(artist)] = []
+    perfdates[simplify(artist)].append({ "start": sxsw_datefix(a_start), "end": sxsw_datefix(a_end), "venue": venue})
 
 def get_rated_iartists(stars=3):
   artistre = re.compile('<key>Artist</key><string>(.+)</string>')
@@ -398,7 +405,7 @@ def make_ics(event):
 
   uid=hashlib.sha256(event['artist']+'|'+event['time_s']).hexdigest()
 
-  t = sxsw_datefix(event['time_start'])
+  t = event['time_start']
   dtstart = "TZID=%s:%04d%02d%02dT%02d%02d%02d" % (zone,
                                                     t.year, 
                                                     t.month, 
@@ -407,7 +414,7 @@ def make_ics(event):
                                                     t.minute,
                                                     t.second)
 
-  t = sxsw_datefix(event['time_end'])
+  t = event['time_end']
   if t: 
     dtend    = "TZID=%s:%04d%02d%02dT%02d%02d%02d" % (zone,
                                                        t.year, 
@@ -441,7 +448,19 @@ def make_ics(event):
   if event['artisturl'] != None:
     desc = desc.rstrip() + ".\\n" + event['artisturl']
 
-  desc = event['genre'] + "\n" + event['hometown'] + "\n\n" + desc
+  # find multiple dates, if any
+  md = ""
+  if len( perfdates[simplify(event['artist'])] ) > 1:
+    md = u"Multiple Dates:\n"
+    for e in perfdates[simplify(event['artist'])]:
+
+      if e['start'].format('X') != event['time_start'].format('X'):
+        md = "".join([ md,e['start'].format(u'MM/DD h:mm a '), e['venue'],"\n" ])
+
+    md = md + "\n"
+  md = md.encode('utf-8')
+  desc = "".join([ event['genre'], "\n", event['hometown'], "\n\n" , md, desc])
+
 
   entry = "\n".join([ 
           'BEGIN:VEVENT',
