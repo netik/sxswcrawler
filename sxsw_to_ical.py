@@ -128,7 +128,8 @@ def fetch(url, fn, nocache=False):
   cachefn="%s/venues/%s" % (CACHE_DIR, fn)
 
   if os.path.isfile(cachefn) and nocache == False:
-    print "return cached content for url (%s)" % fn
+    if args.verbose: 
+      print "return cached content for venue url (%s)" % fn
 
     text = open(cachefn,'r').read()
     return text
@@ -171,7 +172,7 @@ def parse_event(filename):
   global badtime
   global venues
 
-  description = artist = timeend = time_s = time_e = a_start = a_end = venue = venueurl = None
+  genre = description = artist = artisturl = timeend = time_s = time_e = a_start = a_end = venue = venueurl = None
 
   fh = open(filename,"r")
   text = fh.read()
@@ -192,8 +193,6 @@ def parse_event(filename):
       time_p = time_sp[0].split(" ")
 
       time_e = " ".join(time_p[0:3]) + time_sp[1]
-
-#      print time_s + " to " +  time_e      
 
     try:
       a_start = arrow.get(time_s.rstrip() + ", " + DEFAULT_YEAR,'ddddd, MMMM D h:mmA, YYYY')
@@ -232,15 +231,26 @@ def parse_event(filename):
     m = re.search(r'<div class=\'short\'>(.+?)</div>', text, re.DOTALL)
     if m:
       description = strip_tags(m.group(1)).lstrip().rstrip()
-    
-  # dirty hack, I don't care. 
+
+  m = re.search(r'<div class=\'info\'>.<a href=\"(.+?)\"', text, re.DOTALL)
+  if m:
+    artisturl = strip_tags(m.group(1))
+
+  m = re.search(r'<div class=\'block\'>.<span class=\'label\'>Genre</span>.<div class=\'info\'>.<a href="(.+?)">(.+?)</a>', text, re.DOTALL)
+  if m:
+    genre = m.group(2)
+
+  # hack the URL together
   url = filename.replace("cache/events/_2015_events_event_","")
-  url = "http://schedule.sxsw.com/2015/events/%s" % url
+  url = "http://schedule.sxsw.com/2015/events/event_%s" % url
+  url = url.replace(".html", "")
 
   events[filename] = { "artist": artist, 
+                       "artisturl": artisturl,
                        "time_s": time_s, 
                        "time_start" : a_start,
                        "time_end" : a_end,
+                       "genre": genre,
                        "venue": venue,
                        "description": description,
                        "url": url,
@@ -315,7 +325,7 @@ def ical_quote(s,nowrap=False):
     for c in s: 
       if c != '\n':
         out = out + c
-      p = p -1
+      p = p - 1
       if p <= 0 and (c != '\\') and (out[len(out)-1] != "\\"):
         p=maxwidth
         out=out + "\n " 
@@ -405,6 +415,17 @@ def make_ics(event):
 
   loc = event['venue'] + " / " + venues[event['venue'].replace(" ","_")]
 
+  if event['description']:
+    desc = event['description']
+  else:
+    print >> sys.stderr, "WARNING: No description for %s" % event['artist']
+    desc = "No description."
+
+  if event['artisturl'] != None:
+    desc = desc.rstrip() + ".\\n" + event['artisturl']
+
+  desc = event['genre'] + "\n\n" + desc
+
   entry = "\n".join([ 
           'BEGIN:VEVENT',
           'UID:'		+ ical_quote(uid),
@@ -415,7 +436,7 @@ def make_ics(event):
           'DTSTART;'		+ dtstart,
           'DTEND;'		+ dtend,
           'URL:'		+ ical_quote (event['url']),
-          'DESCRIPTION:'	+ ical_quote (event['description']),
+          'DESCRIPTION:'	+ ical_quote(desc), 
           'CLASS:PUBLIC',
           'CATEGORIES:BAND',
           'STATUS:CONFIRMED',
@@ -432,7 +453,8 @@ if __name__ == "__main__":
     if args.verbose:
       print >> sys.stderr, "Fetching iTunes..."
     iartists = get_rated_iartists(args.stars)
-    print >> sys.stderr, "%d iartists." % len(iartists)
+    if args.verbose:
+      print >> sys.stderr, "Found %d qualifying artists in iTunes." % len(iartists)
 
     # pass #1: open every file
     # get band, artist, venue, description, venue address to a dict
