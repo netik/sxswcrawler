@@ -85,6 +85,18 @@ def simplify(s):
     s = orig 
   return s
 
+def sxsw_datefix(a):
+  # Oh, come on.  When the sxsw.com web site says "Thu Mar 15, 1:00 AM"
+  # it actually means Mar 16!!  They consider the day to end at 2 AM
+  # or something.  So adjust the day if the hour is "early"
+  if a == None:
+   return None
+
+  if a.hour < 6:
+    a = a.replace(day=a.day + 1)
+
+  return a
+
 def valid_artist(artist):
   ''' determine if an artist exists and if the artist scores high enough '''
   global iartists
@@ -172,7 +184,7 @@ def parse_event(filename):
   global badtime
   global venues
 
-  genre = description = artist = artisturl = timeend = time_s = time_e = a_start = a_end = venue = venueurl = None
+  hometown = genre = description = artist = artisturl = timeend = time_s = time_e = a_start = a_end = venue = venueurl = None
 
   fh = open(filename,"r")
   text = fh.read()
@@ -238,7 +250,11 @@ def parse_event(filename):
 
   m = re.search(r'<div class=\'block\'>.<span class=\'label\'>Genre</span>.<div class=\'info\'>.<a href="(.+?)">(.+?)</a>', text, re.DOTALL)
   if m:
-    genre = m.group(2)
+    genre = m.group(2).replace("\n","")
+
+  m = re.search(r'<span class=\'label\'>From</span>.<div class=\'info\'>(.+?)</div>', text, re.DOTALL)
+  if m:
+    hometown = m.group(1).replace("\n","")
 
   # hack the URL together
   url = filename.replace("cache/events/_2015_events_event_","")
@@ -254,7 +270,8 @@ def parse_event(filename):
                        "venue": venue,
                        "description": description,
                        "url": url,
-                       "venueurl": venueurl } 
+                       "venueurl": venueurl,
+                       "hometown": hometown } 
 
 def get_rated_iartists(stars=3):
   artistre = re.compile('<key>Artist</key><string>(.+)</string>')
@@ -381,7 +398,7 @@ def make_ics(event):
 
   uid=hashlib.sha256(event['artist']+'|'+event['time_s']).hexdigest()
 
-  t = event['time_start']
+  t = sxsw_datefix(event['time_start'])
   dtstart = "TZID=%s:%04d%02d%02dT%02d%02d%02d" % (zone,
                                                     t.year, 
                                                     t.month, 
@@ -390,7 +407,7 @@ def make_ics(event):
                                                     t.minute,
                                                     t.second)
 
-  t = event['time_end']
+  t = sxsw_datefix(event['time_end'])
   if t: 
     dtend    = "TZID=%s:%04d%02d%02dT%02d%02d%02d" % (zone,
                                                        t.year, 
@@ -424,7 +441,7 @@ def make_ics(event):
   if event['artisturl'] != None:
     desc = desc.rstrip() + ".\\n" + event['artisturl']
 
-  desc = event['genre'] + "\n\n" + desc
+  desc = event['genre'] + "\n" + event['hometown'] + "\n\n" + desc
 
   entry = "\n".join([ 
           'BEGIN:VEVENT',
