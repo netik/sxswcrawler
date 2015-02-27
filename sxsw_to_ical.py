@@ -47,8 +47,7 @@ import cProfile
 import hashlib
 
 # config
-CACHE_DIR="cache"
-ARTIST_CACHEFILE = "%s/rated_artists.pickle" % CACHE_DIR
+CACHE_DIR="/Volumes/SafeRoom/sxsw_crawler_2015/scripts/cache"
 DEFAULT_YEAR="2015"
 zone = 'US/Central'
 # -- end config -- 
@@ -285,6 +284,8 @@ def get_rated_iartists(stars=3):
   ratere  = re.compile('<key>Rating</key><integer>(\d+)</integer>')
   itunes_xml = args.itunesxml
   iartists = {}
+  
+  ARTIST_CACHEFILE = "%s/rated_artists-%s.pickle" % (CACHE_DIR, hashlib.sha256(args.itunesxml).hexdigest())
 
   if os.path.exists(ARTIST_CACHEFILE) and args.cache == True: 
     st = os.stat(ARTIST_CACHEFILE)
@@ -486,7 +487,8 @@ if __name__ == "__main__":
     global events
     global iartists 
     global icsentries
-   
+    global CACHE_DIR
+
     if args.verbose:
       print >> sys.stderr, "Fetching iTunes..."
     iartists = get_rated_iartists(args.stars)
@@ -496,8 +498,8 @@ if __name__ == "__main__":
     # pass #1: open every file
     # get band, artist, venue, description, venue address to a dict
     # all playing locations for the band
-    for file in os.listdir("cache/events"):
-      parse_event(os.path.join("cache/events", file))
+    for file in os.listdir(CACHE_DIR + "/events"):
+      parse_event(os.path.join(CACHE_DIR + "/events", file))
 
     valid=0
 

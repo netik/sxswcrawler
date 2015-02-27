@@ -728,12 +728,21 @@ el dusty
 <div class='medium-4 columns'>
 <div id='detail_time'>
 <p>
-Date TBA
+<b>Thursday, March 19</b>
+<br>
+
 </p>
 </div>
 
 </div>
 <div class='medium-5 columns'>
+<p>
+<a class='detail_venue' href='http://schedule.sxsw.com/?lsort=venue_all_days&amp;venue=Half+Step'>
+Half Step
+</a>
+<br>
+<span class='address'>75 1/2 Rainey St</span>
+</p>
 
 </div>
 <div class='medium-3 columns'>
@@ -805,7 +814,45 @@ Corpus Christi, TX
 </div>
 </div>
 <div id='sidebar'>
+<div class='block'>
+<h5 class='label'>Venue Info</h5>
+<p>Age Policy: 21+</p>
+<div id='map_canvas' style='width:240px; height:260px'></div>
+<small><a href="https://maps.google.com/maps?q=Half+Step%2C75+1%2F2+Rainey+St%2CAustin%2CTX" target="blank">View in Google Maps</a></small>
+<script>
+  //<![CDATA[
+    var latlng = "30.26001299999999,-97.73799799999999";
+    
+    $('#map_canvas').gmap({
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: true,
+      disableDefaultUI: true,
+      callback: function(){
+        this.addMarker({
+          position: latlng,
+          title: 'Half Step'
+        });
+      }
+    });
+  //]]>
+</script>
 
+
+</div>
+
+<div class='block'>
+<h5 class='label'>The show at Half Step on Thursday, March 19</h5>
+<p>
+<span class='invisible_star'></span>
+<a href="event_MS29684" class="showcase_links"> el dusty</a>
+</p>
+<p>
+<span class='ss-icon star no_user off' id='star_no_user_event_MS29683' title='You must log in to favorite an event.'>&#x22C6;</span>
+<a href="event_MS29683" class="showcase_links"> MLKMN</a>
+</p>
+</div>
 
 <div class='block' id='recommendations_wrapper'>
 <h5 class='label'>
@@ -909,5 +956,5 @@ if(NREUMQ.a)NREUMQ.a();
 };
 NREUMQ.a=window.onload;window.onload=NREUMQ.f;
 };
-NREUMQ.push(["nrfj","bam.nr-data.net","23356f00da","1637153","IlhXRkFcXlUGSx8AEARZTUEcQFpWFA==",0,59,new Date().getTime(),"","","","",""]);</script></body>
+NREUMQ.push(["nrfj","bam.nr-data.net","23356f00da","1637153","IlhXRkFcXlUGSx8AEARZTUEcQFpWFA==",0,90,new Date().getTime(),"","","","",""]);</script></body>
 </html>

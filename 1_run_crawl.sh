@@ -13,12 +13,14 @@ function dtcreate {
 
 
 # actully crawls sxsw , takes a long time.
-#./stage1.py > data/crawl_log.txt
-# ( cd cache; mkdir events; find 2015 -name \*.html -exec mv {} events \; )
+./stage1.py > data/crawl_log.txt
+( cd cache; mkdir events; find 2015 -name \*.html -exec mv {} events \; )
 
+# jna: for now, EXIT this script. 
+exit
 
+# move a bunch of shit around so we have logs.
 cat data/crawl_log.txt | egrep ^cache/ > data/queue.txt
-
 cat data/queue.txt | grep none > data/none.txt
 cat data/queue.txt | grep -v none > data/download_queue.txt
 cat data/queue.txt | awk '{ print $2 } ' | sort | uniq -c 

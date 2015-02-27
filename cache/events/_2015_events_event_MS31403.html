@@ -728,12 +728,21 @@ B.I.C (Bitches Is Crazy)
 <div class='medium-4 columns'>
 <div id='detail_time'>
 <p>
-Date TBA
+<b>Wednesday, March 18</b>
+<br>
+
 </p>
 </div>
 
 </div>
 <div class='medium-5 columns'>
+<p>
+<a class='detail_venue' href='http://schedule.sxsw.com/?lsort=venue_all_days&amp;venue=Monster+Energy+Outbreak+House'>
+Monster Energy Outbreak House
+</a>
+<br>
+<span class='address'>213 W 5th St</span>
+</p>
 
 </div>
 <div class='medium-3 columns'>
@@ -811,7 +820,41 @@ New York, NY
 </div>
 </div>
 <div id='sidebar'>
+<div class='block'>
+<h5 class='label'>Venue Info</h5>
+<p>Age Policy: All Ages</p>
+<div id='map_canvas' style='width:240px; height:260px'></div>
+<small><a href="https://maps.google.com/maps?q=Monster+Energy+Outbreak+House%2C213+W+5th+St%2CAustin%2CTX" target="blank">View in Google Maps</a></small>
+<script>
+  //<![CDATA[
+    var latlng = "30.2676421,-97.74533749999999";
+    
+    $('#map_canvas').gmap({
+      zoom: 15,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoomControl: true,
+      disableDefaultUI: true,
+      callback: function(){
+        this.addMarker({
+          position: latlng,
+          title: 'Monster Energy Outbreak House'
+        });
+      }
+    });
+  //]]>
+</script>
 
+
+</div>
+
+<div class='block'>
+<h5 class='label'>The show at Monster Energy Outbreak House on Wednesday, March 18</h5>
+<p>
+<span class='invisible_star'></span>
+<a href="event_MS31403" class="showcase_links"> B.I.C (Bitches Is Crazy)</a>
+</p>
+</div>
 
 <div class='block' id='recommendations_wrapper'>
 <h5 class='label'>
@@ -915,5 +958,5 @@ if(NREUMQ.a)NREUMQ.a();
 };
 NREUMQ.a=window.onload;window.onload=NREUMQ.f;
 };
-NREUMQ.push(["nrfj","bam.nr-data.net","23356f00da","1637153","IlhXRkFcXlUGSx8AEARZTUEcQFpWFA==",0,5,new Date().getTime(),"","","","",""]);</script></body>
+NREUMQ.push(["nrfj","bam.nr-data.net","23356f00da","1637153","IlhXRkFcXlUGSx8AEARZTUEcQFpWFA==",0,117,new Date().getTime(),"","","","",""]);</script></body>
 </html>

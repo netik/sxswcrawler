@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+
+    var rtimer;
+
+    function check_for_results(ticket) {
+      console.log("Checking for results for ticket " + ticket);
+
+      $.ajax({
+          url: "/downloads/" + ticket + ".ics",})
+          .done(function() {
+             console.log("success.");
+             clearInterval(window.rtimer);
+             $(".spinner").hide();
+             $("div.results").html("<h1>Done!</h1><h3><a href=\"/downloads/" + ticket + ".ics\">Download</a> your calendar.</h3><h3>Import this file into a NEW CALENDAR in iCal.</h3><h4>Please note that the calendar is constantly changing. Check back again for updated information. It's best to download just before the event to get updated showtimes.</h4>");
+          })
+          .fail(function() { 
+             console.log("not yet.");
+          });
+    };
+
+    $(function() {
+      $('div.progress').hide();
+      $('div.progress-bar').css('width', "0%");
+
+      var showInfo = function(message) {
+          $('div.progress').hide();
+          $('div.progress-bar').css('width', "0%");
+          $('strong.message').text(message);
+          $('div.alert').show();
+      };
+
+      $('input[type="submit"]').on('click', function(evt) {
+        evt.preventDefault();
+        $('div.progress').show();
+        $('input[type="submit"]').hide();
+
+        var formData = new FormData();
+        var file = document.getElementById('myFile').files[0];
+        formData.append('myFile', file);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', '/', true);
+
+        xhr.upload.onprogress = function(e) {
+         if (e.lengthComputable) {
+           var percentage = (e.loaded / e.total) * 100;
+           $('div.progress-bar').css('width', percentage + '%');
+           $('div.progress-bar').html(percentage.toFixed(0) + "%");
+         }
+        };
+
+        xhr.onerror = function(e) {
+            showInfo('An error occurred while submitting the form. Maybe your file is too big');
+            $('div.progress').hide();
+            $('div.progress-bar').css('width', "0%");
+            $('input[type="submit"]').show();
+        };
+
+        xhr.onload = function(res) {
+            showInfo("Success! Please wait a moment while we generate your calendar.");
+            console.log(res);
+
+            $('.initial').hide();
+            $('div.results').show();
+            $(".carousel").hide();
+            $('div.progress').hide();
+
+            ticketjson = JSON.parse(res.currentTarget.response)
+            ticket = ticketjson.ticket
+
+            window.rtimer = setInterval(function() { check_for_results(ticket) }, 1000);
+        };
+
+        xhr.send(formData);
+    });
+
+    // when .modal-wide opened, set content-body height based on
+    // browser height; 200 is appx height of modal padding, modal title
+    // and button bar 
+
+    $(".modal-wide").on("show.bs.modal", function() {
+      var height = $(window).height() - 200;
+      $(this).find(".modal-body").css("max-height", height);
+    });
+});
+</script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+
+    <title>SXSW 2015 Calendar Maker</title>
+
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-theme.css" rel="stylesheet">
+
+    <!-- siimple style -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+
+<div id="librarymodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+        <h4 class="modal-title" id="myModalLabel">How to find your iTunes Library File</h4>
+      </div>
+      <div class="modal-body">
+      <P>Typically, this file is located in:<BR> <tt>/Users/USERNAME/Music/iTunes/iTunes Music Library.xml</tt></p>
+      <P>You can find it here:</p>
+      <P align=center><img src="/assets/img/ituneswhere-r.png" width="550"></P>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">iTunes+SXSW Music Listing to iCal (2015)</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+	<div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 initial">
+				  <h1>Get your SXSW Music calendar now!</h1>
+					<h2 class="subtitle">
+					  <OL>
+					    <LI>Rate music in your iTunes Library (&ge; 2 stars)</LI>
+					    <LI>Upload your iTunes Library.</LI>
+					    <LI>Download a personalized iCal (ICS) calendar based on your ratings.</LI>
+					    <LI>Import the calendar, put it on your phone, and go see some bands!</LI>
+					  </OL>
+					</h2>
+					<h4><a href="#wideModal"  data-toggle="modal" data-target="#librarymodal">Where is my iTunes Library File?</a></h4>
+					<form class="form-inline signup" role="form" enctype="multipart/form-data">
+					  <div class="form-group">
+					  <div class="col-md-12">
+    					    <div class="strong.messaage"></div>
+                                          </div>
+   			           	    <input type="file" class="form-control" id="myFile" name="myFile">
+					  </div>
+                                            
+					  <div class="progress" id="progress" name="progress">
+					    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%"> </div>
+					  </div>
+
+					  <input type="submit" class="btn btn-theme" value="Get my Calendar">
+
+					</form>					
+				</div>
+				<div class="col-md-6 results" style="display: none">
+				  <h2 class="subtitle">Give us a moment, generating your results...</h2>
+
+				  <P align="center" class="spinner"><img src="/assets/img/spinner_122x122.gif"></p>
+                                </div>
+				<div class="col-md-4 col-md-offset-2 hidden-sm hidden-xs">
+					<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+					  <ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					  </ol>					
+					  <!-- slides -->
+					  <div class="carousel-inner">
+						<div class="item active">
+						  <img src="assets/img/Calendar-1.jpg" alt="">
+						</div>
+						<div class="item">
+						  <img src="assets/img/Calendar-2.jpg" alt="">
+						</div>
+						<div class="item">
+						  <img src="assets/img/Calendar-3.png" alt="">
+						</div>
+					  </div>
+					</div>		
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+                           <p class="copyright">Made with love in San Francisco by 
+			   <a href="https://twitter.com/netik">@netik</a> 
+ Cover photo by <a href="https://www.flickr.com/photos/ianaberle">Ian Aberie</a> (flickr)
+ Source Code at <a href="https://github.com/netik/sxswcrawler">GitHub</a>
+<BR>SXSW is a registered trademark of SXSW, LLC.<BR>
+This is an unofficial site in support of the music event.<BR>
+			     We're only here for the music, not the money. Be nice, don't steal music!</P>
+			</div>
+		</div>		
+	</div>	
+	</div>
+
+  </body>
+</html>
+

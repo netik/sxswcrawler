@@ -1,0 +1,12 @@
+{
+  "name": "file_upload",
+  "version": "0.0.1",
+  "dependencies": {
+    "jade": "*",
+    "express": "~4.10.2",
+    "connect-busboy": "*",
+    "method-override": "*",
+    "multer": "~0.1.6",
+    "node-uuid": "*"
+  }
+}
