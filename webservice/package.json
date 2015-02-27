@@ -5,8 +5,10 @@
     "jade": "*",
     "express": "~4.10.2",
     "connect-busboy": "*",
+    "morgan": "*",
     "method-override": "*",
     "multer": "~0.1.6",
+    "logger": "*",
     "node-uuid": "*"
   }
 }

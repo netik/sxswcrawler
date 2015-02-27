@@ -1,5 +1,6 @@
 fetch: cache/a/events_a.html
-return cached content for url (events_a.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=a --> cache/a/events_a.html 
+  ... 200 
 fetch: cache//2015/events/event_MS31307/_2015_events_event_MS31307.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31307 --> cache//2015/events/event_MS31307/_2015_events_event_MS31307.html 
   ... 200 
@@ -104,6 +105,14 @@ fetch: cache//2015/events/event_MS30988/_2015_events_event_MS30988.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30988 --> cache//2015/events/event_MS30988/_2015_events_event_MS30988.html 
   ... 200 
 cache/a/_2015_events_event_MS30988.html none
+fetch: cache//2015/events/event_MS32661/_2015_events_event_MS32661.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32661 --> cache//2015/events/event_MS32661/_2015_events_event_MS32661.html 
+  ... 200 
+cache/a/_2015_events_event_MS32661.html none
+fetch: cache//2015/events/event_MS32749/_2015_events_event_MS32749.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32749 --> cache//2015/events/event_MS32749/_2015_events_event_MS32749.html 
+  ... 200 
+cache/a/_2015_events_event_MS32749.html none
 fetch: cache//2015/events/event_MS29482/_2015_events_event_MS29482.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29482 --> cache//2015/events/event_MS29482/_2015_events_event_MS29482.html 
   ... 200 
@@ -280,6 +289,10 @@ fetch: cache//2015/events/event_MS30353/_2015_events_event_MS30353.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30353 --> cache//2015/events/event_MS30353/_2015_events_event_MS30353.html 
   ... 200 
 cache/a/_2015_events_event_MS30353.html youtube http://www.youtube.com/embed/1Q0M3eAEHhw
+fetch: cache//2015/events/event_MS32597/_2015_events_event_MS32597.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32597 --> cache//2015/events/event_MS32597/_2015_events_event_MS32597.html 
+  ... 200 
+cache/a/_2015_events_event_MS32597.html none
 fetch: cache//2015/events/event_MS32511/_2015_events_event_MS32511.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32511 --> cache//2015/events/event_MS32511/_2015_events_event_MS32511.html 
   ... 200 
@@ -332,6 +345,10 @@ fetch: cache//2015/events/event_MS29096/_2015_events_event_MS29096.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29096 --> cache//2015/events/event_MS29096/_2015_events_event_MS29096.html 
   ... 200 
 cache/a/_2015_events_event_MS29096.html none
+fetch: cache//2015/events/event_MS31439/_2015_events_event_MS31439.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31439 --> cache//2015/events/event_MS31439/_2015_events_event_MS31439.html 
+  ... 200 
+cache/a/_2015_events_event_MS31439.html none
 fetch: cache//2015/events/event_MS32509/_2015_events_event_MS32509.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32509 --> cache//2015/events/event_MS32509/_2015_events_event_MS32509.html 
   ... 200 
@@ -356,6 +373,10 @@ fetch: cache//2015/events/event_MS32286/_2015_events_event_MS32286.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32286 --> cache//2015/events/event_MS32286/_2015_events_event_MS32286.html 
   ... 200 
 cache/a/_2015_events_event_MS32286.html none
+fetch: cache//2015/events/event_MS31748/_2015_events_event_MS31748.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31748 --> cache//2015/events/event_MS31748/_2015_events_event_MS31748.html 
+  ... 200 
+cache/a/_2015_events_event_MS31748.html none
 fetch: cache//2015/events/event_MS29736/_2015_events_event_MS29736.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29736 --> cache//2015/events/event_MS29736/_2015_events_event_MS29736.html 
   ... 200 
@@ -368,8 +389,13 @@ fetch: cache//2015/events/event_MS32065/_2015_events_event_MS32065.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32065 --> cache//2015/events/event_MS32065/_2015_events_event_MS32065.html 
   ... 200 
 cache/a/_2015_events_event_MS32065.html none
+fetch: cache//2015/events/event_MS32705/_2015_events_event_MS32705.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32705 --> cache//2015/events/event_MS32705/_2015_events_event_MS32705.html 
+  ... 200 
+cache/a/_2015_events_event_MS32705.html none
 fetch: cache/b/events_b.html
-return cached content for url (events_b.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=b --> cache/b/events_b.html 
+  ... 200 
 fetch: cache//2015/events/event_MS32077/_2015_events_event_MS32077.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32077 --> cache//2015/events/event_MS32077/_2015_events_event_MS32077.html 
   ... 200 
@@ -586,6 +612,10 @@ fetch: cache//2015/events/event_MS31417/_2015_events_event_MS31417.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31417 --> cache//2015/events/event_MS31417/_2015_events_event_MS31417.html 
   ... 200 
 cache/b/_2015_events_event_MS31417.html none
+fetch: cache//2015/events/event_MS32706/_2015_events_event_MS32706.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32706 --> cache//2015/events/event_MS32706/_2015_events_event_MS32706.html 
+  ... 200 
+cache/b/_2015_events_event_MS32706.html none
 fetch: cache//2015/events/event_MS29844/_2015_events_event_MS29844.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29844 --> cache//2015/events/event_MS29844/_2015_events_event_MS29844.html 
   ... 200 
@@ -670,6 +700,10 @@ fetch: cache//2015/events/event_MS32477/_2015_events_event_MS32477.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32477 --> cache//2015/events/event_MS32477/_2015_events_event_MS32477.html 
   ... 200 
 cache/b/_2015_events_event_MS32477.html none
+fetch: cache//2015/events/event_MS32681/_2015_events_event_MS32681.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32681 --> cache//2015/events/event_MS32681/_2015_events_event_MS32681.html 
+  ... 200 
+cache/b/_2015_events_event_MS32681.html none
 fetch: cache//2015/events/event_MS31868/_2015_events_event_MS31868.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31868 --> cache//2015/events/event_MS31868/_2015_events_event_MS31868.html 
   ... 200 
@@ -694,6 +728,10 @@ fetch: cache//2015/events/event_MS29181/_2015_events_event_MS29181.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29181 --> cache//2015/events/event_MS29181/_2015_events_event_MS29181.html 
   ... 200 
 cache/b/_2015_events_event_MS29181.html none
+fetch: cache//2015/events/event_MS32699/_2015_events_event_MS32699.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32699 --> cache//2015/events/event_MS32699/_2015_events_event_MS32699.html 
+  ... 200 
+cache/b/_2015_events_event_MS32699.html none
 fetch: cache//2015/events/event_MS30587/_2015_events_event_MS30587.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30587 --> cache//2015/events/event_MS30587/_2015_events_event_MS30587.html 
   ... 200 
@@ -794,6 +832,10 @@ fetch: cache//2015/events/event_MS30057/_2015_events_event_MS30057.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30057 --> cache//2015/events/event_MS30057/_2015_events_event_MS30057.html 
   ... 200 
 cache/b/_2015_events_event_MS30057.html none
+fetch: cache//2015/events/event_MS32690/_2015_events_event_MS32690.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32690 --> cache//2015/events/event_MS32690/_2015_events_event_MS32690.html 
+  ... 200 
+cache/b/_2015_events_event_MS32690.html none
 fetch: cache//2015/events/event_MS29125/_2015_events_event_MS29125.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29125 --> cache//2015/events/event_MS29125/_2015_events_event_MS29125.html 
   ... 200 
@@ -830,6 +872,10 @@ fetch: cache//2015/events/event_MS30064/_2015_events_event_MS30064.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30064 --> cache//2015/events/event_MS30064/_2015_events_event_MS30064.html 
   ... 200 
 cache/b/_2015_events_event_MS30064.html none
+fetch: cache//2015/events/event_MS32718/_2015_events_event_MS32718.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32718 --> cache//2015/events/event_MS32718/_2015_events_event_MS32718.html 
+  ... 200 
+cache/b/_2015_events_event_MS32718.html none
 fetch: cache//2015/events/event_MS31852/_2015_events_event_MS31852.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31852 --> cache//2015/events/event_MS31852/_2015_events_event_MS31852.html 
   ... 200 
@@ -970,6 +1016,10 @@ fetch: cache//2015/events/event_MS31640/_2015_events_event_MS31640.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31640 --> cache//2015/events/event_MS31640/_2015_events_event_MS31640.html 
   ... 200 
 cache/b/_2015_events_event_MS31640.html none
+fetch: cache//2015/events/event_MS32686/_2015_events_event_MS32686.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32686 --> cache//2015/events/event_MS32686/_2015_events_event_MS32686.html 
+  ... 200 
+cache/b/_2015_events_event_MS32686.html none
 fetch: cache//2015/events/event_MS30398/_2015_events_event_MS30398.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30398 --> cache//2015/events/event_MS30398/_2015_events_event_MS30398.html 
   ... 200 
@@ -1019,7 +1069,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS30313 --> cache//2015/events
   ... 200 
 cache/b/_2015_events_event_MS30313.html none
 fetch: cache/c/events_c.html
-return cached content for url (events_c.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=c --> cache/c/events_c.html 
+  ... 200 
 fetch: cache//2015/events/event_MS32376/_2015_events_event_MS32376.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32376 --> cache//2015/events/event_MS32376/_2015_events_event_MS32376.html 
   ... 200 
@@ -1120,6 +1171,10 @@ fetch: cache//2015/events/event_MS31596/_2015_events_event_MS31596.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31596 --> cache//2015/events/event_MS31596/_2015_events_event_MS31596.html 
   ... 200 
 cache/c/_2015_events_event_MS31596.html none
+fetch: cache//2015/events/event_MS32707/_2015_events_event_MS32707.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32707 --> cache//2015/events/event_MS32707/_2015_events_event_MS32707.html 
+  ... 200 
+cache/c/_2015_events_event_MS32707.html none
 fetch: cache//2015/events/event_MS29524/_2015_events_event_MS29524.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29524 --> cache//2015/events/event_MS29524/_2015_events_event_MS29524.html 
   ... 200 
@@ -1128,10 +1183,18 @@ fetch: cache//2015/events/event_MS31431/_2015_events_event_MS31431.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31431 --> cache//2015/events/event_MS31431/_2015_events_event_MS31431.html 
   ... 200 
 cache/c/_2015_events_event_MS31431.html none
+fetch: cache//2015/events/event_MS32679/_2015_events_event_MS32679.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32679 --> cache//2015/events/event_MS32679/_2015_events_event_MS32679.html 
+  ... 200 
+cache/c/_2015_events_event_MS32679.html none
 fetch: cache//2015/events/event_MS31011/_2015_events_event_MS31011.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31011 --> cache//2015/events/event_MS31011/_2015_events_event_MS31011.html 
   ... 200 
 cache/c/_2015_events_event_MS31011.html none
+fetch: cache//2015/events/event_MS32595/_2015_events_event_MS32595.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32595 --> cache//2015/events/event_MS32595/_2015_events_event_MS32595.html 
+  ... 200 
+cache/c/_2015_events_event_MS32595.html none
 fetch: cache//2015/events/event_MS30150/_2015_events_event_MS30150.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30150 --> cache//2015/events/event_MS30150/_2015_events_event_MS30150.html 
   ... 200 
@@ -1276,6 +1339,10 @@ fetch: cache//2015/events/event_MS31819/_2015_events_event_MS31819.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31819 --> cache//2015/events/event_MS31819/_2015_events_event_MS31819.html 
   ... 200 
 cache/c/_2015_events_event_MS31819.html none
+fetch: cache//2015/events/event_MS32664/_2015_events_event_MS32664.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32664 --> cache//2015/events/event_MS32664/_2015_events_event_MS32664.html 
+  ... 200 
+cache/c/_2015_events_event_MS32664.html none
 fetch: cache//2015/events/event_MS30439/_2015_events_event_MS30439.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30439 --> cache//2015/events/event_MS30439/_2015_events_event_MS30439.html 
   ... 200 
@@ -1288,6 +1355,10 @@ fetch: cache//2015/events/event_MS32550/_2015_events_event_MS32550.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32550 --> cache//2015/events/event_MS32550/_2015_events_event_MS32550.html 
   ... 200 
 cache/c/_2015_events_event_MS32550.html youtube http://www.youtube.com/embed/ZyPbv4e8Cv4
+fetch: cache//2015/events/event_MS32596/_2015_events_event_MS32596.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32596 --> cache//2015/events/event_MS32596/_2015_events_event_MS32596.html 
+  ... 200 
+cache/c/_2015_events_event_MS32596.html none
 fetch: cache//2015/events/event_MS31992/_2015_events_event_MS31992.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31992 --> cache//2015/events/event_MS31992/_2015_events_event_MS31992.html 
   ... 200 
@@ -1320,6 +1391,10 @@ fetch: cache//2015/events/event_MS32128/_2015_events_event_MS32128.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32128 --> cache//2015/events/event_MS32128/_2015_events_event_MS32128.html 
   ... 200 
 cache/c/_2015_events_event_MS32128.html none
+fetch: cache//2015/events/event_MS32125/_2015_events_event_MS32125.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32125 --> cache//2015/events/event_MS32125/_2015_events_event_MS32125.html 
+  ... 200 
+cache/c/_2015_events_event_MS32125.html none
 fetch: cache//2015/events/event_MS32343/_2015_events_event_MS32343.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32343 --> cache//2015/events/event_MS32343/_2015_events_event_MS32343.html 
   ... 200 
@@ -1328,6 +1403,10 @@ fetch: cache//2015/events/event_MS31595/_2015_events_event_MS31595.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31595 --> cache//2015/events/event_MS31595/_2015_events_event_MS31595.html 
   ... 200 
 cache/c/_2015_events_event_MS31595.html none
+fetch: cache//2015/events/event_MS32714/_2015_events_event_MS32714.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32714 --> cache//2015/events/event_MS32714/_2015_events_event_MS32714.html 
+  ... 200 
+cache/c/_2015_events_event_MS32714.html none
 fetch: cache//2015/events/event_MS30682/_2015_events_event_MS30682.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30682 --> cache//2015/events/event_MS30682/_2015_events_event_MS30682.html 
   ... 200 
@@ -1364,6 +1443,10 @@ fetch: cache//2015/events/event_MS32118/_2015_events_event_MS32118.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32118 --> cache//2015/events/event_MS32118/_2015_events_event_MS32118.html 
   ... 200 
 cache/c/_2015_events_event_MS32118.html none
+fetch: cache//2015/events/event_MS32695/_2015_events_event_MS32695.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32695 --> cache//2015/events/event_MS32695/_2015_events_event_MS32695.html 
+  ... 200 
+cache/c/_2015_events_event_MS32695.html none
 fetch: cache//2015/events/event_MS29359/_2015_events_event_MS29359.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29359 --> cache//2015/events/event_MS29359/_2015_events_event_MS29359.html 
   ... 200 
@@ -1376,6 +1459,10 @@ fetch: cache//2015/events/event_MS32313/_2015_events_event_MS32313.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32313 --> cache//2015/events/event_MS32313/_2015_events_event_MS32313.html 
   ... 200 
 cache/c/_2015_events_event_MS32313.html none
+fetch: cache//2015/events/event_MS32702/_2015_events_event_MS32702.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32702 --> cache//2015/events/event_MS32702/_2015_events_event_MS32702.html 
+  ... 200 
+cache/c/_2015_events_event_MS32702.html none
 fetch: cache//2015/events/event_MS29770/_2015_events_event_MS29770.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29770 --> cache//2015/events/event_MS29770/_2015_events_event_MS29770.html 
   ... 200 
@@ -1484,6 +1571,10 @@ fetch: cache//2015/events/event_MS32284/_2015_events_event_MS32284.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32284 --> cache//2015/events/event_MS32284/_2015_events_event_MS32284.html 
   ... 200 
 cache/c/_2015_events_event_MS32284.html none
+fetch: cache//2015/events/event_MS32522/_2015_events_event_MS32522.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32522 --> cache//2015/events/event_MS32522/_2015_events_event_MS32522.html 
+  ... 200 
+cache/c/_2015_events_event_MS32522.html none
 fetch: cache//2015/events/event_MS29667/_2015_events_event_MS29667.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29667 --> cache//2015/events/event_MS29667/_2015_events_event_MS29667.html 
   ... 200 
@@ -1492,8 +1583,13 @@ fetch: cache//2015/events/event_MS31681/_2015_events_event_MS31681.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31681 --> cache//2015/events/event_MS31681/_2015_events_event_MS31681.html 
   ... 200 
 cache/c/_2015_events_event_MS31681.html none
+fetch: cache//2015/events/event_MS32696/_2015_events_event_MS32696.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32696 --> cache//2015/events/event_MS32696/_2015_events_event_MS32696.html 
+  ... 200 
+cache/c/_2015_events_event_MS32696.html none
 fetch: cache/d/events_d.html
-return cached content for url (events_d.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=d --> cache/d/events_d.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29649/_2015_events_event_MS29649.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29649 --> cache//2015/events/event_MS29649/_2015_events_event_MS29649.html 
   ... 200 
@@ -1526,6 +1622,14 @@ fetch: cache//2015/events/event_MS32222/_2015_events_event_MS32222.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32222 --> cache//2015/events/event_MS32222/_2015_events_event_MS32222.html 
   ... 200 
 cache/d/_2015_events_event_MS32222.html none
+fetch: cache//2015/events/event_MS32396/_2015_events_event_MS32396.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32396 --> cache//2015/events/event_MS32396/_2015_events_event_MS32396.html 
+  ... 200 
+cache/d/_2015_events_event_MS32396.html none
+fetch: cache//2015/events/event_MS32502/_2015_events_event_MS32502.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32502 --> cache//2015/events/event_MS32502/_2015_events_event_MS32502.html 
+  ... 200 
+cache/d/_2015_events_event_MS32502.html none
 fetch: cache//2015/events/event_MS30490/_2015_events_event_MS30490.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30490 --> cache//2015/events/event_MS30490/_2015_events_event_MS30490.html 
   ... 200 
@@ -1642,6 +1746,10 @@ fetch: cache//2015/events/event_MS29286/_2015_events_event_MS29286.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29286 --> cache//2015/events/event_MS29286/_2015_events_event_MS29286.html 
   ... 200 
 cache/d/_2015_events_event_MS29286.html none
+fetch: cache//2015/events/event_MS32731/_2015_events_event_MS32731.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32731 --> cache//2015/events/event_MS32731/_2015_events_event_MS32731.html 
+  ... 200 
+cache/d/_2015_events_event_MS32731.html none
 fetch: cache//2015/events/event_MS31294/_2015_events_event_MS31294.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31294 --> cache//2015/events/event_MS31294/_2015_events_event_MS31294.html 
   ... 200 
@@ -1806,6 +1914,10 @@ fetch: cache//2015/events/event_MS31775/_2015_events_event_MS31775.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31775 --> cache//2015/events/event_MS31775/_2015_events_event_MS31775.html 
   ... 200 
 cache/d/_2015_events_event_MS31775.html none
+fetch: cache//2015/events/event_MS32255/_2015_events_event_MS32255.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32255 --> cache//2015/events/event_MS32255/_2015_events_event_MS32255.html 
+  ... 200 
+cache/d/_2015_events_event_MS32255.html none
 fetch: cache//2015/events/event_MS31190/_2015_events_event_MS31190.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31190 --> cache//2015/events/event_MS31190/_2015_events_event_MS31190.html 
   ... 200 
@@ -1854,6 +1966,10 @@ fetch: cache//2015/events/event_MS30267/_2015_events_event_MS30267.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30267 --> cache//2015/events/event_MS30267/_2015_events_event_MS30267.html 
   ... 200 
 cache/d/_2015_events_event_MS30267.html none
+fetch: cache//2015/events/event_MS32639/_2015_events_event_MS32639.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32639 --> cache//2015/events/event_MS32639/_2015_events_event_MS32639.html 
+  ... 200 
+cache/d/_2015_events_event_MS32639.html none
 fetch: cache//2015/events/event_MS30529/_2015_events_event_MS30529.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30529 --> cache//2015/events/event_MS30529/_2015_events_event_MS30529.html 
   ... 200 
@@ -1874,6 +1990,14 @@ fetch: cache//2015/events/event_MS31864/_2015_events_event_MS31864.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31864 --> cache//2015/events/event_MS31864/_2015_events_event_MS31864.html 
   ... 200 
 cache/d/_2015_events_event_MS31864.html none
+fetch: cache//2015/events/event_MS32481/_2015_events_event_MS32481.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32481 --> cache//2015/events/event_MS32481/_2015_events_event_MS32481.html 
+  ... 200 
+cache/d/_2015_events_event_MS32481.html none
+fetch: cache//2015/events/event_MS32488/_2015_events_event_MS32488.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32488 --> cache//2015/events/event_MS32488/_2015_events_event_MS32488.html 
+  ... 200 
+cache/d/_2015_events_event_MS32488.html none
 fetch: cache//2015/events/event_MS30269/_2015_events_event_MS30269.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30269 --> cache//2015/events/event_MS30269/_2015_events_event_MS30269.html 
   ... 200 
@@ -1906,10 +2030,18 @@ fetch: cache//2015/events/event_MS29398/_2015_events_event_MS29398.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29398 --> cache//2015/events/event_MS29398/_2015_events_event_MS29398.html 
   ... 200 
 cache/d/_2015_events_event_MS29398.html none
+fetch: cache//2015/events/event_MS31459/_2015_events_event_MS31459.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31459 --> cache//2015/events/event_MS31459/_2015_events_event_MS31459.html 
+  ... 200 
+cache/d/_2015_events_event_MS31459.html none
 fetch: cache//2015/events/event_MS31422/_2015_events_event_MS31422.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31422 --> cache//2015/events/event_MS31422/_2015_events_event_MS31422.html 
   ... 200 
 cache/d/_2015_events_event_MS31422.html none
+fetch: cache//2015/events/event_MS31697/_2015_events_event_MS31697.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31697 --> cache//2015/events/event_MS31697/_2015_events_event_MS31697.html 
+  ... 200 
+cache/d/_2015_events_event_MS31697.html none
 fetch: cache//2015/events/event_MS29505/_2015_events_event_MS29505.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29505 --> cache//2015/events/event_MS29505/_2015_events_event_MS29505.html 
   ... 200 
@@ -1990,6 +2122,10 @@ fetch: cache//2015/events/event_MS30367/_2015_events_event_MS30367.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30367 --> cache//2015/events/event_MS30367/_2015_events_event_MS30367.html 
   ... 200 
 cache/d/_2015_events_event_MS30367.html none
+fetch: cache//2015/events/event_MS32756/_2015_events_event_MS32756.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32756 --> cache//2015/events/event_MS32756/_2015_events_event_MS32756.html 
+  ... 200 
+cache/d/_2015_events_event_MS32756.html none
 fetch: cache//2015/events/event_MS29614/_2015_events_event_MS29614.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29614 --> cache//2015/events/event_MS29614/_2015_events_event_MS29614.html 
   ... 200 
@@ -2014,6 +2150,14 @@ fetch: cache//2015/events/event_MS30418/_2015_events_event_MS30418.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30418 --> cache//2015/events/event_MS30418/_2015_events_event_MS30418.html 
   ... 200 
 cache/d/_2015_events_event_MS30418.html youtube http://www.youtube.com/embed/b74ol5iMT44
+fetch: cache//2015/events/event_MS32606/_2015_events_event_MS32606.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32606 --> cache//2015/events/event_MS32606/_2015_events_event_MS32606.html 
+  ... 200 
+cache/d/_2015_events_event_MS32606.html none
+fetch: cache//2015/events/event_MS32636/_2015_events_event_MS32636.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32636 --> cache//2015/events/event_MS32636/_2015_events_event_MS32636.html 
+  ... 200 
+cache/d/_2015_events_event_MS32636.html none
 fetch: cache//2015/events/event_MS30977/_2015_events_event_MS30977.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30977 --> cache//2015/events/event_MS30977/_2015_events_event_MS30977.html 
   ... 200 
@@ -2022,6 +2166,10 @@ fetch: cache//2015/events/event_MS30237/_2015_events_event_MS30237.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30237 --> cache//2015/events/event_MS30237/_2015_events_event_MS30237.html 
   ... 200 
 cache/d/_2015_events_event_MS30237.html youtube http://www.youtube.com/embed/kw87NHyrvJk
+fetch: cache//2015/events/event_MS32494/_2015_events_event_MS32494.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32494 --> cache//2015/events/event_MS32494/_2015_events_event_MS32494.html 
+  ... 200 
+cache/d/_2015_events_event_MS32494.html none
 fetch: cache//2015/events/event_MS29196/_2015_events_event_MS29196.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29196 --> cache//2015/events/event_MS29196/_2015_events_event_MS29196.html 
   ... 200 
@@ -2038,6 +2186,10 @@ fetch: cache//2015/events/event_MS32047/_2015_events_event_MS32047.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32047 --> cache//2015/events/event_MS32047/_2015_events_event_MS32047.html 
   ... 200 
 cache/d/_2015_events_event_MS32047.html none
+fetch: cache//2015/events/event_MS32195/_2015_events_event_MS32195.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32195 --> cache//2015/events/event_MS32195/_2015_events_event_MS32195.html 
+  ... 200 
+cache/d/_2015_events_event_MS32195.html none
 fetch: cache//2015/events/event_MS29055/_2015_events_event_MS29055.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29055 --> cache//2015/events/event_MS29055/_2015_events_event_MS29055.html 
   ... 200 
@@ -2074,6 +2226,10 @@ fetch: cache//2015/events/event_MS30746/_2015_events_event_MS30746.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30746 --> cache//2015/events/event_MS30746/_2015_events_event_MS30746.html 
   ... 200 
 cache/d/_2015_events_event_MS30746.html none
+fetch: cache//2015/events/event_MS32742/_2015_events_event_MS32742.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32742 --> cache//2015/events/event_MS32742/_2015_events_event_MS32742.html 
+  ... 200 
+cache/d/_2015_events_event_MS32742.html none
 fetch: cache//2015/events/event_MS32472/_2015_events_event_MS32472.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32472 --> cache//2015/events/event_MS32472/_2015_events_event_MS32472.html 
   ... 200 
@@ -2091,7 +2247,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS31608 --> cache//2015/events
   ... 200 
 cache/d/_2015_events_event_MS31608.html none
 fetch: cache/e/events_e.html
-return cached content for url (events_e.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=e --> cache/e/events_e.html 
+  ... 200 
 fetch: cache//2015/events/event_MS31725/_2015_events_event_MS31725.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31725 --> cache//2015/events/event_MS31725/_2015_events_event_MS31725.html 
   ... 200 
@@ -2132,6 +2289,10 @@ fetch: cache//2015/events/event_MS30745/_2015_events_event_MS30745.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30745 --> cache//2015/events/event_MS30745/_2015_events_event_MS30745.html 
   ... 200 
 cache/e/_2015_events_event_MS30745.html youtube http://www.youtube.com/embed/M-Oe1q16FWU
+fetch: cache//2015/events/event_MS32608/_2015_events_event_MS32608.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32608 --> cache//2015/events/event_MS32608/_2015_events_event_MS32608.html 
+  ... 200 
+cache/e/_2015_events_event_MS32608.html none
 fetch: cache//2015/events/event_MS29968/_2015_events_event_MS29968.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29968 --> cache//2015/events/event_MS29968/_2015_events_event_MS29968.html 
   ... 200 
@@ -2160,6 +2321,10 @@ fetch: cache//2015/events/event_MS29014/_2015_events_event_MS29014.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29014 --> cache//2015/events/event_MS29014/_2015_events_event_MS29014.html 
   ... 200 
 cache/e/_2015_events_event_MS29014.html youtube http://www.youtube.com/embed/M5lZwq9RkO8
+fetch: cache//2015/events/event_MS32642/_2015_events_event_MS32642.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32642 --> cache//2015/events/event_MS32642/_2015_events_event_MS32642.html 
+  ... 200 
+cache/e/_2015_events_event_MS32642.html youtube http://www.youtube.com/embed/M5lZwq9RkO8
 fetch: cache//2015/events/event_MS29684/_2015_events_event_MS29684.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29684 --> cache//2015/events/event_MS29684/_2015_events_event_MS29684.html 
   ... 200 
@@ -2288,6 +2453,10 @@ fetch: cache//2015/events/event_MS31195/_2015_events_event_MS31195.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31195 --> cache//2015/events/event_MS31195/_2015_events_event_MS31195.html 
   ... 200 
 cache/e/_2015_events_event_MS31195.html none
+fetch: cache//2015/events/event_MS32292/_2015_events_event_MS32292.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32292 --> cache//2015/events/event_MS32292/_2015_events_event_MS32292.html 
+  ... 200 
+cache/e/_2015_events_event_MS32292.html none
 fetch: cache//2015/events/event_MS31821/_2015_events_event_MS31821.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31821 --> cache//2015/events/event_MS31821/_2015_events_event_MS31821.html 
   ... 200 
@@ -2369,7 +2538,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS31742 --> cache//2015/events
   ... 200 
 cache/e/_2015_events_event_MS31742.html none
 fetch: cache/f/events_f.html
-return cached content for url (events_f.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=f --> cache/f/events_f.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29787/_2015_events_event_MS29787.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29787 --> cache//2015/events/event_MS29787/_2015_events_event_MS29787.html 
   ... 200 
@@ -2398,10 +2568,18 @@ fetch: cache//2015/events/event_MS30494/_2015_events_event_MS30494.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30494 --> cache//2015/events/event_MS30494/_2015_events_event_MS30494.html 
   ... 200 
 cache/f/_2015_events_event_MS30494.html none
+fetch: cache//2015/events/event_MS32188/_2015_events_event_MS32188.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32188 --> cache//2015/events/event_MS32188/_2015_events_event_MS32188.html 
+  ... 200 
+cache/f/_2015_events_event_MS32188.html none
 fetch: cache//2015/events/event_MS30271/_2015_events_event_MS30271.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30271 --> cache//2015/events/event_MS30271/_2015_events_event_MS30271.html 
   ... 200 
 cache/f/_2015_events_event_MS30271.html none
+fetch: cache//2015/events/event_MS32720/_2015_events_event_MS32720.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32720 --> cache//2015/events/event_MS32720/_2015_events_event_MS32720.html 
+  ... 200 
+cache/f/_2015_events_event_MS32720.html none
 fetch: cache//2015/events/event_MS32365/_2015_events_event_MS32365.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32365 --> cache//2015/events/event_MS32365/_2015_events_event_MS32365.html 
   ... 200 
@@ -2522,6 +2700,10 @@ fetch: cache//2015/events/event_MS30191/_2015_events_event_MS30191.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30191 --> cache//2015/events/event_MS30191/_2015_events_event_MS30191.html 
   ... 200 
 cache/f/_2015_events_event_MS30191.html youtube http://www.youtube.com/embed/Ef1DKzKk3Jc
+fetch: cache//2015/events/event_MS32761/_2015_events_event_MS32761.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32761 --> cache//2015/events/event_MS32761/_2015_events_event_MS32761.html 
+  ... 200 
+cache/f/_2015_events_event_MS32761.html youtube http://www.youtube.com/embed/Ef1DKzKk3Jc
 fetch: cache//2015/events/event_MS30230/_2015_events_event_MS30230.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30230 --> cache//2015/events/event_MS30230/_2015_events_event_MS30230.html 
   ... 200 
@@ -2607,7 +2789,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29784 --> cache//2015/events
   ... 200 
 cache/f/_2015_events_event_MS29784.html none
 fetch: cache/g/events_g.html
-return cached content for url (events_g.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=g --> cache/g/events_g.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30093/_2015_events_event_MS30093.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30093 --> cache//2015/events/event_MS30093/_2015_events_event_MS30093.html 
   ... 200 
@@ -2616,6 +2799,10 @@ fetch: cache//2015/events/event_MS29719/_2015_events_event_MS29719.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29719 --> cache//2015/events/event_MS29719/_2015_events_event_MS29719.html 
   ... 200 
 cache/g/_2015_events_event_MS29719.html youtube http://www.youtube.com/embed/igi2-o4sTNE
+fetch: cache//2015/events/event_MS32666/_2015_events_event_MS32666.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32666 --> cache//2015/events/event_MS32666/_2015_events_event_MS32666.html 
+  ... 200 
+cache/g/_2015_events_event_MS32666.html youtube http://www.youtube.com/embed/igi2-o4sTNE
 fetch: cache//2015/events/event_MS31426/_2015_events_event_MS31426.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31426 --> cache//2015/events/event_MS31426/_2015_events_event_MS31426.html 
   ... 200 
@@ -2648,6 +2835,10 @@ fetch: cache//2015/events/event_MS29316/_2015_events_event_MS29316.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29316 --> cache//2015/events/event_MS29316/_2015_events_event_MS29316.html 
   ... 200 
 cache/g/_2015_events_event_MS29316.html none
+fetch: cache//2015/events/event_MS32667/_2015_events_event_MS32667.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32667 --> cache//2015/events/event_MS32667/_2015_events_event_MS32667.html 
+  ... 200 
+cache/g/_2015_events_event_MS32667.html none
 fetch: cache//2015/events/event_MS30728/_2015_events_event_MS30728.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30728 --> cache//2015/events/event_MS30728/_2015_events_event_MS30728.html 
   ... 200 
@@ -2828,6 +3019,10 @@ fetch: cache//2015/events/event_MS31333/_2015_events_event_MS31333.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31333 --> cache//2015/events/event_MS31333/_2015_events_event_MS31333.html 
   ... 200 
 cache/g/_2015_events_event_MS31333.html none
+fetch: cache//2015/events/event_MS32388/_2015_events_event_MS32388.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32388 --> cache//2015/events/event_MS32388/_2015_events_event_MS32388.html 
+  ... 200 
+cache/g/_2015_events_event_MS32388.html none
 fetch: cache//2015/events/event_MS29802/_2015_events_event_MS29802.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29802 --> cache//2015/events/event_MS29802/_2015_events_event_MS29802.html 
   ... 200 
@@ -2944,6 +3139,10 @@ fetch: cache//2015/events/event_MS29106/_2015_events_event_MS29106.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29106 --> cache//2015/events/event_MS29106/_2015_events_event_MS29106.html 
   ... 200 
 cache/g/_2015_events_event_MS29106.html none
+fetch: cache//2015/events/event_MS32701/_2015_events_event_MS32701.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32701 --> cache//2015/events/event_MS32701/_2015_events_event_MS32701.html 
+  ... 200 
+cache/g/_2015_events_event_MS32701.html none
 fetch: cache//2015/events/event_MS30515/_2015_events_event_MS30515.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30515 --> cache//2015/events/event_MS30515/_2015_events_event_MS30515.html 
   ... 200 
@@ -2957,7 +3156,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29318 --> cache//2015/events
   ... 200 
 cache/g/_2015_events_event_MS29318.html none
 fetch: cache/h/events_h.html
-return cached content for url (events_h.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=h --> cache/h/events_h.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30668/_2015_events_event_MS30668.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30668 --> cache//2015/events/event_MS30668/_2015_events_event_MS30668.html 
   ... 200 
@@ -2970,10 +3170,18 @@ fetch: cache//2015/events/event_MS29076/_2015_events_event_MS29076.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29076 --> cache//2015/events/event_MS29076/_2015_events_event_MS29076.html 
   ... 200 
 cache/h/_2015_events_event_MS29076.html youtube http://www.youtube.com/embed/ymhwzELOPWk
+fetch: cache//2015/events/event_MS32635/_2015_events_event_MS32635.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32635 --> cache//2015/events/event_MS32635/_2015_events_event_MS32635.html 
+  ... 200 
+cache/h/_2015_events_event_MS32635.html youtube http://www.youtube.com/embed/ymhwzELOPWk
 fetch: cache//2015/events/event_MS29906/_2015_events_event_MS29906.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29906 --> cache//2015/events/event_MS29906/_2015_events_event_MS29906.html 
   ... 200 
 cache/h/_2015_events_event_MS29906.html none
+fetch: cache//2015/events/event_MS32703/_2015_events_event_MS32703.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32703 --> cache//2015/events/event_MS32703/_2015_events_event_MS32703.html 
+  ... 200 
+cache/h/_2015_events_event_MS32703.html none
 fetch: cache//2015/events/event_MS30183/_2015_events_event_MS30183.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30183 --> cache//2015/events/event_MS30183/_2015_events_event_MS30183.html 
   ... 200 
@@ -3022,6 +3230,10 @@ fetch: cache//2015/events/event_MS30511/_2015_events_event_MS30511.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30511 --> cache//2015/events/event_MS30511/_2015_events_event_MS30511.html 
   ... 200 
 cache/h/_2015_events_event_MS30511.html none
+fetch: cache//2015/events/event_MS32143/_2015_events_event_MS32143.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32143 --> cache//2015/events/event_MS32143/_2015_events_event_MS32143.html 
+  ... 200 
+cache/h/_2015_events_event_MS32143.html none
 fetch: cache//2015/events/event_MS30609/_2015_events_event_MS30609.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30609 --> cache//2015/events/event_MS30609/_2015_events_event_MS30609.html 
   ... 200 
@@ -3190,6 +3402,10 @@ fetch: cache//2015/events/event_MS29527/_2015_events_event_MS29527.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29527 --> cache//2015/events/event_MS29527/_2015_events_event_MS29527.html 
   ... 200 
 cache/h/_2015_events_event_MS29527.html youtube http://www.youtube.com/embed/xB0Cx3QNGYE
+fetch: cache//2015/events/event_MS32498/_2015_events_event_MS32498.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32498 --> cache//2015/events/event_MS32498/_2015_events_event_MS32498.html 
+  ... 200 
+cache/h/_2015_events_event_MS32498.html youtube http://www.youtube.com/embed/xB0Cx3QNGYE
 fetch: cache//2015/events/event_MS29763/_2015_events_event_MS29763.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29763 --> cache//2015/events/event_MS29763/_2015_events_event_MS29763.html 
   ... 200 
@@ -3238,6 +3454,10 @@ fetch: cache//2015/events/event_MS30390/_2015_events_event_MS30390.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30390 --> cache//2015/events/event_MS30390/_2015_events_event_MS30390.html 
   ... 200 
 cache/h/_2015_events_event_MS30390.html none
+fetch: cache//2015/events/event_MS31878/_2015_events_event_MS31878.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31878 --> cache//2015/events/event_MS31878/_2015_events_event_MS31878.html 
+  ... 200 
+cache/h/_2015_events_event_MS31878.html none
 fetch: cache//2015/events/event_MS29831/_2015_events_event_MS29831.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29831 --> cache//2015/events/event_MS29831/_2015_events_event_MS29831.html 
   ... 200 
@@ -3254,10 +3474,6 @@ fetch: cache//2015/events/event_MS31931/_2015_events_event_MS31931.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31931 --> cache//2015/events/event_MS31931/_2015_events_event_MS31931.html 
   ... 200 
 cache/h/_2015_events_event_MS31931.html none
-fetch: cache//2015/events/event_MS29588/_2015_events_event_MS29588.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS29588 --> cache//2015/events/event_MS29588/_2015_events_event_MS29588.html 
-  ... 200 
-cache/h/_2015_events_event_MS29588.html none
 fetch: cache//2015/events/event_MS31033/_2015_events_event_MS31033.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31033 --> cache//2015/events/event_MS31033/_2015_events_event_MS31033.html 
   ... 200 
@@ -3270,6 +3486,10 @@ fetch: cache//2015/events/event_MS31068/_2015_events_event_MS31068.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31068 --> cache//2015/events/event_MS31068/_2015_events_event_MS31068.html 
   ... 200 
 cache/h/_2015_events_event_MS31068.html none
+fetch: cache//2015/events/event_MS32733/_2015_events_event_MS32733.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32733 --> cache//2015/events/event_MS32733/_2015_events_event_MS32733.html 
+  ... 200 
+cache/h/_2015_events_event_MS32733.html none
 fetch: cache//2015/events/event_MS32165/_2015_events_event_MS32165.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32165 --> cache//2015/events/event_MS32165/_2015_events_event_MS32165.html 
   ... 200 
@@ -3307,7 +3527,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS31636 --> cache//2015/events
   ... 200 
 cache/h/_2015_events_event_MS31636.html youtube http://www.youtube.com/embed/YxOZ0rqUUXI
 fetch: cache/i/events_i.html
-return cached content for url (events_i.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=i --> cache/i/events_i.html 
+  ... 200 
 fetch: cache//2015/events/event_MS32401/_2015_events_event_MS32401.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32401 --> cache//2015/events/event_MS32401/_2015_events_event_MS32401.html 
   ... 200 
@@ -3348,6 +3569,10 @@ fetch: cache//2015/events/event_MS32269/_2015_events_event_MS32269.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32269 --> cache//2015/events/event_MS32269/_2015_events_event_MS32269.html 
   ... 200 
 cache/i/_2015_events_event_MS32269.html none
+fetch: cache//2015/events/event_MS32252/_2015_events_event_MS32252.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32252 --> cache//2015/events/event_MS32252/_2015_events_event_MS32252.html 
+  ... 200 
+cache/i/_2015_events_event_MS32252.html none
 fetch: cache//2015/events/event_MS29393/_2015_events_event_MS29393.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29393 --> cache//2015/events/event_MS29393/_2015_events_event_MS29393.html 
   ... 200 
@@ -3376,6 +3601,10 @@ fetch: cache//2015/events/event_MS31361/_2015_events_event_MS31361.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31361 --> cache//2015/events/event_MS31361/_2015_events_event_MS31361.html 
   ... 200 
 cache/i/_2015_events_event_MS31361.html none
+fetch: cache//2015/events/event_MS32685/_2015_events_event_MS32685.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32685 --> cache//2015/events/event_MS32685/_2015_events_event_MS32685.html 
+  ... 200 
+cache/i/_2015_events_event_MS32685.html none
 fetch: cache//2015/events/event_MS29136/_2015_events_event_MS29136.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29136 --> cache//2015/events/event_MS29136/_2015_events_event_MS29136.html 
   ... 200 
@@ -3392,10 +3621,10 @@ fetch: cache//2015/events/event_MS30964/_2015_events_event_MS30964.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30964 --> cache//2015/events/event_MS30964/_2015_events_event_MS30964.html 
   ... 200 
 cache/i/_2015_events_event_MS30964.html none
-fetch: cache//2015/events/event_MS32573/_2015_events_event_MS32573.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS32573 --> cache//2015/events/event_MS32573/_2015_events_event_MS32573.html 
+fetch: cache//2015/events/event_MS32716/_2015_events_event_MS32716.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32716 --> cache//2015/events/event_MS32716/_2015_events_event_MS32716.html 
   ... 200 
-cache/i/_2015_events_event_MS32573.html none
+cache/i/_2015_events_event_MS32716.html none
 fetch: cache//2015/events/event_MS31826/_2015_events_event_MS31826.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31826 --> cache//2015/events/event_MS31826/_2015_events_event_MS31826.html 
   ... 200 
@@ -3404,8 +3633,13 @@ fetch: cache//2015/events/event_MS30890/_2015_events_event_MS30890.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30890 --> cache//2015/events/event_MS30890/_2015_events_event_MS30890.html 
   ... 200 
 cache/i/_2015_events_event_MS30890.html youtube http://www.youtube.com/embed/5rFTpxSmC9Q
+fetch: cache//2015/events/event_MS32663/_2015_events_event_MS32663.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32663 --> cache//2015/events/event_MS32663/_2015_events_event_MS32663.html 
+  ... 200 
+cache/i/_2015_events_event_MS32663.html youtube http://www.youtube.com/embed/5rFTpxSmC9Q
 fetch: cache/j/events_j.html
-return cached content for url (events_j.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=j --> cache/j/events_j.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29724/_2015_events_event_MS29724.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29724 --> cache//2015/events/event_MS29724/_2015_events_event_MS29724.html 
   ... 200 
@@ -3662,6 +3896,10 @@ fetch: cache//2015/events/event_MS30485/_2015_events_event_MS30485.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30485 --> cache//2015/events/event_MS30485/_2015_events_event_MS30485.html 
   ... 200 
 cache/j/_2015_events_event_MS30485.html none
+fetch: cache//2015/events/event_MS32515/_2015_events_event_MS32515.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32515 --> cache//2015/events/event_MS32515/_2015_events_event_MS32515.html 
+  ... 200 
+cache/j/_2015_events_event_MS32515.html none
 fetch: cache//2015/events/event_MS30060/_2015_events_event_MS30060.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30060 --> cache//2015/events/event_MS30060/_2015_events_event_MS30060.html 
   ... 200 
@@ -3682,6 +3920,10 @@ fetch: cache//2015/events/event_MS31770/_2015_events_event_MS31770.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31770 --> cache//2015/events/event_MS31770/_2015_events_event_MS31770.html 
   ... 200 
 cache/j/_2015_events_event_MS31770.html none
+fetch: cache//2015/events/event_MS31827/_2015_events_event_MS31827.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31827 --> cache//2015/events/event_MS31827/_2015_events_event_MS31827.html 
+  ... 200 
+cache/j/_2015_events_event_MS31827.html none
 fetch: cache//2015/events/event_MS30967/_2015_events_event_MS30967.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30967 --> cache//2015/events/event_MS30967/_2015_events_event_MS30967.html 
   ... 200 
@@ -3702,6 +3944,14 @@ fetch: cache//2015/events/event_MS31147/_2015_events_event_MS31147.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31147 --> cache//2015/events/event_MS31147/_2015_events_event_MS31147.html 
   ... 200 
 cache/j/_2015_events_event_MS31147.html none
+fetch: cache//2015/events/event_MS32713/_2015_events_event_MS32713.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32713 --> cache//2015/events/event_MS32713/_2015_events_event_MS32713.html 
+  ... 200 
+cache/j/_2015_events_event_MS32713.html none
+fetch: cache//2015/events/event_MS32715/_2015_events_event_MS32715.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32715 --> cache//2015/events/event_MS32715/_2015_events_event_MS32715.html 
+  ... 200 
+cache/j/_2015_events_event_MS32715.html none
 fetch: cache//2015/events/event_MS29035/_2015_events_event_MS29035.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29035 --> cache//2015/events/event_MS29035/_2015_events_event_MS29035.html 
   ... 200 
@@ -3847,7 +4097,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29766 --> cache//2015/events
   ... 200 
 cache/j/_2015_events_event_MS29766.html none
 fetch: cache/k/events_k.html
-return cached content for url (events_k.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=k --> cache/k/events_k.html 
+  ... 200 
 fetch: cache//2015/events/event_MS32374/_2015_events_event_MS32374.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32374 --> cache//2015/events/event_MS32374/_2015_events_event_MS32374.html 
   ... 200 
@@ -3868,6 +4119,10 @@ fetch: cache//2015/events/event_MS29830/_2015_events_event_MS29830.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29830 --> cache//2015/events/event_MS29830/_2015_events_event_MS29830.html 
   ... 200 
 cache/k/_2015_events_event_MS29830.html none
+fetch: cache//2015/events/event_MS32637/_2015_events_event_MS32637.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32637 --> cache//2015/events/event_MS32637/_2015_events_event_MS32637.html 
+  ... 200 
+cache/k/_2015_events_event_MS32637.html none
 fetch: cache//2015/events/event_MS30055/_2015_events_event_MS30055.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30055 --> cache//2015/events/event_MS30055/_2015_events_event_MS30055.html 
   ... 200 
@@ -3900,6 +4155,14 @@ fetch: cache//2015/events/event_MS32098/_2015_events_event_MS32098.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32098 --> cache//2015/events/event_MS32098/_2015_events_event_MS32098.html 
   ... 200 
 cache/k/_2015_events_event_MS32098.html none
+fetch: cache//2015/events/event_MS32362/_2015_events_event_MS32362.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32362 --> cache//2015/events/event_MS32362/_2015_events_event_MS32362.html 
+  ... 200 
+cache/k/_2015_events_event_MS32362.html none
+fetch: cache//2015/events/event_MS32440/_2015_events_event_MS32440.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32440 --> cache//2015/events/event_MS32440/_2015_events_event_MS32440.html 
+  ... 200 
+cache/k/_2015_events_event_MS32440.html none
 fetch: cache//2015/events/event_MS31747/_2015_events_event_MS31747.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31747 --> cache//2015/events/event_MS31747/_2015_events_event_MS31747.html 
   ... 200 
@@ -3908,6 +4171,10 @@ fetch: cache//2015/events/event_MS32236/_2015_events_event_MS32236.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32236 --> cache//2015/events/event_MS32236/_2015_events_event_MS32236.html 
   ... 200 
 cache/k/_2015_events_event_MS32236.html none
+fetch: cache//2015/events/event_MS32704/_2015_events_event_MS32704.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32704 --> cache//2015/events/event_MS32704/_2015_events_event_MS32704.html 
+  ... 200 
+cache/k/_2015_events_event_MS32704.html none
 fetch: cache//2015/events/event_MS31339/_2015_events_event_MS31339.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31339 --> cache//2015/events/event_MS31339/_2015_events_event_MS31339.html 
   ... 200 
@@ -3980,6 +4247,14 @@ fetch: cache//2015/events/event_MS32300/_2015_events_event_MS32300.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32300 --> cache//2015/events/event_MS32300/_2015_events_event_MS32300.html 
   ... 200 
 cache/k/_2015_events_event_MS32300.html none
+fetch: cache//2015/events/event_MS31463/_2015_events_event_MS31463.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31463 --> cache//2015/events/event_MS31463/_2015_events_event_MS31463.html 
+  ... 200 
+cache/k/_2015_events_event_MS31463.html none
+fetch: cache//2015/events/event_MS31705/_2015_events_event_MS31705.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31705 --> cache//2015/events/event_MS31705/_2015_events_event_MS31705.html 
+  ... 200 
+cache/k/_2015_events_event_MS31705.html none
 fetch: cache//2015/events/event_MS29750/_2015_events_event_MS29750.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29750 --> cache//2015/events/event_MS29750/_2015_events_event_MS29750.html 
   ... 200 
@@ -4036,6 +4311,10 @@ fetch: cache//2015/events/event_MS31248/_2015_events_event_MS31248.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31248 --> cache//2015/events/event_MS31248/_2015_events_event_MS31248.html 
   ... 200 
 cache/k/_2015_events_event_MS31248.html none
+fetch: cache//2015/events/event_MS32372/_2015_events_event_MS32372.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32372 --> cache//2015/events/event_MS32372/_2015_events_event_MS32372.html 
+  ... 200 
+cache/k/_2015_events_event_MS32372.html none
 fetch: cache//2015/events/event_MS29924/_2015_events_event_MS29924.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29924 --> cache//2015/events/event_MS29924/_2015_events_event_MS29924.html 
   ... 200 
@@ -4060,6 +4339,10 @@ fetch: cache//2015/events/event_MS32205/_2015_events_event_MS32205.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32205 --> cache//2015/events/event_MS32205/_2015_events_event_MS32205.html 
   ... 200 
 cache/k/_2015_events_event_MS32205.html none
+fetch: cache//2015/events/event_MS32519/_2015_events_event_MS32519.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32519 --> cache//2015/events/event_MS32519/_2015_events_event_MS32519.html 
+  ... 200 
+cache/k/_2015_events_event_MS32519.html none
 fetch: cache//2015/events/event_MS30126/_2015_events_event_MS30126.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30126 --> cache//2015/events/event_MS30126/_2015_events_event_MS30126.html 
   ... 200 
@@ -4104,6 +4387,10 @@ fetch: cache//2015/events/event_MS31311/_2015_events_event_MS31311.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31311 --> cache//2015/events/event_MS31311/_2015_events_event_MS31311.html 
   ... 200 
 cache/k/_2015_events_event_MS31311.html none
+fetch: cache//2015/events/event_MS32712/_2015_events_event_MS32712.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32712 --> cache//2015/events/event_MS32712/_2015_events_event_MS32712.html 
+  ... 200 
+cache/k/_2015_events_event_MS32712.html none
 fetch: cache//2015/events/event_MS30831/_2015_events_event_MS30831.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30831 --> cache//2015/events/event_MS30831/_2015_events_event_MS30831.html 
   ... 200 
@@ -4128,12 +4415,17 @@ fetch: cache//2015/events/event_MS29094/_2015_events_event_MS29094.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29094 --> cache//2015/events/event_MS29094/_2015_events_event_MS29094.html 
   ... 200 
 cache/k/_2015_events_event_MS29094.html none
+fetch: cache//2015/events/event_MS32123/_2015_events_event_MS32123.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32123 --> cache//2015/events/event_MS32123/_2015_events_event_MS32123.html 
+  ... 200 
+cache/k/_2015_events_event_MS32123.html none
 fetch: cache//2015/events/event_MS29120/_2015_events_event_MS29120.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29120 --> cache//2015/events/event_MS29120/_2015_events_event_MS29120.html 
   ... 200 
 cache/k/_2015_events_event_MS29120.html youtube http://www.youtube.com/embed/2LEUBpPFGHs
 fetch: cache/l/events_l.html
-return cached content for url (events_l.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=l --> cache/l/events_l.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29219/_2015_events_event_MS29219.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29219 --> cache//2015/events/event_MS29219/_2015_events_event_MS29219.html 
   ... 200 
@@ -4190,6 +4482,10 @@ fetch: cache//2015/events/event_MS32617/_2015_events_event_MS32617.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32617 --> cache//2015/events/event_MS32617/_2015_events_event_MS32617.html 
   ... 200 
 cache/l/_2015_events_event_MS32617.html none
+fetch: cache//2015/events/event_MS32190/_2015_events_event_MS32190.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32190 --> cache//2015/events/event_MS32190/_2015_events_event_MS32190.html 
+  ... 200 
+cache/l/_2015_events_event_MS32190.html none
 fetch: cache//2015/events/event_MS29754/_2015_events_event_MS29754.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29754 --> cache//2015/events/event_MS29754/_2015_events_event_MS29754.html 
   ... 200 
@@ -4330,6 +4626,14 @@ fetch: cache//2015/events/event_MS31023/_2015_events_event_MS31023.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31023 --> cache//2015/events/event_MS31023/_2015_events_event_MS31023.html 
   ... 200 
 cache/l/_2015_events_event_MS31023.html none
+fetch: cache//2015/events/event_MS32711/_2015_events_event_MS32711.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32711 --> cache//2015/events/event_MS32711/_2015_events_event_MS32711.html 
+  ... 200 
+cache/l/_2015_events_event_MS32711.html none
+fetch: cache//2015/events/event_MS32405/_2015_events_event_MS32405.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32405 --> cache//2015/events/event_MS32405/_2015_events_event_MS32405.html 
+  ... 200 
+cache/l/_2015_events_event_MS32405.html none
 fetch: cache//2015/events/event_MS29734/_2015_events_event_MS29734.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29734 --> cache//2015/events/event_MS29734/_2015_events_event_MS29734.html 
   ... 200 
@@ -4350,6 +4654,10 @@ fetch: cache//2015/events/event_MS29714/_2015_events_event_MS29714.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29714 --> cache//2015/events/event_MS29714/_2015_events_event_MS29714.html 
   ... 200 
 cache/l/_2015_events_event_MS29714.html none
+fetch: cache//2015/events/event_MS32708/_2015_events_event_MS32708.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32708 --> cache//2015/events/event_MS32708/_2015_events_event_MS32708.html 
+  ... 200 
+cache/l/_2015_events_event_MS32708.html none
 fetch: cache//2015/events/event_MS31686/_2015_events_event_MS31686.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31686 --> cache//2015/events/event_MS31686/_2015_events_event_MS31686.html 
   ... 200 
@@ -4358,6 +4666,10 @@ fetch: cache//2015/events/event_MS29816/_2015_events_event_MS29816.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29816 --> cache//2015/events/event_MS29816/_2015_events_event_MS29816.html 
   ... 200 
 cache/l/_2015_events_event_MS29816.html none
+fetch: cache//2015/events/event_MS30564/_2015_events_event_MS30564.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS30564 --> cache//2015/events/event_MS30564/_2015_events_event_MS30564.html 
+  ... 200 
+cache/l/_2015_events_event_MS30564.html none
 fetch: cache//2015/events/event_MS30461/_2015_events_event_MS30461.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30461 --> cache//2015/events/event_MS30461/_2015_events_event_MS30461.html 
   ... 200 
@@ -4434,6 +4746,10 @@ fetch: cache//2015/events/event_MS32406/_2015_events_event_MS32406.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32406 --> cache//2015/events/event_MS32406/_2015_events_event_MS32406.html 
   ... 200 
 cache/l/_2015_events_event_MS32406.html none
+fetch: cache//2015/events/event_MS32641/_2015_events_event_MS32641.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32641 --> cache//2015/events/event_MS32641/_2015_events_event_MS32641.html 
+  ... 200 
+cache/l/_2015_events_event_MS32641.html none
 fetch: cache//2015/events/event_MS31400/_2015_events_event_MS31400.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31400 --> cache//2015/events/event_MS31400/_2015_events_event_MS31400.html 
   ... 200 
@@ -4555,7 +4871,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS31419 --> cache//2015/events
   ... 200 
 cache/l/_2015_events_event_MS31419.html none
 fetch: cache/m/events_m.html
-return cached content for url (events_m.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=m --> cache/m/events_m.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30019/_2015_events_event_MS30019.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30019 --> cache//2015/events/event_MS30019/_2015_events_event_MS30019.html 
   ... 200 
@@ -4576,6 +4893,10 @@ fetch: cache//2015/events/event_MS29322/_2015_events_event_MS29322.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29322 --> cache//2015/events/event_MS29322/_2015_events_event_MS29322.html 
   ... 200 
 cache/m/_2015_events_event_MS29322.html none
+fetch: cache//2015/events/event_MS32730/_2015_events_event_MS32730.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32730 --> cache//2015/events/event_MS32730/_2015_events_event_MS32730.html 
+  ... 200 
+cache/m/_2015_events_event_MS32730.html none
 fetch: cache//2015/events/event_MS29486/_2015_events_event_MS29486.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29486 --> cache//2015/events/event_MS29486/_2015_events_event_MS29486.html 
   ... 200 
@@ -4728,10 +5049,6 @@ fetch: cache//2015/events/event_MS32415/_2015_events_event_MS32415.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32415 --> cache//2015/events/event_MS32415/_2015_events_event_MS32415.html 
   ... 200 
 cache/m/_2015_events_event_MS32415.html none
-fetch: cache//2015/events/event_MS30776/_2015_events_event_MS30776.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS30776 --> cache//2015/events/event_MS30776/_2015_events_event_MS30776.html 
-  ... 200 
-cache/m/_2015_events_event_MS30776.html none
 fetch: cache//2015/events/event_MS31397/_2015_events_event_MS31397.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31397 --> cache//2015/events/event_MS31397/_2015_events_event_MS31397.html 
   ... 200 
@@ -4756,6 +5073,10 @@ fetch: cache//2015/events/event_MS29789/_2015_events_event_MS29789.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29789 --> cache//2015/events/event_MS29789/_2015_events_event_MS29789.html 
   ... 200 
 cache/m/_2015_events_event_MS29789.html none
+fetch: cache//2015/events/event_MS32657/_2015_events_event_MS32657.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32657 --> cache//2015/events/event_MS32657/_2015_events_event_MS32657.html 
+  ... 200 
+cache/m/_2015_events_event_MS32657.html none
 fetch: cache//2015/events/event_MS31126/_2015_events_event_MS31126.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31126 --> cache//2015/events/event_MS31126/_2015_events_event_MS31126.html 
   ... 200 
@@ -4772,10 +5093,22 @@ fetch: cache//2015/events/event_MS31206/_2015_events_event_MS31206.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31206 --> cache//2015/events/event_MS31206/_2015_events_event_MS31206.html 
   ... 200 
 cache/m/_2015_events_event_MS31206.html none
+fetch: cache//2015/events/event_MS32527/_2015_events_event_MS32527.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32527 --> cache//2015/events/event_MS32527/_2015_events_event_MS32527.html 
+  ... 200 
+cache/m/_2015_events_event_MS32527.html none
+fetch: cache//2015/events/event_MS32532/_2015_events_event_MS32532.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32532 --> cache//2015/events/event_MS32532/_2015_events_event_MS32532.html 
+  ... 200 
+cache/m/_2015_events_event_MS32532.html none
 fetch: cache//2015/events/event_MS30171/_2015_events_event_MS30171.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30171 --> cache//2015/events/event_MS30171/_2015_events_event_MS30171.html 
   ... 200 
 cache/m/_2015_events_event_MS30171.html none
+fetch: cache//2015/events/event_MS31736/_2015_events_event_MS31736.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31736 --> cache//2015/events/event_MS31736/_2015_events_event_MS31736.html 
+  ... 200 
+cache/m/_2015_events_event_MS31736.html none
 fetch: cache//2015/events/event_MS30043/_2015_events_event_MS30043.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30043 --> cache//2015/events/event_MS30043/_2015_events_event_MS30043.html 
   ... 200 
@@ -4792,6 +5125,10 @@ fetch: cache//2015/events/event_MS32226/_2015_events_event_MS32226.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32226 --> cache//2015/events/event_MS32226/_2015_events_event_MS32226.html 
   ... 200 
 cache/m/_2015_events_event_MS32226.html youtube http://www.youtube.com/embed/opD6zrR9dNQ
+fetch: cache//2015/events/event_MS32648/_2015_events_event_MS32648.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32648 --> cache//2015/events/event_MS32648/_2015_events_event_MS32648.html 
+  ... 200 
+cache/m/_2015_events_event_MS32648.html youtube http://www.youtube.com/embed/opD6zrR9dNQ
 fetch: cache//2015/events/event_MS29857/_2015_events_event_MS29857.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29857 --> cache//2015/events/event_MS29857/_2015_events_event_MS29857.html 
   ... 200 
@@ -4828,6 +5165,10 @@ fetch: cache//2015/events/event_MS29045/_2015_events_event_MS29045.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29045 --> cache//2015/events/event_MS29045/_2015_events_event_MS29045.html 
   ... 200 
 cache/m/_2015_events_event_MS29045.html none
+fetch: cache//2015/events/event_MS32753/_2015_events_event_MS32753.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32753 --> cache//2015/events/event_MS32753/_2015_events_event_MS32753.html 
+  ... 200 
+cache/m/_2015_events_event_MS32753.html none
 fetch: cache//2015/events/event_MS30366/_2015_events_event_MS30366.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30366 --> cache//2015/events/event_MS30366/_2015_events_event_MS30366.html 
   ... 200 
@@ -4840,6 +5181,10 @@ fetch: cache//2015/events/event_MS31457/_2015_events_event_MS31457.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31457 --> cache//2015/events/event_MS31457/_2015_events_event_MS31457.html 
   ... 200 
 cache/m/_2015_events_event_MS31457.html none
+fetch: cache//2015/events/event_MS32241/_2015_events_event_MS32241.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32241 --> cache//2015/events/event_MS32241/_2015_events_event_MS32241.html 
+  ... 200 
+cache/m/_2015_events_event_MS32241.html none
 fetch: cache//2015/events/event_MS31233/_2015_events_event_MS31233.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31233 --> cache//2015/events/event_MS31233/_2015_events_event_MS31233.html 
   ... 200 
@@ -4932,6 +5277,10 @@ fetch: cache//2015/events/event_MS29373/_2015_events_event_MS29373.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29373 --> cache//2015/events/event_MS29373/_2015_events_event_MS29373.html 
   ... 200 
 cache/m/_2015_events_event_MS29373.html none
+fetch: cache//2015/events/event_MS32757/_2015_events_event_MS32757.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32757 --> cache//2015/events/event_MS32757/_2015_events_event_MS32757.html 
+  ... 200 
+cache/m/_2015_events_event_MS32757.html none
 fetch: cache//2015/events/event_MS31942/_2015_events_event_MS31942.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31942 --> cache//2015/events/event_MS31942/_2015_events_event_MS31942.html 
   ... 200 
@@ -4944,6 +5293,10 @@ fetch: cache//2015/events/event_MS30672/_2015_events_event_MS30672.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30672 --> cache//2015/events/event_MS30672/_2015_events_event_MS30672.html 
   ... 200 
 cache/m/_2015_events_event_MS30672.html none
+fetch: cache//2015/events/event_MS32067/_2015_events_event_MS32067.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32067 --> cache//2015/events/event_MS32067/_2015_events_event_MS32067.html 
+  ... 200 
+cache/m/_2015_events_event_MS32067.html none
 fetch: cache//2015/events/event_MS31678/_2015_events_event_MS31678.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31678 --> cache//2015/events/event_MS31678/_2015_events_event_MS31678.html 
   ... 200 
@@ -4984,6 +5337,14 @@ fetch: cache//2015/events/event_MS32553/_2015_events_event_MS32553.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32553 --> cache//2015/events/event_MS32553/_2015_events_event_MS32553.html 
   ... 200 
 cache/m/_2015_events_event_MS32553.html none
+fetch: cache//2015/events/event_MS32644/_2015_events_event_MS32644.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32644 --> cache//2015/events/event_MS32644/_2015_events_event_MS32644.html 
+  ... 200 
+cache/m/_2015_events_event_MS32644.html none
+fetch: cache//2015/events/event_MS32745/_2015_events_event_MS32745.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32745 --> cache//2015/events/event_MS32745/_2015_events_event_MS32745.html 
+  ... 200 
+cache/m/_2015_events_event_MS32745.html none
 fetch: cache//2015/events/event_MS29666/_2015_events_event_MS29666.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29666 --> cache//2015/events/event_MS29666/_2015_events_event_MS29666.html 
   ... 200 
@@ -5016,10 +5377,6 @@ fetch: cache//2015/events/event_MS30108/_2015_events_event_MS30108.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30108 --> cache//2015/events/event_MS30108/_2015_events_event_MS30108.html 
   ... 200 
 cache/m/_2015_events_event_MS30108.html none
-fetch: cache//2015/events/event_MS30246/_2015_events_event_MS30246.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS30246 --> cache//2015/events/event_MS30246/_2015_events_event_MS30246.html 
-  ... 200 
-cache/m/_2015_events_event_MS30246.html none
 fetch: cache//2015/events/event_MS30451/_2015_events_event_MS30451.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30451 --> cache//2015/events/event_MS30451/_2015_events_event_MS30451.html 
   ... 200 
@@ -5136,6 +5493,10 @@ fetch: cache//2015/events/event_MS31853/_2015_events_event_MS31853.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31853 --> cache//2015/events/event_MS31853/_2015_events_event_MS31853.html 
   ... 200 
 cache/m/_2015_events_event_MS31853.html none
+fetch: cache//2015/events/event_MS32645/_2015_events_event_MS32645.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32645 --> cache//2015/events/event_MS32645/_2015_events_event_MS32645.html 
+  ... 200 
+cache/m/_2015_events_event_MS32645.html none
 fetch: cache//2015/events/event_MS29513/_2015_events_event_MS29513.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29513 --> cache//2015/events/event_MS29513/_2015_events_event_MS29513.html 
   ... 200 
@@ -5184,6 +5545,10 @@ fetch: cache//2015/events/event_MS31911/_2015_events_event_MS31911.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31911 --> cache//2015/events/event_MS31911/_2015_events_event_MS31911.html 
   ... 200 
 cache/m/_2015_events_event_MS31911.html none
+fetch: cache//2015/events/event_MS32603/_2015_events_event_MS32603.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32603 --> cache//2015/events/event_MS32603/_2015_events_event_MS32603.html 
+  ... 200 
+cache/m/_2015_events_event_MS32603.html none
 fetch: cache//2015/events/event_MS30768/_2015_events_event_MS30768.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30768 --> cache//2015/events/event_MS30768/_2015_events_event_MS30768.html 
   ... 200 
@@ -5229,7 +5594,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS31859 --> cache//2015/events
   ... 200 
 cache/m/_2015_events_event_MS31859.html none
 fetch: cache/n/events_n.html
-return cached content for url (events_n.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=n --> cache/n/events_n.html 
+  ... 200 
 fetch: cache//2015/events/event_MS31718/_2015_events_event_MS31718.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31718 --> cache//2015/events/event_MS31718/_2015_events_event_MS31718.html 
   ... 200 
@@ -5387,7 +5753,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29320 --> cache//2015/events
   ... 200 
 cache/n/_2015_events_event_MS29320.html none
 fetch: cache/o/events_o.html
-return cached content for url (events_o.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=o --> cache/o/events_o.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29520/_2015_events_event_MS29520.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29520 --> cache//2015/events/event_MS29520/_2015_events_event_MS29520.html 
   ... 200 
@@ -5396,6 +5763,10 @@ fetch: cache//2015/events/event_MS32231/_2015_events_event_MS32231.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32231 --> cache//2015/events/event_MS32231/_2015_events_event_MS32231.html 
   ... 200 
 cache/o/_2015_events_event_MS32231.html none
+fetch: cache//2015/events/event_MS32443/_2015_events_event_MS32443.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32443 --> cache//2015/events/event_MS32443/_2015_events_event_MS32443.html 
+  ... 200 
+cache/o/_2015_events_event_MS32443.html none
 fetch: cache//2015/events/event_MS31287/_2015_events_event_MS31287.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31287 --> cache//2015/events/event_MS31287/_2015_events_event_MS31287.html 
   ... 200 
@@ -5537,7 +5908,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS30395 --> cache//2015/events
   ... 200 
 cache/o/_2015_events_event_MS30395.html none
 fetch: cache/p/events_p.html
-return cached content for url (events_p.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=p --> cache/p/events_p.html 
+  ... 200 
 fetch: cache//2015/events/event_MS31007/_2015_events_event_MS31007.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31007 --> cache//2015/events/event_MS31007/_2015_events_event_MS31007.html 
   ... 200 
@@ -5670,10 +6042,10 @@ fetch: cache//2015/events/event_MS30505/_2015_events_event_MS30505.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30505 --> cache//2015/events/event_MS30505/_2015_events_event_MS30505.html 
   ... 200 
 cache/p/_2015_events_event_MS30505.html none
-fetch: cache//2015/events/event_MS31919/_2015_events_event_MS31919.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS31919 --> cache//2015/events/event_MS31919/_2015_events_event_MS31919.html 
+fetch: cache//2015/events/event_MS32680/_2015_events_event_MS32680.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32680 --> cache//2015/events/event_MS32680/_2015_events_event_MS32680.html 
   ... 200 
-cache/p/_2015_events_event_MS31919.html none
+cache/p/_2015_events_event_MS32680.html none
 fetch: cache//2015/events/event_MS32466/_2015_events_event_MS32466.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32466 --> cache//2015/events/event_MS32466/_2015_events_event_MS32466.html 
   ... 200 
@@ -5730,6 +6102,10 @@ fetch: cache//2015/events/event_MS31016/_2015_events_event_MS31016.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31016 --> cache//2015/events/event_MS31016/_2015_events_event_MS31016.html 
   ... 200 
 cache/p/_2015_events_event_MS31016.html none
+fetch: cache//2015/events/event_MS32693/_2015_events_event_MS32693.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32693 --> cache//2015/events/event_MS32693/_2015_events_event_MS32693.html 
+  ... 200 
+cache/p/_2015_events_event_MS32693.html none
 fetch: cache//2015/events/event_MS30438/_2015_events_event_MS30438.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30438 --> cache//2015/events/event_MS30438/_2015_events_event_MS30438.html 
   ... 200 
@@ -5766,6 +6142,10 @@ fetch: cache//2015/events/event_MS29824/_2015_events_event_MS29824.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29824 --> cache//2015/events/event_MS29824/_2015_events_event_MS29824.html 
   ... 200 
 cache/p/_2015_events_event_MS29824.html youtube http://www.youtube.com/embed/XqXbsmohDF8
+fetch: cache//2015/events/event_MS32721/_2015_events_event_MS32721.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32721 --> cache//2015/events/event_MS32721/_2015_events_event_MS32721.html 
+  ... 200 
+cache/p/_2015_events_event_MS32721.html none
 fetch: cache//2015/events/event_MS29826/_2015_events_event_MS29826.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29826 --> cache//2015/events/event_MS29826/_2015_events_event_MS29826.html 
   ... 200 
@@ -5899,7 +6279,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS31281 --> cache//2015/events
   ... 200 
 cache/p/_2015_events_event_MS31281.html none
 fetch: cache/q/events_q.html
-return cached content for url (events_q.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=q --> cache/q/events_q.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29940/_2015_events_event_MS29940.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29940 --> cache//2015/events/event_MS29940/_2015_events_event_MS29940.html 
   ... 200 
@@ -5949,7 +6330,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29796 --> cache//2015/events
   ... 200 
 cache/q/_2015_events_event_MS29796.html none
 fetch: cache/r/events_r.html
-return cached content for url (events_r.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=r --> cache/r/events_r.html 
+  ... 200 
 fetch: cache//2015/events/event_MS32020/_2015_events_event_MS32020.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32020 --> cache//2015/events/event_MS32020/_2015_events_event_MS32020.html 
   ... 200 
@@ -5982,6 +6364,10 @@ fetch: cache//2015/events/event_MS32514/_2015_events_event_MS32514.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32514 --> cache//2015/events/event_MS32514/_2015_events_event_MS32514.html 
   ... 200 
 cache/r/_2015_events_event_MS32514.html none
+fetch: cache//2015/events/event_MS32694/_2015_events_event_MS32694.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32694 --> cache//2015/events/event_MS32694/_2015_events_event_MS32694.html 
+  ... 200 
+cache/r/_2015_events_event_MS32694.html none
 fetch: cache//2015/events/event_MS29487/_2015_events_event_MS29487.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29487 --> cache//2015/events/event_MS29487/_2015_events_event_MS29487.html 
   ... 200 
@@ -5994,6 +6380,10 @@ fetch: cache//2015/events/event_MS30731/_2015_events_event_MS30731.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30731 --> cache//2015/events/event_MS30731/_2015_events_event_MS30731.html 
   ... 200 
 cache/r/_2015_events_event_MS30731.html none
+fetch: cache//2015/events/event_MS32239/_2015_events_event_MS32239.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32239 --> cache//2015/events/event_MS32239/_2015_events_event_MS32239.html 
+  ... 200 
+cache/r/_2015_events_event_MS32239.html none
 fetch: cache//2015/events/event_MS29512/_2015_events_event_MS29512.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29512 --> cache//2015/events/event_MS29512/_2015_events_event_MS29512.html 
   ... 200 
@@ -6010,6 +6400,10 @@ fetch: cache//2015/events/event_MS32048/_2015_events_event_MS32048.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32048 --> cache//2015/events/event_MS32048/_2015_events_event_MS32048.html 
   ... 200 
 cache/r/_2015_events_event_MS32048.html none
+fetch: cache//2015/events/event_MS32000/_2015_events_event_MS32000.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32000 --> cache//2015/events/event_MS32000/_2015_events_event_MS32000.html 
+  ... 200 
+cache/r/_2015_events_event_MS32000.html none
 fetch: cache//2015/events/event_MS29124/_2015_events_event_MS29124.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29124 --> cache//2015/events/event_MS29124/_2015_events_event_MS29124.html 
   ... 200 
@@ -6026,6 +6420,10 @@ fetch: cache//2015/events/event_MS30925/_2015_events_event_MS30925.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30925 --> cache//2015/events/event_MS30925/_2015_events_event_MS30925.html 
   ... 200 
 cache/r/_2015_events_event_MS30925.html none
+fetch: cache//2015/events/event_MS32643/_2015_events_event_MS32643.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32643 --> cache//2015/events/event_MS32643/_2015_events_event_MS32643.html 
+  ... 200 
+cache/r/_2015_events_event_MS32643.html none
 fetch: cache//2015/events/event_MS30503/_2015_events_event_MS30503.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30503 --> cache//2015/events/event_MS30503/_2015_events_event_MS30503.html 
   ... 200 
@@ -6138,10 +6536,6 @@ fetch: cache//2015/events/event_MS32478/_2015_events_event_MS32478.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32478 --> cache//2015/events/event_MS32478/_2015_events_event_MS32478.html 
   ... 200 
 cache/r/_2015_events_event_MS32478.html none
-fetch: cache//2015/events/event_MS32575/_2015_events_event_MS32575.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS32575 --> cache//2015/events/event_MS32575/_2015_events_event_MS32575.html 
-  ... 200 
-cache/r/_2015_events_event_MS32575.html none
 fetch: cache//2015/events/event_MS30004/_2015_events_event_MS30004.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30004 --> cache//2015/events/event_MS30004/_2015_events_event_MS30004.html 
   ... 200 
@@ -6166,6 +6560,10 @@ fetch: cache//2015/events/event_MS29413/_2015_events_event_MS29413.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29413 --> cache//2015/events/event_MS29413/_2015_events_event_MS29413.html 
   ... 200 
 cache/r/_2015_events_event_MS29413.html youtube http://www.youtube.com/embed/hBmi_pqfHGw
+fetch: cache//2015/events/event_MS32665/_2015_events_event_MS32665.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32665 --> cache//2015/events/event_MS32665/_2015_events_event_MS32665.html 
+  ... 200 
+cache/r/_2015_events_event_MS32665.html youtube http://www.youtube.com/embed/hBmi_pqfHGw
 fetch: cache//2015/events/event_MS31632/_2015_events_event_MS31632.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31632 --> cache//2015/events/event_MS31632/_2015_events_event_MS31632.html 
   ... 200 
@@ -6334,8 +6732,13 @@ fetch: cache//2015/events/event_MS30078/_2015_events_event_MS30078.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30078 --> cache//2015/events/event_MS30078/_2015_events_event_MS30078.html 
   ... 200 
 cache/r/_2015_events_event_MS30078.html none
+fetch: cache//2015/events/event_MS32646/_2015_events_event_MS32646.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32646 --> cache//2015/events/event_MS32646/_2015_events_event_MS32646.html 
+  ... 200 
+cache/r/_2015_events_event_MS32646.html none
 fetch: cache/s/events_s.html
-return cached content for url (events_s.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=s --> cache/s/events_s.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29259/_2015_events_event_MS29259.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29259 --> cache//2015/events/event_MS29259/_2015_events_event_MS29259.html 
   ... 200 
@@ -6480,14 +6883,14 @@ fetch: cache//2015/events/event_MS30574/_2015_events_event_MS30574.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30574 --> cache//2015/events/event_MS30574/_2015_events_event_MS30574.html 
   ... 200 
 cache/s/_2015_events_event_MS30574.html none
-fetch: cache//2015/events/event_MS32622/_2015_events_event_MS32622.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS32622 --> cache//2015/events/event_MS32622/_2015_events_event_MS32622.html 
-  ... 200 
-cache/s/_2015_events_event_MS32622.html none
 fetch: cache//2015/events/event_MS29644/_2015_events_event_MS29644.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29644 --> cache//2015/events/event_MS29644/_2015_events_event_MS29644.html 
   ... 200 
 cache/s/_2015_events_event_MS29644.html none
+fetch: cache//2015/events/event_MS32747/_2015_events_event_MS32747.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32747 --> cache//2015/events/event_MS32747/_2015_events_event_MS32747.html 
+  ... 200 
+cache/s/_2015_events_event_MS32747.html none
 fetch: cache//2015/events/event_MS30253/_2015_events_event_MS30253.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30253 --> cache//2015/events/event_MS30253/_2015_events_event_MS30253.html 
   ... 200 
@@ -6548,6 +6951,10 @@ fetch: cache//2015/events/event_MS30838/_2015_events_event_MS30838.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30838 --> cache//2015/events/event_MS30838/_2015_events_event_MS30838.html 
   ... 200 
 cache/s/_2015_events_event_MS30838.html youtube http://www.youtube.com/embed/51y8jDYYMOI
+fetch: cache//2015/events/event_MS32570/_2015_events_event_MS32570.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32570 --> cache//2015/events/event_MS32570/_2015_events_event_MS32570.html 
+  ... 200 
+cache/s/_2015_events_event_MS32570.html none
 fetch: cache//2015/events/event_MS30156/_2015_events_event_MS30156.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30156 --> cache//2015/events/event_MS30156/_2015_events_event_MS30156.html 
   ... 200 
@@ -6584,10 +6991,18 @@ fetch: cache//2015/events/event_MS32404/_2015_events_event_MS32404.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32404 --> cache//2015/events/event_MS32404/_2015_events_event_MS32404.html 
   ... 200 
 cache/s/_2015_events_event_MS32404.html none
+fetch: cache//2015/events/event_MS32544/_2015_events_event_MS32544.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32544 --> cache//2015/events/event_MS32544/_2015_events_event_MS32544.html 
+  ... 200 
+cache/s/_2015_events_event_MS32544.html none
 fetch: cache//2015/events/event_MS29226/_2015_events_event_MS29226.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29226 --> cache//2015/events/event_MS29226/_2015_events_event_MS29226.html 
   ... 200 
 cache/s/_2015_events_event_MS29226.html none
+fetch: cache//2015/events/event_MS32759/_2015_events_event_MS32759.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32759 --> cache//2015/events/event_MS32759/_2015_events_event_MS32759.html 
+  ... 200 
+cache/s/_2015_events_event_MS32759.html none
 fetch: cache//2015/events/event_MS29865/_2015_events_event_MS29865.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29865 --> cache//2015/events/event_MS29865/_2015_events_event_MS29865.html 
   ... 200 
@@ -6704,6 +7119,10 @@ fetch: cache//2015/events/event_MS32133/_2015_events_event_MS32133.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32133 --> cache//2015/events/event_MS32133/_2015_events_event_MS32133.html 
   ... 200 
 cache/s/_2015_events_event_MS32133.html none
+fetch: cache//2015/events/event_MS32068/_2015_events_event_MS32068.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32068 --> cache//2015/events/event_MS32068/_2015_events_event_MS32068.html 
+  ... 200 
+cache/s/_2015_events_event_MS32068.html none
 fetch: cache//2015/events/event_MS30628/_2015_events_event_MS30628.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30628 --> cache//2015/events/event_MS30628/_2015_events_event_MS30628.html 
   ... 200 
@@ -6820,10 +7239,6 @@ fetch: cache//2015/events/event_MS29922/_2015_events_event_MS29922.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29922 --> cache//2015/events/event_MS29922/_2015_events_event_MS29922.html 
   ... 200 
 cache/s/_2015_events_event_MS29922.html youtube http://www.youtube.com/embed/TM_61Sb0Ry0
-fetch: cache//2015/events/event_MS29410/_2015_events_event_MS29410.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS29410 --> cache//2015/events/event_MS29410/_2015_events_event_MS29410.html 
-  ... 200 
-cache/s/_2015_events_event_MS29410.html none
 fetch: cache//2015/events/event_MS31430/_2015_events_event_MS31430.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31430 --> cache//2015/events/event_MS31430/_2015_events_event_MS31430.html 
   ... 200 
@@ -6872,6 +7287,10 @@ fetch: cache//2015/events/event_MS31452/_2015_events_event_MS31452.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31452 --> cache//2015/events/event_MS31452/_2015_events_event_MS31452.html 
   ... 200 
 cache/s/_2015_events_event_MS31452.html none
+fetch: cache//2015/events/event_MS32651/_2015_events_event_MS32651.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32651 --> cache//2015/events/event_MS32651/_2015_events_event_MS32651.html 
+  ... 200 
+cache/s/_2015_events_event_MS32651.html none
 fetch: cache//2015/events/event_MS30070/_2015_events_event_MS30070.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30070 --> cache//2015/events/event_MS30070/_2015_events_event_MS30070.html 
   ... 200 
@@ -6892,6 +7311,10 @@ fetch: cache//2015/events/event_MS32425/_2015_events_event_MS32425.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32425 --> cache//2015/events/event_MS32425/_2015_events_event_MS32425.html 
   ... 200 
 cache/s/_2015_events_event_MS32425.html none
+fetch: cache//2015/events/event_MS32026/_2015_events_event_MS32026.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32026 --> cache//2015/events/event_MS32026/_2015_events_event_MS32026.html 
+  ... 200 
+cache/s/_2015_events_event_MS32026.html none
 fetch: cache//2015/events/event_MS30943/_2015_events_event_MS30943.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30943 --> cache//2015/events/event_MS30943/_2015_events_event_MS30943.html 
   ... 200 
@@ -6944,6 +7367,10 @@ fetch: cache//2015/events/event_MS30174/_2015_events_event_MS30174.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30174 --> cache//2015/events/event_MS30174/_2015_events_event_MS30174.html 
   ... 200 
 cache/s/_2015_events_event_MS30174.html youtube http://www.youtube.com/embed/ZvddYPDhRsk
+fetch: cache//2015/events/event_MS32445/_2015_events_event_MS32445.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32445 --> cache//2015/events/event_MS32445/_2015_events_event_MS32445.html 
+  ... 200 
+cache/s/_2015_events_event_MS32445.html none
 fetch: cache//2015/events/event_MS30830/_2015_events_event_MS30830.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30830 --> cache//2015/events/event_MS30830/_2015_events_event_MS30830.html 
   ... 200 
@@ -7104,10 +7531,6 @@ fetch: cache//2015/events/event_MS30410/_2015_events_event_MS30410.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30410 --> cache//2015/events/event_MS30410/_2015_events_event_MS30410.html 
   ... 200 
 cache/s/_2015_events_event_MS30410.html none
-fetch: cache//2015/events/event_MS30431/_2015_events_event_MS30431.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS30431 --> cache//2015/events/event_MS30431/_2015_events_event_MS30431.html 
-  ... 200 
-cache/s/_2015_events_event_MS30431.html none
 fetch: cache//2015/events/event_MS30828/_2015_events_event_MS30828.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30828 --> cache//2015/events/event_MS30828/_2015_events_event_MS30828.html 
   ... 200 
@@ -7124,10 +7547,10 @@ fetch: cache//2015/events/event_MS31759/_2015_events_event_MS31759.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31759 --> cache//2015/events/event_MS31759/_2015_events_event_MS31759.html 
   ... 200 
 cache/s/_2015_events_event_MS31759.html none
-fetch: cache//2015/events/event_MS32330/_2015_events_event_MS32330.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS32330 --> cache//2015/events/event_MS32330/_2015_events_event_MS32330.html 
+fetch: cache//2015/events/event_MS32740/_2015_events_event_MS32740.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32740 --> cache//2015/events/event_MS32740/_2015_events_event_MS32740.html 
   ... 200 
-cache/s/_2015_events_event_MS32330.html none
+cache/s/_2015_events_event_MS32740.html none
 fetch: cache//2015/events/event_MS30802/_2015_events_event_MS30802.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30802 --> cache//2015/events/event_MS30802/_2015_events_event_MS30802.html 
   ... 200 
@@ -7156,6 +7579,10 @@ fetch: cache//2015/events/event_MS30991/_2015_events_event_MS30991.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30991 --> cache//2015/events/event_MS30991/_2015_events_event_MS30991.html 
   ... 200 
 cache/s/_2015_events_event_MS30991.html none
+fetch: cache//2015/events/event_MS32668/_2015_events_event_MS32668.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32668 --> cache//2015/events/event_MS32668/_2015_events_event_MS32668.html 
+  ... 200 
+cache/s/_2015_events_event_MS32668.html none
 fetch: cache//2015/events/event_MS29726/_2015_events_event_MS29726.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29726 --> cache//2015/events/event_MS29726/_2015_events_event_MS29726.html 
   ... 200 
@@ -7173,7 +7600,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29050 --> cache//2015/events
   ... 200 
 cache/s/_2015_events_event_MS29050.html none
 fetch: cache/t/events_t.html
-return cached content for url (events_t.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=t --> cache/t/events_t.html 
+  ... 200 
 fetch: cache//2015/events/event_MS29769/_2015_events_event_MS29769.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29769 --> cache//2015/events/event_MS29769/_2015_events_event_MS29769.html 
   ... 200 
@@ -7222,6 +7650,10 @@ fetch: cache//2015/events/event_MS29919/_2015_events_event_MS29919.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29919 --> cache//2015/events/event_MS29919/_2015_events_event_MS29919.html 
   ... 200 
 cache/t/_2015_events_event_MS29919.html none
+fetch: cache//2015/events/event_MS32615/_2015_events_event_MS32615.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32615 --> cache//2015/events/event_MS32615/_2015_events_event_MS32615.html 
+  ... 200 
+cache/t/_2015_events_event_MS32615.html none
 fetch: cache//2015/events/event_MS31391/_2015_events_event_MS31391.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31391 --> cache//2015/events/event_MS31391/_2015_events_event_MS31391.html 
   ... 200 
@@ -7230,6 +7662,10 @@ fetch: cache//2015/events/event_MS29525/_2015_events_event_MS29525.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29525 --> cache//2015/events/event_MS29525/_2015_events_event_MS29525.html 
   ... 200 
 cache/t/_2015_events_event_MS29525.html none
+fetch: cache//2015/events/event_MS32755/_2015_events_event_MS32755.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32755 --> cache//2015/events/event_MS32755/_2015_events_event_MS32755.html 
+  ... 200 
+cache/t/_2015_events_event_MS32755.html none
 fetch: cache//2015/events/event_MS30146/_2015_events_event_MS30146.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30146 --> cache//2015/events/event_MS30146/_2015_events_event_MS30146.html 
   ... 200 
@@ -7254,6 +7690,10 @@ fetch: cache//2015/events/event_MS31822/_2015_events_event_MS31822.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31822 --> cache//2015/events/event_MS31822/_2015_events_event_MS31822.html 
   ... 200 
 cache/t/_2015_events_event_MS31822.html none
+fetch: cache//2015/events/event_MS32647/_2015_events_event_MS32647.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32647 --> cache//2015/events/event_MS32647/_2015_events_event_MS32647.html 
+  ... 200 
+cache/t/_2015_events_event_MS32647.html none
 fetch: cache//2015/events/event_MS30524/_2015_events_event_MS30524.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30524 --> cache//2015/events/event_MS30524/_2015_events_event_MS30524.html 
   ... 200 
@@ -7314,6 +7754,10 @@ fetch: cache//2015/events/event_MS32130/_2015_events_event_MS32130.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32130 --> cache//2015/events/event_MS32130/_2015_events_event_MS32130.html 
   ... 200 
 cache/t/_2015_events_event_MS32130.html none
+fetch: cache//2015/events/event_MS32710/_2015_events_event_MS32710.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32710 --> cache//2015/events/event_MS32710/_2015_events_event_MS32710.html 
+  ... 200 
+cache/t/_2015_events_event_MS32710.html none
 fetch: cache//2015/events/event_MS32346/_2015_events_event_MS32346.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32346 --> cache//2015/events/event_MS32346/_2015_events_event_MS32346.html 
   ... 200 
@@ -7326,6 +7770,10 @@ fetch: cache//2015/events/event_MS29744/_2015_events_event_MS29744.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29744 --> cache//2015/events/event_MS29744/_2015_events_event_MS29744.html 
   ... 200 
 cache/t/_2015_events_event_MS29744.html none
+fetch: cache//2015/events/event_MS32754/_2015_events_event_MS32754.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32754 --> cache//2015/events/event_MS32754/_2015_events_event_MS32754.html 
+  ... 200 
+cache/t/_2015_events_event_MS32754.html none
 fetch: cache//2015/events/event_MS29609/_2015_events_event_MS29609.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29609 --> cache//2015/events/event_MS29609/_2015_events_event_MS29609.html 
   ... 200 
@@ -7370,6 +7818,10 @@ fetch: cache//2015/events/event_MS32154/_2015_events_event_MS32154.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32154 --> cache//2015/events/event_MS32154/_2015_events_event_MS32154.html 
   ... 200 
 cache/t/_2015_events_event_MS32154.html none
+fetch: cache//2015/events/event_MS32238/_2015_events_event_MS32238.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32238 --> cache//2015/events/event_MS32238/_2015_events_event_MS32238.html 
+  ... 200 
+cache/t/_2015_events_event_MS32238.html none
 fetch: cache//2015/events/event_MS30145/_2015_events_event_MS30145.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30145 --> cache//2015/events/event_MS30145/_2015_events_event_MS30145.html 
   ... 200 
@@ -7394,10 +7846,6 @@ fetch: cache//2015/events/event_MS29702/_2015_events_event_MS29702.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29702 --> cache//2015/events/event_MS29702/_2015_events_event_MS29702.html 
   ... 200 
 cache/t/_2015_events_event_MS29702.html none
-fetch: cache//2015/events/event_MS32127/_2015_events_event_MS32127.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS32127 --> cache//2015/events/event_MS32127/_2015_events_event_MS32127.html 
-  ... 200 
-cache/t/_2015_events_event_MS32127.html none
 fetch: cache//2015/events/event_MS32554/_2015_events_event_MS32554.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32554 --> cache//2015/events/event_MS32554/_2015_events_event_MS32554.html 
   ... 200 
@@ -7510,6 +7958,10 @@ fetch: cache//2015/events/event_MS29034/_2015_events_event_MS29034.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29034 --> cache//2015/events/event_MS29034/_2015_events_event_MS29034.html 
   ... 200 
 cache/t/_2015_events_event_MS29034.html youtube http://www.youtube.com/embed/yrtyyy_CLDk
+fetch: cache//2015/events/event_MS32734/_2015_events_event_MS32734.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32734 --> cache//2015/events/event_MS32734/_2015_events_event_MS32734.html 
+  ... 200 
+cache/t/_2015_events_event_MS32734.html youtube http://www.youtube.com/embed/yrtyyy_CLDk
 fetch: cache//2015/events/event_MS30989/_2015_events_event_MS30989.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30989 --> cache//2015/events/event_MS30989/_2015_events_event_MS30989.html 
   ... 200 
@@ -7550,6 +8002,10 @@ fetch: cache//2015/events/event_MS32270/_2015_events_event_MS32270.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32270 --> cache//2015/events/event_MS32270/_2015_events_event_MS32270.html 
   ... 200 
 cache/t/_2015_events_event_MS32270.html none
+fetch: cache//2015/events/event_MS31435/_2015_events_event_MS31435.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31435 --> cache//2015/events/event_MS31435/_2015_events_event_MS31435.html 
+  ... 200 
+cache/t/_2015_events_event_MS31435.html none
 fetch: cache//2015/events/event_MS32198/_2015_events_event_MS32198.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32198 --> cache//2015/events/event_MS32198/_2015_events_event_MS32198.html 
   ... 200 
@@ -7571,7 +8027,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS32439 --> cache//2015/events
   ... 200 
 cache/t/_2015_events_event_MS32439.html none
 fetch: cache/u/events_u.html
-return cached content for url (events_u.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=u --> cache/u/events_u.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30932/_2015_events_event_MS30932.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30932 --> cache//2015/events/event_MS30932/_2015_events_event_MS30932.html 
   ... 200 
@@ -7640,6 +8097,10 @@ fetch: cache//2015/events/event_MS29185/_2015_events_event_MS29185.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29185 --> cache//2015/events/event_MS29185/_2015_events_event_MS29185.html 
   ... 200 
 cache/u/_2015_events_event_MS29185.html none
+fetch: cache//2015/events/event_MS32649/_2015_events_event_MS32649.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32649 --> cache//2015/events/event_MS32649/_2015_events_event_MS32649.html 
+  ... 200 
+cache/u/_2015_events_event_MS32649.html none
 fetch: cache//2015/events/event_MS31412/_2015_events_event_MS31412.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31412 --> cache//2015/events/event_MS31412/_2015_events_event_MS31412.html 
   ... 200 
@@ -7657,7 +8118,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS32460 --> cache//2015/events
   ... 200 
 cache/u/_2015_events_event_MS32460.html none
 fetch: cache/v/events_v.html
-return cached content for url (events_v.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=v --> cache/v/events_v.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30706/_2015_events_event_MS30706.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30706 --> cache//2015/events/event_MS30706/_2015_events_event_MS30706.html 
   ... 200 
@@ -7807,7 +8269,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS32354 --> cache//2015/events
   ... 200 
 cache/v/_2015_events_event_MS32354.html youtube http://www.youtube.com/embed/dndraLFhnuY
 fetch: cache/w/events_w.html
-return cached content for url (events_w.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=w --> cache/w/events_w.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30573/_2015_events_event_MS30573.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30573 --> cache//2015/events/event_MS30573/_2015_events_event_MS30573.html 
   ... 200 
@@ -7848,10 +8311,18 @@ fetch: cache//2015/events/event_MS31205/_2015_events_event_MS31205.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31205 --> cache//2015/events/event_MS31205/_2015_events_event_MS31205.html 
   ... 200 
 cache/w/_2015_events_event_MS31205.html none
+fetch: cache//2015/events/event_MS32576/_2015_events_event_MS32576.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32576 --> cache//2015/events/event_MS32576/_2015_events_event_MS32576.html 
+  ... 200 
+cache/w/_2015_events_event_MS32576.html none
 fetch: cache//2015/events/event_MS29310/_2015_events_event_MS29310.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29310 --> cache//2015/events/event_MS29310/_2015_events_event_MS29310.html 
   ... 200 
 cache/w/_2015_events_event_MS29310.html none
+fetch: cache//2015/events/event_MS32732/_2015_events_event_MS32732.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32732 --> cache//2015/events/event_MS32732/_2015_events_event_MS32732.html 
+  ... 200 
+cache/w/_2015_events_event_MS32732.html none
 fetch: cache//2015/events/event_MS29197/_2015_events_event_MS29197.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29197 --> cache//2015/events/event_MS29197/_2015_events_event_MS29197.html 
   ... 200 
@@ -7872,10 +8343,6 @@ fetch: cache//2015/events/event_MS32030/_2015_events_event_MS32030.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32030 --> cache//2015/events/event_MS32030/_2015_events_event_MS32030.html 
   ... 200 
 cache/w/_2015_events_event_MS32030.html none
-fetch: cache//2015/events/event_MS32039/_2015_events_event_MS32039.html
-fetch: http://schedule.sxsw.com/2015/events/event_MS32039 --> cache//2015/events/event_MS32039/_2015_events_event_MS32039.html 
-  ... 200 
-cache/w/_2015_events_event_MS32039.html none
 fetch: cache//2015/events/event_MS31346/_2015_events_event_MS31346.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31346 --> cache//2015/events/event_MS31346/_2015_events_event_MS31346.html 
   ... 200 
@@ -7976,6 +8443,10 @@ fetch: cache//2015/events/event_MS30022/_2015_events_event_MS30022.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30022 --> cache//2015/events/event_MS30022/_2015_events_event_MS30022.html 
   ... 200 
 cache/w/_2015_events_event_MS30022.html none
+fetch: cache//2015/events/event_MS32124/_2015_events_event_MS32124.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32124 --> cache//2015/events/event_MS32124/_2015_events_event_MS32124.html 
+  ... 200 
+cache/w/_2015_events_event_MS32124.html none
 fetch: cache//2015/events/event_MS29476/_2015_events_event_MS29476.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29476 --> cache//2015/events/event_MS29476/_2015_events_event_MS29476.html 
   ... 200 
@@ -8033,7 +8504,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS30040 --> cache//2015/events
   ... 200 
 cache/w/_2015_events_event_MS30040.html none
 fetch: cache/x/events_x.html
-return cached content for url (events_x.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=x --> cache/x/events_x.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30107/_2015_events_event_MS30107.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30107 --> cache//2015/events/event_MS30107/_2015_events_event_MS30107.html 
   ... 200 
@@ -8051,7 +8523,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29406 --> cache//2015/events
   ... 200 
 cache/x/_2015_events_event_MS29406.html youtube http://www.youtube.com/embed/SdhKifEsKUQ
 fetch: cache/y/events_y.html
-return cached content for url (events_y.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=y --> cache/y/events_y.html 
+  ... 200 
 fetch: cache//2015/events/event_MS30930/_2015_events_event_MS30930.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30930 --> cache//2015/events/event_MS30930/_2015_events_event_MS30930.html 
   ... 200 
@@ -8096,6 +8569,10 @@ fetch: cache//2015/events/event_MS31388/_2015_events_event_MS31388.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31388 --> cache//2015/events/event_MS31388/_2015_events_event_MS31388.html 
   ... 200 
 cache/y/_2015_events_event_MS31388.html none
+fetch: cache//2015/events/event_MS32746/_2015_events_event_MS32746.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32746 --> cache//2015/events/event_MS32746/_2015_events_event_MS32746.html 
+  ... 200 
+cache/y/_2015_events_event_MS32746.html none
 fetch: cache//2015/events/event_MS30190/_2015_events_event_MS30190.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS30190 --> cache//2015/events/event_MS30190/_2015_events_event_MS30190.html 
   ... 200 
@@ -8124,6 +8601,10 @@ fetch: cache//2015/events/event_MS29532/_2015_events_event_MS29532.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29532 --> cache//2015/events/event_MS29532/_2015_events_event_MS29532.html 
   ... 200 
 cache/y/_2015_events_event_MS29532.html youtube http://www.youtube.com/embed/4RDZUdalmzc
+fetch: cache//2015/events/event_MS31625/_2015_events_event_MS31625.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31625 --> cache//2015/events/event_MS31625/_2015_events_event_MS31625.html 
+  ... 200 
+cache/y/_2015_events_event_MS31625.html none
 fetch: cache//2015/events/event_MS29306/_2015_events_event_MS29306.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS29306 --> cache//2015/events/event_MS29306/_2015_events_event_MS29306.html 
   ... 200 
@@ -8149,7 +8630,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29949 --> cache//2015/events
   ... 200 
 cache/y/_2015_events_event_MS29949.html none
 fetch: cache/z/events_z.html
-return cached content for url (events_z.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=z --> cache/z/events_z.html 
+  ... 200 
 fetch: cache//2015/events/event_MS32369/_2015_events_event_MS32369.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32369 --> cache//2015/events/event_MS32369/_2015_events_event_MS32369.html 
   ... 200 
@@ -8162,6 +8644,10 @@ fetch: cache//2015/events/event_MS31621/_2015_events_event_MS31621.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31621 --> cache//2015/events/event_MS31621/_2015_events_event_MS31621.html 
   ... 200 
 cache/z/_2015_events_event_MS31621.html none
+fetch: cache//2015/events/event_MS31795/_2015_events_event_MS31795.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS31795 --> cache//2015/events/event_MS31795/_2015_events_event_MS31795.html 
+  ... 200 
+cache/z/_2015_events_event_MS31795.html none
 fetch: cache//2015/events/event_MS31030/_2015_events_event_MS31030.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31030 --> cache//2015/events/event_MS31030/_2015_events_event_MS31030.html 
   ... 200 
@@ -8186,6 +8672,10 @@ fetch: cache//2015/events/event_MS31247/_2015_events_event_MS31247.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31247 --> cache//2015/events/event_MS31247/_2015_events_event_MS31247.html 
   ... 200 
 cache/z/_2015_events_event_MS31247.html none
+fetch: cache//2015/events/event_MS32723/_2015_events_event_MS32723.html
+fetch: http://schedule.sxsw.com/2015/events/event_MS32723 --> cache//2015/events/event_MS32723/_2015_events_event_MS32723.html 
+  ... 200 
+cache/z/_2015_events_event_MS32723.html none
 fetch: cache//2015/events/event_MS31347/_2015_events_event_MS31347.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS31347 --> cache//2015/events/event_MS31347/_2015_events_event_MS31347.html 
   ... 200 
@@ -8215,7 +8705,8 @@ fetch: http://schedule.sxsw.com/2015/events/event_MS29419 --> cache//2015/events
   ... 200 
 cache/z/_2015_events_event_MS29419.html none
 fetch: cache/1/events_1.html
-return cached content for url (events_1.html)
+fetch: http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&a=1 --> cache/1/events_1.html 
+  ... 200 
 fetch: cache//2015/events/event_MS32246/_2015_events_event_MS32246.html
 fetch: http://schedule.sxsw.com/2015/events/event_MS32246 --> cache//2015/events/event_MS32246/_2015_events_event_MS32246.html 
   ... 200 

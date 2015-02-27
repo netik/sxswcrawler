@@ -15,7 +15,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    color: #fd680e;
+    color: #d6ee18;
+/*    color: #fd680e; */
     background-color: #000000;
     background: rgba(0, 0, 0, 0.7);
     padding:10px;

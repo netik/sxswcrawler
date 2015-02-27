@@ -9,14 +9,19 @@ var busboy = require('connect-busboy');
 var uuid = require('node-uuid');
 var exec = require('child_process').exec;
 
+app.use(busboy()); 
 app.set('port', process.env.PORT || 3000);
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(busboy()); 
+// logging 
+var morgan = require('morgan');
+var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a'})
+app.use(morgan('combined', {stream: accessLogStream}))
 
 // Routes
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/',function(req,res){
-  res.sendfile("index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 

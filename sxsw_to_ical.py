@@ -47,7 +47,7 @@ import cProfile
 import hashlib
 
 # config
-CACHE_DIR="/Volumes/SafeRoom/sxsw_crawler_2015/scripts/cache"
+CACHE_DIR="/retina/sxswcrawler/cache"
 DEFAULT_YEAR="2015"
 zone = 'US/Central'
 # -- end config -- 
@@ -137,6 +137,8 @@ def fetch(url, fn, nocache=False):
   # fetch a URL, but if we have the file on disk, return the file instead.
   # This prevents us from beating on the remote site while developing.
   cachefn="%s/venues/%s" % (CACHE_DIR, fn)
+  if not os.path.isdir("%s/venues" % CACHE_DIR):
+     os.mkdir("%s/venues" % CACHE_DIR)
 
   if os.path.isfile(cachefn) and nocache == False:
     if args.verbose: 
