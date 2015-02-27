@@ -50,7 +50,6 @@ import hashlib
 CACHE_DIR="cache"
 ARTIST_CACHEFILE = "%s/rated_artists.pickle" % CACHE_DIR
 DEFAULT_YEAR="2015"
-OUTPUTFILE="sxsw2015.ics"
 zone = 'US/Central'
 # -- end config -- 
 
@@ -281,9 +280,10 @@ def parse_event(filename):
     perfdates[simplify(artist)].append({ "start": sxsw_datefix(a_start), "end": sxsw_datefix(a_end), "venue": venue})
 
 def get_rated_iartists(stars=3):
+  global args
   artistre = re.compile('<key>Artist</key><string>(.+)</string>')
   ratere  = re.compile('<key>Rating</key><integer>(\d+)</integer>')
-  itunes_xml = "/Volumes/SafeRoom/MP3s/iTunes/iTunes Library.xml"
+  itunes_xml = args.itunesxml
   iartists = {}
 
   if os.path.exists(ARTIST_CACHEFILE) and args.cache == True: 
@@ -482,6 +482,7 @@ def make_ics(event):
 
 if __name__ == "__main__":
   def main(): 
+    global args
     global events
     global iartists 
     global icsentries
@@ -509,15 +510,21 @@ if __name__ == "__main__":
           valid = valid + 1 
 
     print >>sys.stderr,  "%d calendarable / %d artists in ical / %d artists in sxsw / %d bad sxsw events (notime)" % (valid, len(iartists), len(events), badtime)
-    make_vcal(OUTPUTFILE)
+    make_vcal(args.outputics)
 
 parser = argparse.ArgumentParser(description="Process the SXSW 2015 Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py.")
+parser.add_argument('--itunesxml', '-i',  dest='itunesxml',help='The name of your XML file. Default: ~/Music/iTunes/iTunes Library.xml', default="~/Music/iTunes/iTunes Library.xml")
+
+parser.add_argument('--outputics', '-o',  dest='outputics',help='Ignore disabled tracks in iTunes. Default: sxsw2015.ics', default="sxsw2015.ics")
+
 parser.add_argument('--stars', '-s', metavar='stars', type=int, nargs="?", default=3, help='minimum number of stars (iTunes rating) for consideration. Default: 3')
 parser.add_argument('--nocache', '-nc',dest='cache', help='Disables the artist cache for this read, rebuilding the cache for later use. Default: True', action='store_false', default=True)
 parser.add_argument('--notime',  '-nt', dest='notime',help='Include events with no times (bad idea for calendars, good for debug.) Default: False', action='store_true', default=False)
 parser.add_argument('--novenue', '-nv', dest='novenue',help='Include events with no venue. Default: False', action='store_true', default=False)
 parser.add_argument('--scoremode', '-m',  dest='scoremode',help='Score mode: When multiple ratings are present for an artist\'s songs, which one do we use? Default: avg', choices=['avg','min','max','last'], default='avg')
 parser.add_argument('--nodisabled', '-nd',  dest='ignoredisabled',help='Ignore disabled tracks in iTunes. Default: False', action='store_true', default=False)
+
+
 
 parser.add_argument('--verbose', '-v',  dest='verbose',help='Verbose mode. better for debugging.', action='store_true', default=False)
 
