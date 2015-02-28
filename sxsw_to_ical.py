@@ -45,6 +45,7 @@ import sys
 import time
 import cProfile
 import hashlib
+import json
 
 # config
 CACHE_DIR="/retina/sxswcrawler/cache"
@@ -514,6 +515,12 @@ if __name__ == "__main__":
           valid = valid + 1 
 
     print >>sys.stderr,  "%d calendarable / %d artists in ical / %d artists in sxsw / %d bad sxsw events (notime)" % (valid, len(iartists), len(events), badtime)
+
+    # save stats as json
+    f = open (args.outputics + ".json", "w")
+    print >>f, (json.dumps({"valid" :  valid, "iartists": len(iartists), "events": len(events), "badtime": badtime }, sort_keys=True))
+    f.close();
+
     make_vcal(args.outputics)
 
 parser = argparse.ArgumentParser(description="Process the SXSW 2015 Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py.")

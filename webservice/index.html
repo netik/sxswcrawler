@@ -11,12 +11,17 @@
       console.log("Checking for results for ticket " + ticket);
 
       $.ajax({
-          url: "/downloads/" + ticket + ".ics",})
-          .done(function() {
+          url: "/downloads/" + ticket + ".ics.json",})
+          .done(function(stats) {
              console.log("success.");
              clearInterval(window.rtimer);
              $(".spinner").hide();
-             $("div.results").html("<h1>Done!</h1><h3><a href=\"/downloads/" + ticket + ".ics\">Download</a> your calendar.</h3><h3>Import this file into a NEW CALENDAR in iCal.</h3><h4>Please note that the calendar is constantly changing. Check back again for updated information. It's best to download just before the event to get updated showtimes.</h4>");
+             $("div.results").html("<h1>Done!</h1><h3><a href=\"/downloads/" + ticket + ".ics\">Download your calendar.</a></h3><h3>Import this file into a NEW CALENDAR in iCal.</h3><h4>Please note that the calendar is constantly changing. Check back again for updated information. It's best to download just before the event to get updated showtimes.</h4>");
+             $("div.results_stat").show();
+             $("div.results_stat").html("<h4>" + stats.events  + " events on the SXSW site <BR>" + 
+                                                 stats.badtime + " had bad or no start time on the SXSW site<BR>(this will get better as we get closer to March 13th)<BR>" + 
+                                                 stats.iartists + " artists in your XML file<BR>" + 
+                                                 stats.valid + " artists are now in your calendar.</h4>");
           })
           .fail(function() { 
              console.log("not yet.");
@@ -31,6 +36,7 @@
           $('div.progress').hide();
           $('div.progress-bar').css('width', "0%");
           $('div#message').html(message);
+          $('div#message').show();
           $('div.alert').show();
       };
 
@@ -178,7 +184,7 @@
 					<h4><a href="#wideModal"  data-toggle="modal" data-target="#librarymodal">Where is my iTunes Library File?</a></h4>
 					<form class="form-inline signup" role="form" enctype="multipart/form-data">
 					  <div class="form-group">
-    					    <div class="messaage" id="message"></div>
+    					    <div class="messaage" id="message" style="display: none"></div>
 					  <div class="progress" id="progress" name="progress">
 					    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%"> </div>
 					  </div>
@@ -192,7 +198,6 @@
 
 					</form>
 				</div>
-
 				<div class="col-md-6 results" style="display: none">
 				  <h2 class="subtitle">Give us a moment, generating your results...</h2>
 
@@ -219,21 +224,20 @@
 					  </div>
 					</div>		
 				</div>
-				
+				<div class="col-md-6 results_stat" id="results_stat" name="results_stat" style="display: none"></div>
 			</div>
 		</div>
 	</div>
 	<div id="footer">
-	<div class="container">
+	<div class="container padtop">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
                            <p class="copyright">Made with love in San Francisco by 
 			   <a href="https://twitter.com/netik">@netik</a><BR>
-			   Cover photo by <a href="https://www.flickr.com/photos/ianaberle">Ian Aberie</a> (flickr)
-			   Source Code at <a href="https://github.com/netik/sxswcrawler">GitHub</a>
+			   Cover photo by <a href="https://www.flickr.com/photos/ianaberle">Ian Aberie</a> (flickr)<br>
+			   <a href="https://github.com/netik/sxswcrawler">Source code</a> available on GitHub
 			   <BR>SXSW is a registered trademark of SXSW, LLC.<BR>
 			   This is an unofficial site in support of the music event.<BR>
-		    We're only here for the music, not the money. Be nice, don't steal music!</P>
 			</div>
 		</div>		
 	</div>	
