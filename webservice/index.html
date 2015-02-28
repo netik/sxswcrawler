@@ -30,7 +30,7 @@
       var showInfo = function(message) {
           $('div.progress').hide();
           $('div.progress-bar').css('width', "0%");
-          $('strong.message').text(message);
+          $('div#message').html(message);
           $('div.alert').show();
       };
 
@@ -41,8 +41,15 @@
 
         var formData = new FormData();
         var file = document.getElementById('myFile').files[0];
-        formData.append('myFile', file);
 
+        if (file == undefined) { 
+          showInfo("<STRONG>You didn't select a file. Try again.</STRONG>");
+          $('input[type="submit"]').show();
+          return;
+        }
+
+        formData.append('myFile', file);
+      
         var xhr = new XMLHttpRequest();
         xhr.open('post', '/', true);
 
@@ -145,7 +152,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">iCal Calendar Generator for SXSW Music</a>
+          <a class="navbar-brand" href="/">argus_SX (beta)</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -171,20 +178,21 @@
 					<h4><a href="#wideModal"  data-toggle="modal" data-target="#librarymodal">Where is my iTunes Library File?</a></h4>
 					<form class="form-inline signup" role="form" enctype="multipart/form-data">
 					  <div class="form-group">
-					  <div class="col-md-12">
-    					    <div class="strong.messaage"></div>
-                                          </div>
-   			           	    <input type="file" class="form-control" id="myFile" name="myFile">
-					  </div>
-                                            
+    					    <div class="messaage" id="message"></div>
 					  <div class="progress" id="progress" name="progress">
 					    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%"> </div>
 					  </div>
 
-					  <input type="submit" class="btn btn-theme" value="Get my Calendar">
+  					    <div class="form-horizontal form">
+    			           	      <input type="file" class="form-control" id="myFile" name="myFile">
+    					      <input type="submit" class="btn btn-theme form-control" value="Get my Calendar">
+					    </div>
 
-					</form>					
+                                           </div>
+
+					</form>
 				</div>
+
 				<div class="col-md-6 results" style="display: none">
 				  <h2 class="subtitle">Give us a moment, generating your results...</h2>
 
@@ -220,12 +228,12 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
                            <p class="copyright">Made with love in San Francisco by 
-			   <a href="https://twitter.com/netik">@netik</a> 
- Cover photo by <a href="https://www.flickr.com/photos/ianaberle">Ian Aberie</a> (flickr)
- Source Code at <a href="https://github.com/netik/sxswcrawler">GitHub</a>
-<BR>SXSW is a registered trademark of SXSW, LLC.<BR>
-This is an unofficial site in support of the music event.<BR>
-			     We're only here for the music, not the money. Be nice, don't steal music!</P>
+			   <a href="https://twitter.com/netik">@netik</a><BR>
+			   Cover photo by <a href="https://www.flickr.com/photos/ianaberle">Ian Aberie</a> (flickr)
+			   Source Code at <a href="https://github.com/netik/sxswcrawler">GitHub</a>
+			   <BR>SXSW is a registered trademark of SXSW, LLC.<BR>
+			   This is an unofficial site in support of the music event.<BR>
+		    We're only here for the music, not the money. Be nice, don't steal music!</P>
 			</div>
 		</div>		
 	</div>	
