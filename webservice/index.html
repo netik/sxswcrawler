@@ -148,6 +148,41 @@
   </div>
 </div>
 
+<div id="aboutmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;  </button>
+        <h4 class="modal-title" id="aboutModalLabel">About</h4>
+      </div>
+      <div class="modal-body">
+      <P>
+      This software was developed after years of frustration, trying to
+      find bands to watch and dealing with inferior scheduling
+      apps. There are thousands of bands to see at SXSW Music, and
+      it's next to impossible to keep track of them. 
+      </P>
+
+      <P>Even with the volumes of information available out there,
+      sometimes the best way to find bands to seeto is to use what you
+      already have in your collection. If you buy and/or download
+      music, and rate the music that has been posted on the SXSW site,
+      we can help you find the shows to go to.
+      </p>
+
+      <P><STRONG>Privay</STRONG></P>
+      <P>
+      We take privacy very seriously. We destroy logs frequently. We
+      don't ask you for your email address. Our copy of the outputted iCal file and
+      iTunes library file are destroyed after 24 hours. 
+      </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -162,7 +197,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">About</a></li>
+            <LI><a href="#wideModal"  data-toggle="modal" data-target="#aboutmodal">About</a></LI>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -172,13 +207,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 initial">
-				  <h1>Get your SXSW Music calendar now!</h1>
+				  <h1>Get your music calendar now!</h1>
 					<h2 class="subtitle">
 					  <OL>
 					    <LI>Rate music in your iTunes Library (&ge; 2 stars)</LI>
 					    <LI>Upload your iTunes Library.</LI>
-					    <LI>Download a personalized iCal (ICS) calendar based on your ratings.</LI>
-					    <LI>Click on the ICS file, sync your phone, and go see some bands!</LI>
+					    <LI>If those bands are playing SXSW Music, we'll add them to a personalized iCal (ICS) calendar..</LI>
+					    <LI>Download the generated calendar, sync your phone, and go see some bands!</LI>
 					  </OL>
 					</h2>
 					<h4><a href="#wideModal"  data-toggle="modal" data-target="#librarymodal">Where is my iTunes Library File?</a></h4>
