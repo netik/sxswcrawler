@@ -451,7 +451,7 @@ def make_ics(event):
                                             t.minute,
                                             t.second)
 
-  loc = event['venue'] + "\n" + venues[event['venue'].replace(" ","_")] + "\nAustin, TX 78701\n"
+  loc = event['venue'] + ", " + venues[event['venue'].replace(" ","_")] + ", Austin, TX 78701"
 
 # this doesn't seem to want to work, even if we replay the old data at ical. 
 #  struct_loc = 'VALUE=URI;X-ADDRESS=515 E 6th St\\nAustin TX 78701;X-APPLE-RADIUS=25.63865019644897;X-TITLE=Flamingo Cantina:geo:30.266390,-97.737772'
