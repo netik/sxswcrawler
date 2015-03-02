@@ -272,7 +272,6 @@ def parse_event(filename):
   url = os.path.basename(filename).replace("_2015_events_event_","")
   url = "http://schedule.sxsw.com/2015/events/event_%s" % url
   url = url.replace(".html", "")
-  print url 
 
   events[filename] = { "artist": artist, 
                        "artisturl": artisturl,
