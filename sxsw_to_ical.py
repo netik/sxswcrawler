@@ -48,7 +48,6 @@ import hashlib
 import json
 
 # config
-CACHE_DIR="/retina/sxswcrawler/cache"
 DEFAULT_YEAR="2015"
 zone = 'US/Central'
 # -- end config -- 
@@ -97,39 +96,49 @@ def sxsw_datefix(a):
 
   return a
 
+def score_artist(artist):
+  global iartists
+
+  if artist == None: 
+    return -1
+
+  if not iartists.has_key(simplify(artist)):
+    return -1
+
+  # we are storing a tokenized form of the artist with the score. This lookup is then O(2)
+  # calc score
+  s_min=10
+  s_max=-1
+  s_tot=0
+
+  for s in iartists[simplify(artist)]:
+    s_tot = s_tot + s
+    if s < s_min: 
+      s_min = s
+    if s > s_max: 
+      s_max = s
+
+  s_avg = s_tot / len(iartists[simplify(artist)])
+
+  if args.scoremode == 'max':
+    score = s_max
+  elif args.scoremode == 'min':
+    score = s_min
+  else:
+    score = s_avg
+
+  return score
+
 def valid_artist(artist):
   ''' determine if an artist exists and if the artist scores high enough '''
   global iartists
 
-  if artist == None: 
+  score = score_artist(artist)
+  if score == -1:
     return False
 
-  # we are storing a tokenized form of the artist with the score. This lookup is then O(2)
-  if iartists.has_key(simplify(artist)):
-
-    # calc score
-    s_min=10
-    s_max=-1
-    s_tot=0
-
-    for s in iartists[simplify(artist)]:
-      s_tot = s_tot + s
-      if s < s_min: 
-        s_min = s
-      if s > s_max: 
-        s_max = s
-
-    s_avg = s_tot / len(iartists[simplify(artist)])
-
-    if args.scoremode == 'max':
-        score = s_max
-    elif args.scoremode == 'min':
-        score = s_min
-    else:
-        score = s_avg
-
-    if score >= args.stars:
-      return True
+  if score >= args.stars:
+    return True
 
   return False
 
@@ -137,9 +146,9 @@ def valid_artist(artist):
 def fetch(url, fn, nocache=False):
   # fetch a URL, but if we have the file on disk, return the file instead.
   # This prevents us from beating on the remote site while developing.
-  cachefn="%s/venues/%s" % (CACHE_DIR, fn)
-  if not os.path.isdir("%s/venues" % CACHE_DIR):
-     os.mkdir("%s/venues" % CACHE_DIR)
+  cachefn="%s/venues/%s" % (args.cachedir, fn)
+  if not os.path.isdir("%s/venues" % args.cachedir):
+     os.mkdir("%s/venues" % args.cachedir)
 
   if os.path.isfile(cachefn) and nocache == False:
     if args.verbose: 
@@ -175,7 +184,7 @@ def get_venue(venue, venue_url):
   if m: 
     addr = strip_tags(m.group(2).lstrip().rstrip())
     venues[venue.replace(" ", "_")] = addr
-    return addr
+    return addr 
   else:
     venues[venue.replace(" ", "_")] = ""
     return None
@@ -260,9 +269,10 @@ def parse_event(filename):
     hometown = m.group(1).replace("\n","")
 
   # hack the URL together
-  url = filename.replace("cache/events/_2015_events_event_","")
+  url = os.path.basename(filename).replace("_2015_events_event_","")
   url = "http://schedule.sxsw.com/2015/events/event_%s" % url
   url = url.replace(".html", "")
+  print url 
 
   events[filename] = { "artist": artist, 
                        "artisturl": artisturl,
@@ -288,7 +298,7 @@ def get_rated_iartists(stars=3):
   itunes_xml = args.itunesxml
   iartists = {}
   
-  ARTIST_CACHEFILE = "%s/rated_artists-%s.pickle" % (CACHE_DIR, hashlib.sha256(args.itunesxml).hexdigest())
+  ARTIST_CACHEFILE = "%s/rated_artists-%s.pickle" % (args.cachedir, hashlib.sha256(args.itunesxml).hexdigest())
 
   if os.path.exists(ARTIST_CACHEFILE) and args.cache == True: 
     st = os.stat(ARTIST_CACHEFILE)
@@ -441,7 +451,11 @@ def make_ics(event):
                                             t.minute,
                                             t.second)
 
-  loc = event['venue'] + " / " + venues[event['venue'].replace(" ","_")]
+  loc = event['venue'] + "\n" + venues[event['venue'].replace(" ","_")] + "\nAustin, TX 78701\n"
+
+# this doesn't seem to want to work, even if we replay the old data at ical. 
+#  struct_loc = 'VALUE=URI;X-ADDRESS=515 E 6th St\\nAustin TX 78701;X-APPLE-RADIUS=25.63865019644897;X-TITLE=Flamingo Cantina:geo:30.266390,-97.737772'
+#  struct_loc = 'VALUE=URI;X-ADDRESS=' + venues[event['venue'].replace(" ","_")] + "\\nAustin, TX 78701" + ';X-APPLE-RADIUS=25;X-TITLE=' + event['venue']
 
   if event['description']:
     desc = event['description']
@@ -455,7 +469,7 @@ def make_ics(event):
   # find multiple dates, if any
   md = ""
   if len( perfdates[simplify(event['artist'])] ) > 1:
-    md = u"Multiple Dates:\n"
+    md = u"Multiple Shows:\n"
     for e in perfdates[simplify(event['artist'])]:
 
       if e['start'].format('X') != event['time_start'].format('X'):
@@ -463,15 +477,16 @@ def make_ics(event):
 
     md = md + "\n"
   md = md.encode('utf-8')
-  desc = "".join([ event['genre'], "\n", event['hometown'], "\n\n" , md, desc])
-
+  stars = '\xe2\x98\x85' * score_artist(event['artist'])
+  desc = "".join([ event['genre'] + " " + stars, "\n", event['hometown'], "\n\n" , md, desc])
 
   entry = "\n".join([ 
           'BEGIN:VEVENT',
           'UID:'		+ ical_quote(uid),
           'DTSTAMP:'		+ ical_quote (dtstamp),
           'SEQUENCE:%d'		% ics_seq,
-          'LOCATION:'		+ ical_quote (loc, True),
+          'LOCATION:'		+ ical_quote (loc),
+#          'X-APPLE-STRUCTURED-LOCATION;' + struct_loc,
           'SUMMARY:'		+ ical_quote (event['artist']),
           'DTSTART;'		+ dtstart,
           'DTEND;'		+ dtend,
@@ -490,7 +505,6 @@ if __name__ == "__main__":
     global events
     global iartists 
     global icsentries
-    global CACHE_DIR
 
     if args.verbose:
       print >> sys.stderr, "Fetching iTunes..."
@@ -501,8 +515,8 @@ if __name__ == "__main__":
     # pass #1: open every file
     # get band, artist, venue, description, venue address to a dict
     # all playing locations for the band
-    for file in os.listdir(CACHE_DIR + "/events"):
-      parse_event(os.path.join(CACHE_DIR + "/events", file))
+    for file in os.listdir(args.cachedir + "/events"):
+      parse_event(os.path.join(args.cachedir + "/events", file))
 
     valid=0
 
@@ -529,11 +543,16 @@ parser.add_argument('--itunesxml', '-i',  dest='itunesxml',help='The name of you
 parser.add_argument('--outputics', '-o',  dest='outputics',help='Ignore disabled tracks in iTunes. Default: sxsw2015.ics', default="sxsw2015.ics")
 
 parser.add_argument('--stars', '-s', metavar='stars', type=int, nargs="?", default=3, help='minimum number of stars (iTunes rating) for consideration. Default: 3')
+
 parser.add_argument('--nocache', '-nc',dest='cache', help='Disables the artist cache for this read, rebuilding the cache for later use. Default: True', action='store_false', default=True)
+
+parser.add_argument('--cachedir', '-c', metavar='directorys', nargs="?", default=os.getcwd() + "/cache", help="Location of cache directory. Default: " + os.getcwd() + "/cache")
+
 parser.add_argument('--notime',  '-nt', dest='notime',help='Include events with no times (bad idea for calendars, good for debug.) Default: False', action='store_true', default=False)
 parser.add_argument('--novenue', '-nv', dest='novenue',help='Include events with no venue. Default: False', action='store_true', default=False)
 parser.add_argument('--scoremode', '-m',  dest='scoremode',help='Score mode: When multiple ratings are present for an artist\'s songs, which one do we use? Default: avg', choices=['avg','min','max','last'], default='avg')
 parser.add_argument('--nodisabled', '-nd',  dest='ignoredisabled',help='Ignore disabled tracks in iTunes. Default: False', action='store_true', default=False)
+
 
 
 
