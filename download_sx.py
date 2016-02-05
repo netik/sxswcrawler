@@ -21,13 +21,14 @@ def download_file(url):
     return local_filename
 
 
-f = open("data/mp3_missed.txt")
+f = open("data/download_queue.txt")
 os.chdir("music/sx")
 
 for line in f:
-   m = re.search("file=(.*\.mp3)",line) 
+   m = re.search("mp3 (.*\.mp3)",line) 
 
    if m:
      print m.group(1)
      download_file(m.group(1))
+
      

@@ -17,6 +17,7 @@ def fetch(url,fn,daynumber,nocache = True):
   # fetch a URL, but if we have the file on disk, return the file instead.
   # This prevents us from beating on the remote site while developing.
   if not os.path.isdir("%s/%s" % (CACHE_DIR, daynumber)):
+    print "makedir %s/%s" % (CACHE_DIR, daynumber)
     os.makedirs("%s/%s" % (CACHE_DIR, daynumber))
 
   cachefn = "%s/%s/%s" % (CACHE_DIR, daynumber, fn)
@@ -24,7 +25,6 @@ def fetch(url,fn,daynumber,nocache = True):
 
   if os.path.isfile(cachefn) and nocache == False:
     print "return cached content for url (%s)" % fn
-
     text = open(cachefn,'r').read()
     return text
 
@@ -49,7 +49,7 @@ def fetch(url,fn,daynumber,nocache = True):
 def get_events(data):
   events=[]
   for line in data.split('\n'):
-    m = re.search("href=\'(/2015/events/\w+)\'",line) 
+    m = re.search("href=\'(/2016/events/\w+)\'",line) 
 
     if m:
       events.append(m.group(1))
@@ -67,37 +67,13 @@ for alpha in alphalist:
   events = get_events(eventpage)
 
   # regexps for detecting content -- should really be in another stage. 
-
-  ytRE = re.compile('(//www.youtube.com/embed/[a-zA-Z0-9_-]+)\'')
-  scRE = re.compile('src=\'(https://w.soundcloud.com.+) ')
-  mpRE = re.compile('file=(http://audio.sxsw.com/2014/mp3_by_artist_id/(\d+).mp3)')
-  
   for event in events:
     if event.find("event_MS") == -1:
       continue
-
+    
     detailurl = "%s%s" % (BASE_URL , event)
     detailpage = fetch(detailurl, "%s.html" % event.replace("/","_"), event, nocache = False)
 
-    scM = scRE.search(detailpage)
-    ytM = ytRE.search(detailpage)
-    mpM = mpRE.search(detailpage)
-
+    # for now we will just fetch and print the name out. 
     cachefn="cache/%s/%s.html" %  (alpha, event.replace("/","_") )
-
-    if scM != None: 
-      scurl = scM.group(1)
-      print "%s soundcloud %s" % (cachefn, scurl.replace('\'',''))
-
-    if ytM != None:
-      yturl = ytM.group(1)
-      print "%s youtube http:%s" % (cachefn, yturl)
-
-    if mpM != None:
-      mpurl = mpM.group(1)
-      print "%s mp3 %s" % (cachefn, mpurl)
-
-    if scM == None and ytM == None and mpM == None:
-      print "%s none" % cachefn
-
-
+    print "%s unkonw" % cachefn

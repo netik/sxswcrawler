@@ -27,6 +27,11 @@ abuse the bandwidth of any of these sites.
   This will create data/crawl_log.txt which everything else will key
   off of.
 
+  ./2_download_audio.sh
+
+  This will parse the downloaded files and log to determine where the
+  audio files are
+   
 2. Collect metadata
 
 Essentially we're reading their events pages, parsing them, and trying
@@ -107,6 +112,3 @@ soundcloud-downloader.py* - I didn't write this, download files from
                             soundcloud, possibly broken
 
 stage1.py* - first part of the fetcher
-
-
-
