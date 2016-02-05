@@ -11,7 +11,7 @@ BASE_URL='http://schedule.sxsw.com'
 CACHE_DIR="cache/events"
 
 ytRE = re.compile('(//www.youtube.com/embed/[a-zA-Z0-9_-]+)\'')
-scRE = re.compile('src=\'(https://w.soundcloud.com.+) ')
+scRE = re.compile('(http(s)*://(www.)*soundcloud.com/.+)\" ')
 mpRE = re.compile('(http://audio.sxsw.com/2016/mp3_by_artist_id/(\d+).mp3)')
 
 for filename in os.listdir(CACHE_DIR):

@@ -5,55 +5,66 @@ from mutagen.mp3 import *
 import re
 import sys 
 import os.path
+import sys, codecs, locale
 
 BASEDIR="music/sx"
 CACHE_DIR ="cache"
 bandre = re.compile(r"\content=\'(.*)\' name=\'twitter\:title\'")
-idre   = re.compile(r"/bands/(\d+).jpg")
+idre   = re.compile(r"/mp3_by_artist_id/(\d+).mp3")
 titlere = re.compile(r"<h4>Listen to <i>(.+)</i></h4>")
 artistmap = {}
 titlemap = {}
 
+def ap(s):
+  try:
+    out = s.encode('ascii', 'ignore')
+  except:
+    out = s.decode('utf8')
+  return out
+
+# set this to be true to be non-destructive
+DRYRUN=False
+
 print "phase I... get ID to artist map"
 
-for day in ["events"]:
-  files = os.listdir("%s/%s" % (CACHE_DIR, day))
+files = os.listdir("%s/%s" % (CACHE_DIR, "events"))
 
-  for f in files:
-    if f.find(".html") > -1 and f[0] == "_":
+for f in files:
+  if f.find(".html") > -1 and f[0] == "_":
+    
+    id = ""
+    artist = ""
+    title = ""
 
-      id = ""
-      artist = ""
-      title = ""
+    fh = open("%s/%s/%s" % (CACHE_DIR, "events", f), "r")
+    for line in fh:
+      m = bandre.search(line)
+      if m != None:
+        artist = m.group(1)
 
-      fh = open("%s/%s/%s" % (CACHE_DIR, day, f))
+      m = idre.search(line)
+      if m != None:
+        id = m.group(1)
 
-      for line in fh:
-        m = bandre.search(line)
-        if m != None:
-          artist = m.group(1)
+      m = titlere.search(line)
+      if m != None:
+        title = m.group(1)
 
-        m = idre.search(line)
-        if m != None:
-          id = m.group(1)
+    fh.close()
 
-        m = titlere.search(line)
-        if m != None:
-          title = m.group(1)
+    if id == "":
+      print "FAIL: %s/%s" % ("events", f)
+    else: 
+      sys.stdout.write("%s - %s - %s\n" % (id, artist,title))
+      artistmap[id] = artist
+      titlemap[id] = title
 
-      fh.close()
-
-      if id == "":
-        print "FAIL: %s/%s" % (day, f)
-      else: 
-#        print "%s - %s - %s" % (id,artist,title)
-        artistmap[id] = artist
-        titlemap[id] = title
-
-print "phase II... process MP3s"
+print "phase II... Rename files"
 
 failcnt = 0
+
 for fn in os.listdir(BASEDIR):
+  print "--- start %s ---" %fn
   try: 
     audio = mutagen.File("%s/%s" % (BASEDIR, fn), easy=True)
   except mutagen.mp3.HeaderNotFoundError:
@@ -68,13 +79,16 @@ for fn in os.listdir(BASEDIR):
   except  mutagen.easyid3.EasyID3KeyError:
     print "ignoring key error"
 
+
+  id = fn.replace(".mp3","")
+  print "my id is %s " % id
+
   if audio.get("artist",None) != None:
     artist = audio.get("artist")
   else:
     if audio.get("performer",None) != None:
       artist = audio.get("performer")
     else:
-      id = fn.replace(".mp3","")
       if artistmap.get(id, None) != None:
         artist = artistmap.get(id)
       else: 
@@ -109,23 +123,30 @@ for fn in os.listdir(BASEDIR):
   artist = artist.replace("/","")
   title = title.replace("/","")
 
-  print "%s -> %s - %s" % (fn, artist, title)
-
   # write this information back into the MP3
   try: 
     audio["title"] = title
     audio["artist"] = artist
     print audio.pprint()
     print
-    audio.save()
+    if DRYRUN == False:
+      audio.save()
   except:
     print "couldn't read/update ID3"
 
   # rename the file
-  print "%s %s/%s --> %s/%s - %s" % (id, BASEDIR, fn, BASEDIR, artist, title)
+
+  print u"%s %s/%s --> %s/%s - %s\n" % (unicode(id, "utf-8"), 
+                                        unicode(BASEDIR, "utf-8"),
+                                        unicode(fn, "utf-8"), 
+                                        unicode(BASEDIR, "utf-8"), 
+                                        ap(artist), ap(title))
   
-  os.rename("%s/%s" % (BASEDIR,fn),
-            "%s/%s - %s.mp3" % (BASEDIR, artist, title))
+  if DRYRUN == False:
+    os.rename("%s/%s" % (BASEDIR,fn),
+              "%s/%s - %s.mp3" % (BASEDIR, ap(artist), ap(title)))
+
+  print "--- end %s ---" %fn
 
 # we're done
   

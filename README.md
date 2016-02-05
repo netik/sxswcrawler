@@ -30,26 +30,47 @@ the crawl multiple times.
 
 1. Run the crawl to get data. You should only have to do this once. 
 
+```
+  # Crawl the site!
   cd scripts
   ./1_run_crawl.sh
+```
 
   This will create data/crawl_log.txt which everything else will key
   off of.
 
+```
+  # parse the data set for possible downloads
   ./stage2.py
+```
 
   This will parse the downloaded files and log to determine where the
   audio files are
 
-  ./download_sx.py
+```
+  # Get SXSW mp3 files
+  ./download_sx.py 
+```
 
+Nowu should have a big, fat directory (music/) full of mp3 files.  Run
+"rename_mp 3_files.py" to rename them from "xxxx.mp3" to "artist -
+title.mp3" with proper ID3 tags.
+
+The rename script will try to derive the proper artist and title
+name from the SXSW web pages. If it can't do that it'll fall back to
+the MP3 ID3 information.
+
+If that doesn't work at all, we'll leave the file alone and you'll
+be stuck with the nnnn.mp3 filename, but hopefully not. 
+
+Now, get the rest. Historically, youtube and sound cloud make up a a
+small fragment of artists available from sxsw.
+
+```
   ./download_yt.py
-
   ./get_sc_data.py (see below for setup!)
   ./download_sc.py
-
-  run these individually 
-   
+```
 
 How does this work?
 ======================
