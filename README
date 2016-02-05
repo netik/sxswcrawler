@@ -1,10 +1,14 @@
-SXSW Crawler 2015
+SXSW Crawler 
 =======================
 
 This is a set of hacked-together scripts for crawling SXSW and getting
 music for all the bands. The site format changes every year, different
 sites change their APIs and shit breaks. There is no guarantee this
-will work. It is, however, a good starting place.
+will work. It is, however, a good starting place. You may have to make
+changes, but, there's enough here to hang yourself.
+
+I recommend runnning this mid-Feburary. Artists are usually nailed
+down by then.
 
 The process (For me, anyway) works like this:
 
@@ -19,7 +23,12 @@ Caveats: I am not responsible for what you do with these scripts. Most
 of the music is copyrighted and you shouldn't steal it. Please don't
 abuse the bandwidth of any of these sites. 
 
-1. Run the crawl to get data.
+There's a couple of changes for 2015, First off, we're breaking up the
+job into easy to manage parts so that you don't end up having to run
+the crawl multiple times.
+
+
+1. Run the crawl to get data. You should only have to do this once. 
 
   cd scripts
   ./1_run_crawl.sh
@@ -27,12 +36,23 @@ abuse the bandwidth of any of these sites.
   This will create data/crawl_log.txt which everything else will key
   off of.
 
-  ./2_download_audio.sh
+  ./stage2.py
 
   This will parse the downloaded files and log to determine where the
   audio files are
+
+  ./download_sx.py
+
+  ./download_yt.py
+
+  ./get_sc_data.py (see below for setup!)
+  ./download_sc.py
+
+  run these individually 
    
-2. Collect metadata
+
+How does this work?
+======================
 
 Essentially we're reading their events pages, parsing them, and trying
 to get MP3s. There are usually a few different sources of music:
@@ -40,10 +60,13 @@ to get MP3s. There are usually a few different sources of music:
 SXSW MP3s
 ==========
 
-It used to be that they hosted MP3s for all of the bands on the SXSW
-sites for review. These days there's maybe 40-60 songs on the SXSW
-site, and the rest are on youtube or otherwise. But, we'll download
-those directly.
+(2013,2014) It used to be that they hosted MP3s for all of the bands
+on the SXSW sites for review. These days there's maybe 40-60 songs on
+the SXSW site, and the rest are on youtube or otherwise. But, we'll
+download those directly.
+
+2016 Update: SXSW seems to be hosting most of their music on their own
+again. Yay!
 
 Youtube 
 ========
@@ -54,11 +77,13 @@ convert them to mp3s later.
 Soundcloud
 ==========
 
-Soundclound artists do not have songs, they have artist data listed,
-but we want to hear them to know if we should bother going to the
-show.
+Far more complicated but still possible. Soundcloud artists do not
+have songs, they have artist data listed, but we want to hear them to
+know if we should bother going to the show.
 
-We need to find their most popular song and download it.
+We need to find their most popular song and download it. Assumption:
+"Most Popular" is the hit song that might sell you on the band. (Who
+knows!)
 
 Python Dependencies:
   easy_install requests
@@ -76,12 +101,6 @@ Run:
   ./get_sc_data.py
 
   That will build the sc metadata catalog. 
-
-From here you can do:
-
-  ./download_sc.sh - download all the soundcloud songs to music/
-  ./download_yt.sh - download all the youtube songs to music/
-  ./download_sx.sh - download all of the sxsw to music/
 
 There are a whole series of scripts in these folders for cleaning up the
 music/ directory. (rename_* and fix_*.) Using them is beyond the scope of 
@@ -112,3 +131,4 @@ soundcloud-downloader.py* - I didn't write this, download files from
                             soundcloud, possibly broken
 
 stage1.py* - first part of the fetcher
+
