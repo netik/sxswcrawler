@@ -5,12 +5,12 @@
 #
 
 SUFFIX=ad
+cd "music/yt"
 
-for url in `cat data/download_queue.txt | grep youtube | egrep -v ^\# | awk '{ print $NF }'`; 
+for url in `cat ../../data/download_queue.txt | grep youtube | egrep -v ^\# | awk '{ print $NF }'`; 
 do 
 
 IFS=$(echo -en "\n\b")
-  cd "music/yt"
   echo $url
   youtubedown --fmt 18 $url 
 
