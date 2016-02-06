@@ -28,15 +28,14 @@ job into easy to manage parts so that you don't end up having to run
 the crawl multiple times.
 
 
-1. Run the crawl to get data. You should only have to do this once. 
+ Run the crawl to get data. You should only have to do this once. 
 
 ```
   # Crawl the site!
-  cd scripts
   ./1_run_crawl.sh
 ```
 
-  This will create data/crawl_log.txt which everything else will key
+  This will create data/queue.txt which everything else will key
   off of.
 
 ```
@@ -44,8 +43,10 @@ the crawl multiple times.
   ./stage2.py
 ```
 
-  This will parse the downloaded files and log to determine where the
-  audio files are
+This will parse the downloaded files and log to determine where the
+audio files are.
+
+Now, download them.
 
 ```
   # Get SXSW mp3 files
@@ -60,11 +61,13 @@ The rename script will try to derive the proper artist and title
 name from the SXSW web pages. If it can't do that it'll fall back to
 the MP3 ID3 information.
 
-If that doesn't work at all, we'll leave the file alone and you'll
-be stuck with the nnnn.mp3 filename, but hopefully not. 
+If that doesn't work at all, we'll leave the file alone and you'll be
+stuck with the nnnn.mp3 filename, but hopefully not. At that point,
+you might want to resort to either exiftool or iTunes to resolve these
+issues for you.
 
-Now, get the rest. Historically, youtube and sound cloud make up a a
-small fragment of artists available from sxsw.
+Now, get the other file types. Historically, youtube and sound cloud
+make up a a small fragment of artists available from sxsw.
 
 ```
   ./download_yt.py
@@ -72,11 +75,15 @@ small fragment of artists available from sxsw.
   ./download_sc.py
 ```
 
-How does this work?
+More about the files 
 ======================
 
 Essentially we're reading their events pages, parsing them, and trying
 to get MP3s. There are usually a few different sources of music:
+
+
+As of Feb, 2016, I'm seeing 884 official sxsw MP3s, 103 youtube files,
+and 37 soundcloud entries.
 
 SXSW MP3s
 ==========
