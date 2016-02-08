@@ -48,6 +48,7 @@ Installation
 =============
 
 Python 2.7 required
+FFMPEG required to convert video to mp3
 
 Dependencies: 
 
@@ -119,17 +120,21 @@ issues for you.
 Now, get the other file types. Historically, youtube and sound cloud
 make up a a small fragment of artists available from sxsw.
 
-Youtube files:
+*Youtube*
+
+We'll download any youtube link and convert it into an mp3 using ffmpeg and youtubedown. 
 
 ```
   ./download_yt.py
   ./fix_yt_namse.py
 ```
 
-Soundcloud
+*Soundcloud*
+
+Make sure you've got your API keys set up as previously described in the Installation section. 
 
 ```
-  ./get_sc_data.py (see below for setup!)
+  ./get_sc_data.py 
   ./download_sc.py
 ```
 
