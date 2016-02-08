@@ -62,6 +62,8 @@ Dependencies:
   easy_install fuzzy   # for sxsw to ical fuzzy matching
 ```
 
+If you want to download soundcloud files you will also need Python >
+3.0 installed and soundscrape from https://github.com/Miserlou/SoundScrape
 
 youtubedown (get from www.jwz.org/hacks/youtubedown) 
  - Make sure to get a current version of this. It should be in your $PATH
@@ -144,6 +146,10 @@ Make sure you've got your API keys set up as previously described in the Install
   ./download_sc.py
 ```
 
+Please note that we are now using soundscrape and python3 to get
+soundcloud files. The prior solution no longer works thanks to
+Soundcloud API changes.
+
 Music outputs to music/sc
 
 More about the files 
@@ -211,9 +217,5 @@ map_url_to_artist.py* - ??
 rename_mp3_files.py* - tries to fixup MP3 
 rename_no_spaces.py* - remove spaces from youtube files
 rename_sc_tracks.py* - clean up soundcloud filenames
-
-soundcloud-downloader.py* - I didn't write this, download files from
-                            soundcloud, possibly broken
-
 stage1.py* - first part of the fetcher
 
