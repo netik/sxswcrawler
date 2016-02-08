@@ -94,17 +94,20 @@ Run the crawl to get data. You should only have to do this once.
   ./stage2.py
 ```
 
-This will parse the downloaded files and log to determine where the
-audio files are.
+This will parse the HTML event files and log to determine where the
+audio files are. Now it's time to download.
 
-Now, download them.
+*SXSW Raw MP3*
+
+Fortunately, SXSW still posts raw MP3s. We have some work to do to get
+the files named correctly and the ID3 tags right, but it's doable...
 
 ```
   # Get SXSW mp3 files
   ./download_sx.py 
 ```
 
-Now, you should have a big, fat directory (music/) full of mp3 files.
+Now, you should have a big, fat directory (music/sx) full of mp3 files.
 Run "rename_mp 3_files.py" to rename them from "xxxx.mp3" to "artist -
 title.mp3" with proper ID3 tags.
 
@@ -126,8 +129,10 @@ We'll download any youtube link and convert it into an mp3 using ffmpeg and yout
 
 ```
   ./download_yt.py
-  ./fix_yt_namse.py
+  ./fix_yt_names.py
 ```
+
+Music outputs to music/yt
 
 *Soundcloud*
 
@@ -138,18 +143,13 @@ Make sure you've got your API keys set up as previously described in the Install
   ./download_sc.py
 ```
 
+Music outputs to music/sc
+
 More about the files 
 ======================
 
-Essentially we're reading their events pages, parsing them, and trying
-to get MP3s. There are usually a few different sources of music:
 
-
-As of Feb, 2016, I'm seeing 884 official sxsw MP3s, 103 youtube files,
-and 37 soundcloud entries.
-
-SXSW MP3s
-==========
+*SXSW MP3s*
 
 (2013,2014) It used to be that they hosted MP3s for all of the bands
 on the SXSW sites for review. These days there's maybe 40-60 songs on
@@ -159,14 +159,12 @@ download those directly.
 2016 Update: SXSW seems to be hosting most of their music on their own
 again. Yay!
 
-Youtube 
-========
+*Youtube*
 
 We'll use jwz's youtubedown to get these files as mp4s. We'll then
 convert them to mp3s later. 
 
-Soundcloud
-==========
+*Soundcloud*
 
 Far more complicated but still possible. Soundcloud artists do not
 have songs, they have artist data listed, but we want to hear them to
@@ -178,14 +176,16 @@ knows!)
 
   ./get_sc_data.py
 
-ONLY AFTER stage1.py has finished. This will build the sc metadata catalog. 
+Run this ONLY AFTER stage1.py has finished. This will build the sc
+metadata catalog.
 
-There are a whole series of scripts in these folders for cleaning up the
-music/ directory. (rename_* and fix_*.) Using them is beyond the scope of 
-this README. 
+What do I do after the downloads finish
+=======================================
 
-What do I do afterwards?
-===========================
+Import them all into iTunes. (see "The Process" above.)
+
+Make a calendar
+===============
 
 After you've imported, rated, and listened to all of the songs, go
 make your personal calendar.
