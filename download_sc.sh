@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # this path is relative to the scripts dir
-SDGET="../../soundcloud-downloader.py"
+SDGET="./soundcloud-downloader.py"
 
 # make sure we have a place to work.
 if [ ! -d music/sc ]; then

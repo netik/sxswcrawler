@@ -1,7 +1,16 @@
 #!/usr/bin/python
 #
-# Given our cache dir, let's go find all the music by parsing files
+# stage2.py
 #
+# SXSW Post-crawl Parser
+# J. Adams <jna@retina.net> 
+# Last update 2/7/2016
+#
+# Once we've finished a crawl, this script will read the HTML cache
+# and the to find music files. Output should be placed in
+# data/queue.txt by the caller of this script
+#
+
 
 import io
 import re

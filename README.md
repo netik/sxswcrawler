@@ -1,34 +1,84 @@
 SXSW Crawler 
 =======================
 
-This is a set of hacked-together scripts for crawling SXSW and getting
-music for all the bands. The site format changes every year, different
-sites change their APIs and shit breaks. There is no guarantee this
-will work. It is, however, a good starting place. You may have to make
-changes, but, there's enough here to hang yourself.
+This is a set of scripts for crawling SXSW and getting music for all
+the bands. The site format changes every year, different sites change
+their APIs and shit breaks. There is no guarantee this will work. 
+
+However, it's an excellent starting place for music discovery. 
+
+What's new?
+=============
+
+There's a couple of changes for 2015, First off, I'm breaking up the
+job into easy to manage parts so that you don't end up having to run
+the crawl multiple times. Second, I'm making the code much more
+modular.
 
 I recommend runnning this mid-Feburary. Artists are usually nailed
 down by then.
 
-The process (For me, anyway) works like this:
+THE PROCESS
+============
 
-  1. Download all songs.
-  2. Feed into iTunes
-  3. Rate with iTunes rater (github.com/netik/iTunesRater)
-  4. Take that library and convert it into a schedule  (./sxsw_to_ical.py)
-  5. Take that schedule (as an ICS file) and put it into your 
-     phone to have during the event. 
+I think we've developed an excellent way to discover music at a
+festival that regularly hosts over 1500 bands. We're going to take a
+bit of a big-data approach here, and process music faster than any A&R
+person can.
+
+Much credit for this process goes to jwz who wrote youtubedown and
+worked on this with me throughout the last 5 years of SXSW.
+
+The process works like this:
+
+  1. Crawl SXSW. Get all of the HTML for music events during the festival.
+  2. Break the work queue down by type (soundcloud, raw mp3, youtube)
+  3. Download all of thesongs in each type using different mechanisms
+  4. Feed into iTunes
+  5. Rate with iTunesRater (github.com/netik/iTunesRater)
+  6. Take that library and convert it into a schedule  (./sxsw_to_ical.py)
+  7. Take that schedule (as an ICS file) and put it into your phone to have during the event. 
+  8. Go see some damn music. 
 
 Caveats: I am not responsible for what you do with these scripts. Most
 of the music is copyrighted and you shouldn't steal it. Please don't
-abuse the bandwidth of any of these sites. 
+abuse the bandwidth of any of the sites or services involved here.
 
-There's a couple of changes for 2015, First off, we're breaking up the
-job into easy to manage parts so that you don't end up having to run
-the crawl multiple times.
+Installation
+=============
+
+Python 2.7 required
+
+Dependencies: 
+
+```
+  easy_install requests
+  easy_install soundcloud
+  easy_install mutagen
+  easy_install lxml
+  easy_install ID3 -- or id3-py-1.2/ included in this directory
+  easy_install fuzzy   # for sxsw to ical fuzzy matching
+```
 
 
- Run the crawl to get data. You should only have to do this once. 
+youtubedown (get from www.jwz.org/hacks/youtubedown) 
+ - Make sure to get a current version of this. It should be in your $PATH
+
+You will also need Valid soundcloud API keys. Get them from Soundcloud
+and put them in a file called soundcloud_api_keys.py. make sure the
+file looks like this:
+
+```
+   client_id='xxxxx'
+   client_secret='xxxxx'
+```
+
+get_sc_data will use them as part of the soundcloud "best song" determination.
+
+Running
+===============
+
+Run the crawl to get data. You should only have to do this once. 
 
 ```
   # Crawl the site!
@@ -53,8 +103,8 @@ Now, download them.
   ./download_sx.py 
 ```
 
-Nowu should have a big, fat directory (music/) full of mp3 files.  Run
-"rename_mp 3_files.py" to rename them from "xxxx.mp3" to "artist -
+Now, you should have a big, fat directory (music/) full of mp3 files.
+Run "rename_mp 3_files.py" to rename them from "xxxx.mp3" to "artist -
 title.mp3" with proper ID3 tags.
 
 The rename script will try to derive the proper artist and title
@@ -69,8 +119,16 @@ issues for you.
 Now, get the other file types. Historically, youtube and sound cloud
 make up a a small fragment of artists available from sxsw.
 
+Youtube files:
+
 ```
   ./download_yt.py
+  ./fix_yt_namse.py
+```
+
+Soundcloud
+
+```
   ./get_sc_data.py (see below for setup!)
   ./download_sc.py
 ```
@@ -113,28 +171,19 @@ We need to find their most popular song and download it. Assumption:
 "Most Popular" is the hit song that might sell you on the band. (Who
 knows!)
 
-Python Dependencies:
-  easy_install requests
-  easy_install soundcloud
-  easy_install lxml
-  easy_install ID3 -- or id3-py-1.2/ included in this directory
-
-  Valid soundcloud API keys. Get them from Soundcloud and put them in
-  a file called soundcloud_api_keys.py. make sure the file looks like
-  this:
-
-     client_id='xxxxx'
-     client_secret='xxxxx'
-Run: 
   ./get_sc_data.py
 
-  That will build the sc metadata catalog. 
+ONLY AFTER stage1.py has finished. This will build the sc metadata catalog. 
 
 There are a whole series of scripts in these folders for cleaning up the
 music/ directory. (rename_* and fix_*.) Using them is beyond the scope of 
 this README. 
 
-After you've imported and listened to all of the songs:
+What do I do afterwards?
+===========================
+
+After you've imported, rated, and listened to all of the songs, go
+make your personal calendar.
 
   ./sxsw_to_ical.py -h 
 
@@ -144,6 +193,8 @@ sxsw_to_ical script processes ALL bands in iCal. It does not pick off
 just the SXSW ratings. If you rate multiple songs for a single band,
 it will use the HIGHEST rating you've given to that band. 
 
+Other Files
+=============
 There is a bunch of other junk in here that frankly, I forget what
 they do.
 

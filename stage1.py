@@ -1,4 +1,14 @@
 #!/usr/bin/python
+#
+# stage1.py
+#
+# SXSW Music Events Crawler
+# J. Adams <jna@retina.net> 
+# Last update 2/7/2016
+#
+# Crawl the SXSW site, downloading every artist and event page into a
+# cache directory for later parsing by stage2.py
+#
 
 import io
 import requests

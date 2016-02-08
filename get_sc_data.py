@@ -11,8 +11,14 @@ import sys
 
 sys.path.append(".")
 from Timer import Timer
-
 from soundcloud_api_keys import * 
+
+def ap(s):
+  try:
+    out = s.encode('ascii', 'ignore')
+  except:
+    out = s.decode('utf8')
+  return out
 
 client = soundcloud.Client(client_id=client_id)
 
@@ -23,13 +29,13 @@ headers = {'Accept'          : 'text/json',
            'User-Agent'      : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.68 Safari/537.22' } 
 
 # as it turns out, we missed every single soundcloud song this year. Go get them anyway. 
-f = open("data/sc_missed.txt","r")
+f = open("data/queue.txt","r")
 outf = open("data/sc_data.txt","w")
 
 for line in f: 
   parts = line.split(" ")
 
-  ml = re.search("(http://soundcloud\.com/[a-zA-Z0-9_\- ]+)", line)
+  ml = re.search("(http[s]*://soundcloud\.com/[a-zA-Z0-9_\- ]+)", line)
 
   if ml != None: 
     url = "http://api.soundcloud.com/resolve.json?url=%s&client_id=%s" % ( ml.group(0), client_id ) 
@@ -69,10 +75,15 @@ for line in f:
       besttrack = track
 
     user = client.get("/users/%d" % udata['id'])
-    print user.username
+    print ap(user.username)
 
-    print >> outf, "%s|%s|%s|%s|%s|%s|%s" % ( ml.group(0), udata['id'], besttrack.id, besttrack.permalink_url,parts[0], user.username.encode('utf-8'), besttrack.title.encode('utf-8')) 
-
+    print >> outf, "%s|%d|%d|%s|%s|%s|%s" % ( ap(ml.group(0)), 
+                                              udata['id'], 
+                                              besttrack.id,
+                                              ap(besttrack.permalink_url),
+                                              ap(parts[0]), 
+                                              user.username.encode('utf-8'), 
+                                              besttrack.title.encode('utf-8')) 
   else:
     print "skip (no_url_in_line): %s" % line.rstrip()
 
