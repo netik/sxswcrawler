@@ -47,8 +47,9 @@ abuse the bandwidth of any of the sites or services involved here.
 Installation
 =============
 
-Python 2.7 required
-FFMPEG required to convert video to mp3
+Python 2.7 required.
+
+FFMPEG required to convert video to mp3.
 
 Dependencies: 
 
@@ -148,7 +149,6 @@ Music outputs to music/sc
 More about the files 
 ======================
 
-
 *SXSW MP3s*
 
 (2013,2014) It used to be that they hosted MP3s for all of the bands
@@ -161,8 +161,9 @@ again. Yay!
 
 *Youtube*
 
-We'll use jwz's youtubedown to get these files as mp4s. We'll then
-convert them to mp3s later. 
+We can download about 90-100% of youtube files provided youtubedown
+can break the ridiculous obfuscation that youtube applies to their
+files. We might miss a few, but we get very, very close.
 
 *Soundcloud*
 

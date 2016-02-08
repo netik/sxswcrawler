@@ -1,12 +1,13 @@
 ./data
 ./cache/*
-./soundcloud_api_keys.py
+soundcloud_api_keys.py
+soundcloud_api_keys.pyc
 *~
 #*#
 cache
 cache/*
 data
 data/*
-
-
-
+nohup.out
+music
+music/
