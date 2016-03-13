@@ -48,7 +48,7 @@ import hashlib
 import json
 
 # config
-DEFAULT_YEAR="2015"
+DEFAULT_YEAR="2016"
 zone = 'US/Central'
 # -- end config -- 
 
@@ -269,8 +269,8 @@ def parse_event(filename):
     hometown = m.group(1).replace("\n","")
 
   # hack the URL together
-  url = os.path.basename(filename).replace("_2015_events_event_","")
-  url = "http://schedule.sxsw.com/2015/events/event_%s" % url
+  url = os.path.basename(filename).replace("_" + DEFAULT_YEAR + "_events_event_","")
+  url = "http://schedule.sxsw.com/" + DEFAULT_YEAR + "/events/event_%s" % url
   url = url.replace(".html", "")
 
   events[filename] = { "artist": artist, 
@@ -296,7 +296,7 @@ def get_rated_iartists(stars=3):
   ratere  = re.compile('<key>Rating</key><integer>(\d+)</integer>')
   itunes_xml = args.itunesxml
   iartists = {}
-  
+
   ARTIST_CACHEFILE = "%s/rated_artists-%s.pickle" % (args.cachedir, hashlib.sha256(args.itunesxml).hexdigest())
 
   if os.path.exists(ARTIST_CACHEFILE) and args.cache == True: 
@@ -307,29 +307,37 @@ def get_rated_iartists(stars=3):
     cf.close()
     return iartists
 
-  print >> sys.stderr, "Generating new iTunes artist rating cachefile..."
+  print >> sys.stderr, "Generating new iTunes artist rating cachefile from %s..." % itunes_xml
   f = open(itunes_xml,"r")
 
-  artist = ""
+  artist = None
+  rating = None
+
   for line in f:
     # this dict resets our key to ensure we don't bleed into next artist
     if line.find('<key>Track ID</key>') > -1:
-      artist = ''
+      artist = None
+      rating = None
 
     # we won't remember the artist if the song is disabled. 
     if line.find('<key>Disabled</key><true/>') > -1 and args.ignoredisabled == True:
-      artist = ''
+      artist = None
+      rating = None
+
+    m = ratere.search(line)
+
+    if m:
+      rating = m.group(1)
 
     m = artistre.search(line)
     if m:
       artist = m.group(1)
 
-    m = ratere.search(line)
-    if m and artist != '':
+    if rating and artist:
       if iartists.has_key(simplify(artist.lstrip().rstrip())):
-        iartists[simplify(artist.lstrip().rstrip())].append(int(m.group(1)) / 20)
+        iartists[simplify(artist.lstrip().rstrip())].append(int(rating) / 20)
       else:
-        iartists[simplify(artist.lstrip().rstrip())] = [ (int(m.group(1)) / 20) ] 
+        iartists[simplify(artist.lstrip().rstrip())] = [ (int(rating) / 20) ]
 
   if args.verbose:
     print >> sys.stderr, "Producing new cachefile %s" % ARTIST_CACHEFILE
@@ -337,6 +345,8 @@ def get_rated_iartists(stars=3):
   cf = open(ARTIST_CACHEFILE, "w")
   pickle.dump(iartists, cf)
   cf.close()
+
+  print "Found %d artists in iTunes." % len(iartists.keys())
 
   return iartists
 
@@ -381,7 +391,7 @@ def make_vcal(out):
                   'VERSION:2.0',
                   'PRODID:-//Apple Inc.//iCal 5.0.1//EN',
                   'METHOD:PUBLISH',
-                  'X-WR-CALNAME:SXSW 2015',
+                  'X-WR-CALNAME:SXSW ' + DEFAULT_YEAR,
                   'X-WR-TIMEZONE:' + zone,
                   'CALSCALE:GREGORIAN',
                   'BEGIN:VTIMEZONE',
@@ -536,10 +546,10 @@ if __name__ == "__main__":
 
     make_vcal(args.outputics)
 
-parser = argparse.ArgumentParser(description="Process the SXSW 2015 Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py.")
-parser.add_argument('--itunesxml', '-i',  dest='itunesxml',help='The name of your XML file. Default: ~/Music/iTunes/iTunes Library.xml', default="~/Music/iTunes/iTunes Library.xml")
+parser = argparse.ArgumentParser(description="Process the SXSW " + DEFAULT_YEAR + " Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py.")
+parser.add_argument('--itunesxml', '-i',  dest='itunesxml',help='The name of your XML file. Default: /Volumes/SafeRoom/MP3s/iTunes/iTunes Library.xml', default="/Volumes/SafeRoom/MP3s/iTunes/iTunes Library.xml")
 
-parser.add_argument('--outputics', '-o',  dest='outputics',help='Ignore disabled tracks in iTunes. Default: sxsw2015.ics', default="sxsw2015.ics")
+parser.add_argument('--outputics', '-o',  dest='outputics',help='Ignore disabled tracks in iTunes. Default: sxsw' + DEFAULT_YEAR  +  '.ics', default="sxsw" + DEFAULT_YEAR + ".ics")
 
 parser.add_argument('--stars', '-s', metavar='stars', type=int, nargs="?", default=3, help='minimum number of stars (iTunes rating) for consideration. Default: 3')
 
@@ -551,8 +561,6 @@ parser.add_argument('--notime',  '-nt', dest='notime',help='Include events with 
 parser.add_argument('--novenue', '-nv', dest='novenue',help='Include events with no venue. Default: False', action='store_true', default=False)
 parser.add_argument('--scoremode', '-m',  dest='scoremode',help='Score mode: When multiple ratings are present for an artist\'s songs, which one do we use? Default: avg', choices=['avg','min','max','last'], default='avg')
 parser.add_argument('--nodisabled', '-nd',  dest='ignoredisabled',help='Ignore disabled tracks in iTunes. Default: False', action='store_true', default=False)
-
-
 
 
 parser.add_argument('--verbose', '-v',  dest='verbose',help='Verbose mode. better for debugging.', action='store_true', default=False)
