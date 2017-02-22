@@ -4,7 +4,7 @@
 #
 # SXSW Music Events Crawler
 # J. Adams <jna@retina.net> 
-# Last update 2/7/2016
+# Last update 2/21/2017
 #
 # Crawl the SXSW site, downloading every artist and event page into a
 # cache directory for later parsing by stage2.py
@@ -58,32 +58,23 @@ def fetch(url,fn,daynumber,nocache = True):
 
 def get_events(data):
   events=[]
-  for line in data.split('\n'):
-    m = re.search("href=\'(/2016/events/\w+)\'",line) 
-
-    if m:
-      events.append(m.group(1))
-  return events
-
+  matches = re.findall('href=\"(/2017/events/\w+)\"', data, re.DOTALL)
+  if matches:
+    return matches
 
 # http parameters
-
-alphalist = list(string.ascii_lowercase)
-alphalist.append('1')
-
-for alpha in alphalist:
-  #  http://schedule.sxsw.com/?conference=music&lsort=name&day=ALL&event_type=showcase
-  eventpage = fetch("%s/?conference=music&lsort=name&day=ALL&a=%s" % ( BASE_URL, alpha ) ,"events_%s.html" % alpha, alpha, nocache = False)
+for day in [13,14,15,16,17,18,19]:
+  # http://schedule.sxsw.com/2017/03/15/events/conference/Music/type/showcase
+  eventpage = fetch("%s/2017/03/%d/events/conference/Music/type/showcase" % ( BASE_URL, day ) ,"showcase_%s.html" % day, day, nocache = False)
   events = get_events(eventpage)
-
-  # regexps for detecting content -- should really be in another stage. 
   for event in events:
-    if event.find("event_MS") == -1:
-      continue
-    
     detailurl = "%s%s" % (BASE_URL , event)
-    detailpage = fetch(detailurl, "%s.html" % event.replace("/","_"), event, nocache = False)
+    
+    if event.find("/MS") == -1:
+      print "%s Ignoring (not music)" % detailurl
+      continue
 
-    # for now we will just fetch and print the name out. 
-    cachefn="cache/%s/%s.html" %  (alpha, event.replace("/","_") )
-    print "%s unkonw" % cachefn
+    # fetch!
+    print "%s fetch!" % detailurl
+    detailpage = fetch(detailurl, "%s.html" % event.replace("/","_"), event, nocache = False)
+    

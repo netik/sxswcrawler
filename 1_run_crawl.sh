@@ -1,16 +1,15 @@
 #!/bin/bash
 #
-# fire off stage one to download the header pages and the detail pages. 
+# stage1: download all of the index files, crawl them for showcases.
+#         then download the event pages.
 #
-
 ./stage1.py > data/crawl_log.txt
 
-( cd cache; mkdir events; find 2016 -name \*.html -exec mv {} events \; )
+# stage 1.5: link the valid HTML files in one directory for easy parsing.
+( cd cache; mkdir events; find 2017 -name \*.html -exec ln -s ../{} events \; )
 
-# now run stage2.py !
+# stage 2: find music links inside of the event files
 ./stage2.py > data/queue.txt
-
-# move a bunch of shit around so we have separated logs 
 
 # none.txt is the failed log for later. 
 cat data/queue.txt | grep none > data/none.txt
