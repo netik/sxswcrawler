@@ -12,6 +12,11 @@ def download_file(url):
     # NOTE the stream=True parameter
     r = requests.get(url, stream=True)
 
+    if os.path.exists(local_filename):
+        print "%s exists, skipping." % local_filename
+        return
+
+        
     with open(local_filename, 'wb') as f:
         for chunk in r.iter_content(chunk_size=1024): 
             if chunk: # filter out keep-alive new chunks

@@ -27,3 +27,10 @@ if [ ! -d music ]; then
   mkdir music/sc
   mkdir music/yt
 fi
+
+echo
+echo "Now run the download_{sc,sx,yt} scripts as needed." 
+echo 
+echo "This software is for personal use only. "
+echo "Respect the copyrights of the artists."
+echo
