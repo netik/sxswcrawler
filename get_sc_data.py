@@ -29,8 +29,8 @@ headers = {'Accept'          : 'text/json',
            'User-Agent'      : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.68 Safari/537.22' } 
 
 # as it turns out, we missed every single soundcloud song this year. Go get them anyway. 
-f = open("data/queue.txt","r")
-outf = open("data/sc_data.txt","w")
+f = open("data/download_queue.txt","r")
+outf = open("data/sc_data.txt","w+")
 
 for line in f: 
   parts = line.split(" ")
@@ -38,12 +38,16 @@ for line in f:
   ml = re.search("(http[s]*://soundcloud\.com/[a-zA-Z0-9_\- ]+)", line)
 
   if ml != None: 
-    url = "http://api.soundcloud.com/resolve.json?url=%s&client_id=%s" % ( ml.group(0), client_id ) 
-    with Timer() as t:
-      print "open: %s" % url 
-      r = requests.get(url, headers=headers)
-      udata = json.loads(r.text)
-    
+    url = "http://api.soundcloud.com/resolve.json?url=%s&client_id=%s" % ( ml.group(0), client_id )
+    try:
+      with Timer() as t:
+        print "open: %s" % url 
+        r = requests.get(url, headers=headers)
+        udata = json.loads(r.text)
+    except ValueError:
+      print "json decode failed - SC failure or api rate limit?"
+      continue
+
     # /users/id/tracks
     try:
       print "get tracks"
@@ -51,8 +55,10 @@ for line in f:
     except KeyError:
       print "skip (no uid): %s" % url
       continue
-
-   
+    except requests.exceptions.HTTPError:
+      print "HTTP error: %s" % url
+      continue
+    
     # no tracks? 
     if len(tracks) == 0:
       print "skip (notracks): %s" % url
@@ -74,7 +80,12 @@ for line in f:
     except AttributeError:
       besttrack = track
 
-    user = client.get("/users/%d" % udata['id'])
+    try:
+      user = client.get("/users/%d" % udata['id'])
+    except requests.exceptions.HTTPError:
+      print "HTTP error (/users get): %s" % url
+      continue
+      
     print ap(user.username)
 
     print >> outf, "%s|%d|%d|%s|%s|%s|%s" % ( ap(ml.group(0)), 
