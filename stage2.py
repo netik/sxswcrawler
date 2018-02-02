@@ -17,20 +17,24 @@ import re
 import os
 
 BASE_URL='http://schedule.sxsw.com'
-CACHE_DIR="cache/events"
+CACHE_DIR="cache/artists"
 
 ytRE = re.compile('(//www.youtube.com/embed/[a-zA-Z0-9_-]+)\'')
+# https://www.youtube.com/watch?v=zD-WawYs3Ug
+ytRE2 = re.compile('(//www.youtube.com/watch\?v=[a-zA-Z0-9_-]+)')
+
 scRE = re.compile('(http(s)*://(www.)*soundcloud.com/[a-zA-Z0-9_-]+)\"')
-mpRE = re.compile('(http://audio.sxsw.com/\d+/mp3_by_artist_id/(\d+).mp3)')
+mpRE = re.compile('(http://audio.sxsw.com/\d+/mp3_by_artist_id/(\w+).mp3)')
 
 for filename in os.listdir(CACHE_DIR):
-    cachefn=os.path.join("cache/events",filename)
+    cachefn=os.path.join("cache/artists",filename)
     dfh = open(cachefn, "r")
     detailpage = dfh.read()
     dfh.close()
 
     scM = scRE.search(detailpage)
     ytM = ytRE.search(detailpage)
+    yt2M = ytRE2.search(detailpage)
     mpM = mpRE.search(detailpage)
     
     if scM != None: 
@@ -39,6 +43,10 @@ for filename in os.listdir(CACHE_DIR):
         
     if ytM != None:
         yturl = ytM.group(1)
+        print "%s youtube http:%s" % (cachefn, yturl)
+
+    if yt2M != None:
+        yturl = yt2M.group(1)
         print "%s youtube http:%s" % (cachefn, yturl)
         
     if mpM != None:

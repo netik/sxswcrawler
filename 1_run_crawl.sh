@@ -5,9 +5,6 @@
 #
 ./stage1.py > data/crawl_log.txt
 
-# stage 1.5: link the valid HTML files in one directory for easy parsing.
-( cd cache; mkdir events; find 2017 -name \*.html -exec ln -s ../{} events \; )
-
 # stage 2: find music links inside of the event files
 ./stage2.py > data/queue.txt
 
@@ -29,7 +26,10 @@ if [ ! -d music ]; then
 fi
 
 echo
-echo "Now run the download_{sc,sx,yt} scripts as needed." 
+echo "Now run the download_sx script to get mp3s"
+echo "followed by the get_sc_data to get top tracks from soundcloud for soundcloud entries"
+echo "then download_sc to download those songs"
+echo "then download_yt for youtube which may be very messy/unreliable."
 echo 
 echo "This software is for personal use only. "
 echo "Respect the copyrights of the artists."

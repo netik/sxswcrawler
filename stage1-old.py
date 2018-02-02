@@ -62,23 +62,19 @@ def get_events(data):
   if matches:
     return matches
 
-# https://schedule.sxsw.com/2018/artists/18953
-def get_artists(data):
-  events=[]
-  matches = re.findall('href=\"(/2018/artists/\d+)\"', data, re.DOTALL)
-  if matches:
-    return matches
-  
 # http parameters
-# https://schedule.sxsw.com/2018/artists
-artistpage = fetch("%s/2018/artists" % ( BASE_URL ) ,"artists.html", 0 , nocache = False)
-artists = get_artists(artistpage)
-for artist in artists:
-  detailurl = "%s%s" % (BASE_URL , artist)
-  
-  # fetch!
-  print "%s fetch!" % detailurl
-  artistnum = detailurl.split("/")[len(detailurl.split("/"))-1]
-  detailpage = fetch(detailurl, "%s" % artist.replace("/","_"), "artists", nocache = False)
+for day in [9,10,11,12,13,14,15,16,17]:
+  # http://schedule.sxsw.com/2018/03/15/events/conference/Music/type/showcase
+  eventpage = fetch("%s/2018/03/%d/events/conference/Music/type/showcase" % ( BASE_URL, day ) ,"showcase_%s.html" % day, day, nocache = False)
+  events = get_events(eventpage)
+  for event in events:
+    detailurl = "%s%s" % (BASE_URL , event)
+    
+    if event.find("/MS") == -1:
+      print "%s Ignoring (not music)" % detailurl
+      continue
 
-  # example -- <audio src="http://audio.sxsw.com/2018/mp3_by_artist_id/9bcd62f9d36703d530e39503818e2bf9fd84c2d177999c1b2c17be198e976961.mp3"></audio>
+    # fetch!
+    print "%s fetch!" % detailurl
+    detailpage = fetch(detailurl, "%s.html" % event.replace("/","_"), event, nocache = False)
+    

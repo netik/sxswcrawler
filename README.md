@@ -7,16 +7,22 @@ their APIs and shit breaks. There is no guarantee this will work.
 
 However, it's an excellent starting place for music discovery. 
 
+I recommend runnning this code mid-Feburary and doing your music
+listening from feb-march or so. It takes a long time to listen to
+1500-2000 songs.
+
+Artists are usually nailed down by then.
+
 What's new?
 =============
 
-There's a couple of changes for 2015, First off, I'm breaking up the
-job into easy to manage parts so that you don't end up having to run
-the crawl multiple times. Second, I'm making the code much more
-modular.
+Here on 2/1/2018, I don't see SXSW posting the artist event times
+anymore. They claim that showtimes will be available in Feb 2018, but
+they're not available yet.
 
-I recommend runnning this mid-Feburary. Artists are usually nailed
-down by then.
+The stage1 and stage2 code will focus on getting as much artist
+information as possible, in order to download music. I'll have to
+write new code (stage3?) to get event data when it comes up.
 
 THE PROCESS
 ============
