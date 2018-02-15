@@ -156,6 +156,16 @@ Please note that we are now using soundscrape and python3 to get
 soundcloud files. The prior solution no longer works thanks to
 Soundcloud API changes.
 
+You also need to know that soundcloud is not issuing new API keys and
+that that built-in keys that are inside of soundscrape are maxxed out
+at 15,000 downloads a day across all users of soundscrape. If you edit
+the soundscrape code (soundscrape.py) and replace them with your valid
+keys, this limit will go away and it might work. Otherwise soundscrape
+will throw 429 errors all day and you can't download.
+
+See also this issue with soundscrape: when the 429 error is thrown.
+https://github.com/Miserlou/SoundScrape/issues/203
+
 Music outputs to music/sc
 
 More about the files 

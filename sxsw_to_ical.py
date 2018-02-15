@@ -46,9 +46,10 @@ import time
 import cProfile
 import hashlib
 import json
+import datetime
 
 # config
-DEFAULT_YEAR="2016"
+DEFAULT_YEAR="%s" % datetime.datetime.now().year
 zone = 'US/Central'
 # -- end config -- 
 
@@ -143,16 +144,16 @@ def valid_artist(artist):
   return False
 
 
-def fetch(url, fn, nocache=False):
+def fetch(url, cachefn, nocache=False):
   # fetch a URL, but if we have the file on disk, return the file instead.
   # This prevents us from beating on the remote site while developing.
-  cachefn="%s/venues/%s" % (args.cachedir, fn)
+  cachefn="%s/%s" % (args.cachedir, fn)
   if not os.path.isdir("%s/venues" % args.cachedir):
-     os.mkdir("%s/venues" % args.cachedir)
+     os.mkdir("%s" % args.cachedir)
 
   if os.path.isfile(cachefn) and nocache == False:
     if args.verbose: 
-      print "return cached content for venue url (%s)" % fn
+      print "return cached content for url (%s)" % fn
 
     text = open(cachefn,'r').read()
     return text
@@ -269,6 +270,7 @@ def parse_event(filename):
     hometown = m.group(1).replace("\n","")
 
   # hack the URL together
+  print filename
   url = os.path.basename(filename).replace("_" + DEFAULT_YEAR + "_events_event_","")
   url = "http://schedule.sxsw.com/" + DEFAULT_YEAR + "/events/event_%s" % url
   url = url.replace(".html", "")
@@ -516,7 +518,49 @@ def make_ics(event):
 
   return entry
 
+def parse_venue(fn):
+  ''' parse a cached venue file and return a dict with the venue's name
+      and address '''
+
+  venueinfo = {}
+
+  fh = open(fn,"r")
+  text = fh.read()
+
+  # name
+  m = re.search(r'<div class=\"columns medium-8\"><h1>(.+?)</h1>', text)
+  
+  if m:
+      venueinfo['name'] = m.group(1).lstrip().rstrip()
+
+  # address
+  m = None
+  m = re.findall(r'<div class=\"address\">(.*?)</div>', text)
+  
+  if m:
+      venueinfo['address'] = ''
+      for addrline in m:
+          if venueinfo['address'] != '':
+              venueinfo['address'] =  venueinfo['address'] + '\n'
+          
+          venueinfo['address'] = venueinfo['address'] + addrline
+
+  # events
+  m = None
+  m = re.findall(r'data-item-id="(\w+)" data-item-type=\"events\"', text)
+  venueinfo['events'] = None
+  
+  if m:
+      venueinfo['events'] = []
+      for e in m:
+          venueinfo['events'].append(e)
+
+  fh.close()
+
+  return venueinfo
+
 if __name__ == "__main__":
+    
   def main(): 
     global args
     global events
@@ -529,15 +573,24 @@ if __name__ == "__main__":
     if args.verbose:
       print >> sys.stderr, "Found %d qualifying artists in iTunes." % len(iartists)
 
-    # pass #1: open every file
-    # get band, artist, venue, description, venue address to a dict
-    # all playing locations for the band
-    for file in os.listdir(args.cachedir + "/events"):
-      parse_event(os.path.join(args.cachedir + "/events", file))
+    # pass 1 and 2 are now combined for 2018
+    # load every event from the venue listings and parse out the data about the individual events
+    for fn in os.listdir(os.path.join(args.cachedir,"2018/venues")):
+        # parse venue into the dict
+        venueinfo = parse_venue(os.path.join(args.cachedir, "2018", "venues", fn, "_2018_venues_%s.html" % (fn)))
+        # store for later
+        venues[fn] = venueinfo
+        print venueinfo
 
+        if venueinfo['events']:
+            for venue_event in venueinfo['events']:
+                parse_event(os.path.join(args.cachedir, "2018", "events", venue_event, "_2018_events_%s.html" % venue_event))
+
+
+    sys.exit(1)
+    
     valid=0
-
-    # pass #2 find bands 
+    # pass #3 match bands to iCal and assemble
     for k, v in events.iteritems():
       if valid_artist(v.get('artist')):
         if (v.get('time_start',None) != None) or args.notime == True:
@@ -545,16 +598,19 @@ if __name__ == "__main__":
           icsentries.append(make_ics(events[k]))
           valid = valid + 1 
 
+
     print >>sys.stderr,  "%d calendarable / %d artists in ical / %d artists in sxsw / %d bad sxsw events (notime)" % (valid, len(iartists), len(events), badtime)
 
     # save stats as json
-    f = open (args.outputics + ".json", "w")
+    f = open (args.outputics
+
+  + ".json", "w")
     print >>f, (json.dumps({"valid" :  valid, "iartists": len(iartists), "events": len(events), "badtime": badtime }, sort_keys=True))
     f.close();
 
     make_vcal(args.outputics)
 
-parser = argparse.ArgumentParser(description="Process the SXSW " + DEFAULT_YEAR + " Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py.")
+parser = argparse.ArgumentParser(description="Process the SXSW " + DEFAULT_YEAR + " Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py and all of the fetch_* scripts.")
 parser.add_argument('--itunesxml', '-i',  dest='itunesxml',help='The name of your XML file. Default: /Volumes/SafeRoom/MP3s/iTunes/iTunes Library.xml', default="/Volumes/SafeRoom/MP3s/iTunes/iTunes Library.xml")
 
 parser.add_argument('--outputics', '-o',  dest='outputics',help='Ignore disabled tracks in iTunes. Default: sxsw' + DEFAULT_YEAR  +  '.ics', default="sxsw" + DEFAULT_YEAR + ".ics")
