@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python3
 #
 # Build an ICS file of bands of interest at SXSW using the on-disk cache
 # to avoid ratelimits from SXSW
@@ -31,11 +31,10 @@
 #
 # Import it into its own calendar to make it easy to nuke it and start over.
 
-from HTMLParser import HTMLParser
+from html.parser import HTMLParser
 import argparse
 import arrow
 from dateutil import tz
-import fuzzy
 import io
 import os
 import pickle
@@ -64,17 +63,19 @@ perfdates = {}
 class MLStripper(HTMLParser):
     def __init__(self):
         self.reset()
+        self.strict = False
+        self.convert_charrefs= True
         self.fed = []
     def handle_data(self, d):
         self.fed.append(d)
     def get_data(self):
-        return ' '.join(self.fed)
+        return ''.join(self.fed)
 
 def strip_tags(html):
     s = MLStripper()
     s.feed(html)
     return s.get_data()
-
+    
 def simplify(s):
   s = s.upper()
   orig = s
@@ -103,7 +104,7 @@ def score_artist(artist):
   if artist == None: 
     return -1
 
-  if not iartists.has_key(simplify(artist)):
+  if simplify(artist) not in iartists:
     return -1
 
   # we are storing a tokenized form of the artist with the score. This lookup is then O(2)
@@ -151,7 +152,7 @@ def fetch(url, cachefn, nocache=False):
 
   if os.path.isfile(cachefn) and nocache == False:
     if args.verbose: 
-      print "return cached content for url (%s)" % fn
+      print ( "return cached content for url (%s)" % fn )
 
     text = open(cachefn,'r').read()
     return text
@@ -165,61 +166,45 @@ def fetch(url, cachefn, nocache=False):
              'Referer'         : 'http://schedule.sxsw.com/',
              'User-Agent'      : 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.68 Safari/537.22' } 
 
-  print "fetch: %s --> %s " % (url, cachefn)
+  print ("fetch: %s --> %s " % (url, cachefn) )
 
   r = requests.get(url, headers=headers)
   f = io.open(cachefn, 'w', encoding='utf8')
   f.write(r.text)
   f.close()
-  print "  ... %d " % r.status_code
+  print ("  ... %d " % r.status_code)
 
   if r.status_code == 200: 
     return r.text
   else:
     return None
 
-def parse_event(venue_event, filename):
+def parse_event(event_id, filename):
   global args
   global events
   global perfdates
   global badtime
   global venues
 
-  hometown = genre = description = artist = artisturl = timeend = time_s = time_e = a_start = a_end = venue = venueurl = None
+  hometown = genre = description = artist = timeend = time_s = time_e = a_start = a_end = venue = venueurl = None
 
   try:
       fh = open(filename,"r")
   except IOError:
-      print "Can't open Event %s - attempting to fetch" % filename
-
-      # jna shortcircuit the fetching for now
-      # I'm getting alot of inconsistencies in fetches. 293 events can't be found anymore. Lots of changes maybe in run-up to sxsw.
+      print ("Can't open Event %s !" % filename )
       return None
-
-      # create the directory
-      if not os.path.isdir(os.path.join(args.cachedir, "2018", "events", venue_event)):
-          os.makedirs(os.path.join(args.cachedir, "2018", "events", venue_event))
-          
-      detailpage = fetch("http://schedule.sxsw.com/2018/events/%s" % venue_event,
-                         os.path.join(args.cachedir, "2018", "events", venue_event, "_2018_events_%s.html" % venue_event))
-
-      if detailpage == None:
-          print "Failed to fetch event %s as well (404 on SXSW?)" % venue_event
-          return None
-      else:
-          fh = open(filename,"r")
           
   text = fh.read()
 
-  m = re.search(r'<div class=\'title\'>.<h1>(.+)</h1>', text, re.DOTALL)
+  m = re.search(r'property="twitter:title" content="(.*?)"', text, re.DOTALL)
   if m:
     artist = m.group(1).lstrip().rstrip()
+  
+  m = re.search(r'<div class="event-date">(.+?)</div>', text, re.DOTALL)
 
-  m = re.search(r'<div id=\'detail_time\'>(.+?)</div>', text, re.DOTALL)
   if m:
-    time_htm = m.group(1).lstrip().rstrip().replace('\n','')
+    time_htm = m.group(1).lstrip().rstrip().replace('\n','').replace('&ndash;','-').replace(' | ', ' ')
     time_s = strip_tags(time_htm)
-    time_s = re.sub(' +', ' ', time_s)
 
     if time_s.find("-") > 0:
       time_sp = time_s.split("-")
@@ -229,60 +214,48 @@ def parse_event(venue_event, filename):
       time_e = " ".join(time_p[0:3]) + time_sp[1]
 
     try:
-      a_start = arrow.get(time_s.rstrip() + ", " + DEFAULT_YEAR,'ddddd, MMMM D h:mmA, YYYY')
+      # Mar 14, 2018 | 9:25pm
+      a_start = arrow.get(time_s, 'MMM DD, YYYY h:mmA')
       a_start.replace(tzinfo=tz.gettz('US/Central'))
     except arrow.parser.ParserError:
       a_start = None    
       if args.verbose:
-        print >> sys.stderr, "failed to parse start time: %s " % time_s 
+        print  ("failed to parse start time: %s " % time_s )
       badtime = badtime + 1
 
     if time_e != None: 
       try:
-        a_end = arrow.get(time_e.rstrip() + ", " + DEFAULT_YEAR,'ddddd, MMMM D h:mmA, YYYY')
+        a_end = arrow.get(time_e, 'MMM DD, YYYY h:mmA')
         a_end.replace(tzinfo=tz.gettz('US/Central'))
       except arrow.parser.ParserError:
         a_end = None    
         if args.verbose:
-          print >> sys.stderr, "failed to parse end time: %s " % time_e
+          print  ("failed to parse end time: %s " % time_e)
     else:
        a_end = a_start
 
-  m = re.search(r'<a class=\'detail_venue\' href=\'(.+?)\'>(.+?)</a>', text, re.DOTALL)
+  m = re.search(r'<header class="venue-title"><h3><a href="(.+?)">(.+?)</a></h3>', text, re.DOTALL)
   if m:
     venue = m.group(2).lstrip().rstrip().replace('\n','')
     venueurl = m.group(1).lstrip().rstrip().replace('\n','')
 
-  m = re.search(r'<div class=\'block description\'>(.+?)</div>', text, re.DOTALL)
+  m = re.search(r'property="twitter:description" content="(.+?)"></meta>', text, re.DOTALL)
   if m:
     description = strip_tags(m.group(1)).lstrip().rstrip()
-    description = re.sub("Show the rest$", "", description, re.IGNORECASE)
+    description = description.replace('SXSW 2018 Schedule | ', '', 1)
 
-  if description == None:
-    m = re.search(r'<div class=\'short\'>(.+?)</div>', text, re.DOTALL)
-    if m:
-      description = strip_tags(m.group(1)).lstrip().rstrip()
-
-  m = re.search(r'<div class=\'info\'>.<a href=\"(.+?)\"', text, re.DOTALL)
-  if m:
-    artisturl = strip_tags(m.group(1))
-
-  m = re.search(r'<div class=\'block\'>.<span class=\'label\'>Genre</span>.<div class=\'info\'>.<a href="(.+?)">(.+?)</a>', text, re.DOTALL)
+  m = re.search(r'<a href="/2018/events/category/(.+?)">(.+?)</a>', text, re.DOTALL)
   if m:
     genre = m.group(2).replace("\n","")
 
-  m = re.search(r'<span class=\'label\'>From</span>.<div class=\'info\'>(.+?)</div>', text, re.DOTALL)
+  m = re.search(r'<div class=\"row\"><b>From:</b>(.+?)<\/div>', text, re.DOTALL)
   if m:
-    hometown = m.group(1).replace("\n","")
+    hometown = m.group(1).replace("\n","").lstrip().rstrip()
 
   # hack the URL together
-  print filename
-  url = os.path.basename(filename).replace("_" + DEFAULT_YEAR + "_events_event_","")
-  url = "http://schedule.sxsw.com/" + DEFAULT_YEAR + "/events/event_%s" % url
-  url = url.replace(".html", "")
+  url = "http://schedule.sxsw.com/" + DEFAULT_YEAR + "/events/" + event_id
 
-  events[filename] = { "artist": artist, 
-                       "artisturl": artisturl,
+  events[event_id] = { "artist": artist, 
                        "time_s": time_s, 
                        "time_start" : sxsw_datefix(a_start),
                        "time_end" : sxsw_datefix(a_end),
@@ -292,12 +265,11 @@ def parse_event(venue_event, filename):
                        "url": url,
                        "venueurl": venueurl,
                        "hometown": hometown } 
-
+  
   if a_start != None: 
-    if not perfdates.has_key(simplify(artist)):
+    if simplify(artist) not in perfdates:
       perfdates[simplify(artist)] = []
     perfdates[simplify(artist)].append({ "start": sxsw_datefix(a_start), "end": sxsw_datefix(a_end), "venue": venue})
-    print perfdates[simplify(artist)]
     
 def get_rated_iartists(stars=3):
   global args
@@ -306,17 +278,17 @@ def get_rated_iartists(stars=3):
   itunes_xml = args.itunesxml
   iartists = {}
 
-  ARTIST_CACHEFILE = "%s/rated_artists-%s.pickle" % (args.cachedir, hashlib.sha256(args.itunesxml).hexdigest())
+  ARTIST_CACHEFILE = "%s/rated_artists-%s.pickle" % (args.cachedir, hashlib.sha256(args.itunesxml.encode('utf-8')).hexdigest())
 
   if os.path.exists(ARTIST_CACHEFILE) and args.cache == True: 
     st = os.stat(ARTIST_CACHEFILE)
-    print >> sys.stderr, "Using existing iTunes artist rating cachefile, created at %s" % time.ctime(st.st_ctime)
-    cf = open(ARTIST_CACHEFILE, "r")
+    print ("Using existing iTunes artist rating cachefile, created at %s" % time.ctime(st.st_ctime))
+    cf = open(ARTIST_CACHEFILE, "rb")
     iartists = pickle.load(cf)
     cf.close()
     return iartists
 
-  print >> sys.stderr, "Generating new iTunes artist rating cachefile from %s..." % itunes_xml
+  print ("Generating new iTunes artist rating cachefile from %s..." % itunes_xml)
   f = open(itunes_xml,"r")
 
   artist = None
@@ -343,19 +315,19 @@ def get_rated_iartists(stars=3):
       artist = m.group(1)
 
     if rating and artist:
-      if iartists.has_key(simplify(artist.lstrip().rstrip())):
+      if simplify(artist.lstrip().rstrip()) in iartists:
         iartists[simplify(artist.lstrip().rstrip())].append(int(rating) / 20)
       else:
         iartists[simplify(artist.lstrip().rstrip())] = [ (int(rating) / 20) ]
 
   if args.verbose:
-    print >> sys.stderr, "Producing new cachefile %s" % ARTIST_CACHEFILE
+    print  ("Producing new cachefile %s" % ARTIST_CACHEFILE)
 
-  cf = open(ARTIST_CACHEFILE, "w")
+  cf = open(ARTIST_CACHEFILE, "wb")
   pickle.dump(iartists, cf)
   cf.close()
 
-  print "Found %d artists in iTunes." % len(iartists.keys())
+  print ("Found %d artists in iTunes." % len(iartists.keys()))
 
   return iartists
 
@@ -393,9 +365,9 @@ def make_vcal(out):
   global icsentries
 
   if args.verbose: 
-    print >> sys.stderr, "writing %s" % out 
+    print  ("writing %s" % out )
 
-  f = open (out,"w")
+  f = open (out,"w", newline='\r\n')
   c = "\n".join(['BEGIN:VCALENDAR',
                   'VERSION:2.0',
                   'PRODID:-//Apple Inc.//iCal 5.0.1//EN',
@@ -419,15 +391,19 @@ def make_vcal(out):
                   'TZNAME:CST',
                   'TZOFFSETTO:-0600',
                   'END:STANDARD',
-                  'END:VTIMEZONE','\n'])
+                  'END:VTIMEZONE', '\n'])
 
   c = c + "\n".join(icsentries)
 
-  c = c + 'END:VCALENDAR'
+  c = c + "\n" + 'END:VCALENDAR'
 
+  # remove blank lines
   c = re.sub(r'(\n )(\n )+',r'\1',c)
+
+  # remove extra spaces
   c = re.sub(r'  +',r' ',c)
-  print >> f, c
+
+  print (c, file=f)
   f.close();
 
 def make_ics(event):
@@ -435,7 +411,7 @@ def make_ics(event):
   global zone
   ics_seq = ics_seq + 1
 
-  uid=hashlib.sha256(event['artist']+'|'+event['time_s']).hexdigest()
+  uid=hashlib.sha256((event['artist']+'|'+event['time_s']).encode('utf-8')).hexdigest()
 
   t = event['time_start']
   dtstart = "TZID=%s:%04d%02d%02dT%02d%02d%02d" % (zone,
@@ -457,7 +433,7 @@ def make_ics(event):
                                                        t.second)
   else:
     # ah fuck.
-    print  >> sys.stderr, "WARNING: event %s has no end time" % event['artist']
+    print  ("WARNING: event %s has no end time" % event['artist'])
     dtend = dtstart
     
 
@@ -469,20 +445,17 @@ def make_ics(event):
                                             t.minute,
                                             t.second)
 
-  loc = event['venue'] + ", " + venues[event['venue'].replace(" ","_")] + ", Austin, TX 78701"
-
-# this doesn't seem to want to work, even if we replay the old data at ical. 
-#  struct_loc = 'VALUE=URI;X-ADDRESS=515 E 6th St\\nAustin TX 78701;X-APPLE-RADIUS=25.63865019644897;X-TITLE=Flamingo Cantina:geo:30.266390,-97.737772'
-#  struct_loc = 'VALUE=URI;X-ADDRESS=' + venues[event['venue'].replace(" ","_")] + "\\nAustin, TX 78701" + ';X-APPLE-RADIUS=25;X-TITLE=' + event['venue']
+  try:
+      loc = event['venue'] + ", " + venues[event['venue']]['address']
+  except KeyError:
+      # if we don't have the venue's address data, just give the name
+      loc = event['venue'] + ", Austin, TX 78701"
 
   if event['description']:
     desc = event['description']
   else:
-    print >> sys.stderr, "WARNING: No description for %s" % event['artist']
+    print ("WARNING: No description for %s" % event['artist'])
     desc = "No description."
-
-  if event['artisturl'] != None:
-    desc = desc.rstrip() + ".\\n" + event['artisturl']
 
   # find multiple dates, if any
   md = ""
@@ -494,17 +467,22 @@ def make_ics(event):
         try:
           md = "".join([ md,e['start'].format(u'MM/DD h:mm a '), e['venue'],"\n" ])
         except UnicodeDecodeError:
-          print "STUCK, cant compose? DEBUG:"
-          print md
-          print e['start']
-          print e['venue']
+          print ("STUCK, cant compose? DEBUG:")
+          print (md)
+          print (e['start'])
+          print (e['venue'])
           pass
 
     md = md + "\n"
 
   md = md.encode('utf-8')
-  stars = '\xe2\x98\x85' * score_artist(event['artist'])
-  desc = "".join([ event['genre'] + " " + stars, "\n", event['hometown'], "\n\n" , md, desc])
+  # fancy unicode stars
+  #  stars = '\xe2\x98\x85' * int(score_artist(event['artist']))
+
+  # boring asterisks
+  stars = "* " * int(score_artist(event['artist']))
+  
+  desc = "".join([ event['genre'] + " " + stars, "\n", event['hometown'], "\n\n" , str(md), desc])
 
   entry = "\n".join([ 
           'BEGIN:VEVENT',
@@ -517,7 +495,8 @@ def make_ics(event):
           'DTSTART;'		+ dtstart,
           'DTEND;'		+ dtend,
           'URL:'		+ ical_quote (event['url']),
-          'DESCRIPTION:'	+ ical_quote(desc), 
+          'DESCRIPTION:'	+ ical_quote(desc),
+#          'DESCRIPTION:'	+ ical_quote((desc[:73] + '..') if len(desc) > 73 else desc),
           'CLASS:PUBLIC',
           'CATEGORIES:BAND',
           'STATUS:CONFIRMED',
@@ -575,32 +554,30 @@ if __name__ == "__main__":
     global icsentries
 
     if args.verbose:
-      print >> sys.stderr, "Fetching iTunes..."
+      print ("Fetching iTunes...")
     iartists = get_rated_iartists(args.stars)
     if args.verbose:
-      print >> sys.stderr, "Found %d qualifying artists in iTunes." % len(iartists)
+      print ("Found %d qualifying artists in iTunes." % len(iartists))
 
-    # pass 1 and 2 are now combined for 2018
-    # load every event from the venue listings and parse out the data about the individual events
+    # Load in all the information about venues. 
     for fn in os.listdir(os.path.join(args.cachedir,"2018/venues")):
         # parse venue into the dict
         venueinfo = parse_venue(os.path.join(args.cachedir, "2018", "venues", fn, "_2018_venues_%s.html" % (fn)))
-        # store for later
+        # store for later - we'll store this as the ID and as the name just in case
         venues[fn] = venueinfo
         venues[fn]['id'] = fn
 
-        print venueinfo
+        venues[venueinfo['name']] = venueinfo
+        venues[venueinfo['name']]['id'] = fn
 
-        if venueinfo['events']:
-            for venue_event in venueinfo['events']:
-                parse_event(venue_event, os.path.join(args.cachedir, "2018", "events", venue_event, "_2018_events_%s.html" % venue_event))
+    # Load in all the data from events, specfically, all of the MS* events
+    for fn in os.listdir(os.path.join(args.cachedir,"2018/events")):
+        if fn.startswith("MS"):
+            parse_event(fn, os.path.join(args.cachedir, "2018", "events", fn, "_2018_events_%s.html" % fn))
 
-
-    sys.exit(1)
-    
     valid=0
     # pass #3 match bands to iCal and assemble
-    for k, v in events.iteritems():
+    for k, v in events.items():
       if valid_artist(v.get('artist')):
         if (v.get('time_start',None) != None) or args.notime == True:
             
@@ -608,13 +585,13 @@ if __name__ == "__main__":
           valid = valid + 1 
 
 
-    print >>sys.stderr,  "%d calendarable / %d artists in ical / %d artists in sxsw / %d bad sxsw events (notime)" % (valid, len(iartists), len(events), badtime)
+    print  ("%d calendarable / %d artists in ical / %d artists in sxsw / %d bad sxsw events (notime)" % (valid, len(iartists), len(events), badtime))
 
     # save stats as json
     f = open (args.outputics
 
   + ".json", "w")
-    print >>f, (json.dumps({"valid" :  valid, "iartists": len(iartists), "events": len(events), "badtime": badtime }, sort_keys=True))
+    print (json.dumps({"valid" :  valid, "iartists": len(iartists), "events": len(events), "badtime": badtime }, sort_keys=True), file=f)
     f.close();
 
     make_vcal(args.outputics)
