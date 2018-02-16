@@ -54,11 +54,20 @@ def fetch(url,fn,daynumber,nocache = True):
   f.write(r.text)
   f.close()
   print "  ... %d " % r.status_code
+
   return r.text 
+
+def get_events(data):
+  events=[]
+  matches = re.findall('href=\"(/2018/events/MS\d+)\"', data, re.DOTALL)
+  
+  if matches:
+    return matches
 
 def get_artists(data):
   events=[]
   matches = re.findall('href=\"(/2018/artists/\d+)\"', data, re.DOTALL)
+  
   if matches:
     return matches
   
@@ -79,4 +88,16 @@ for letter in "#ABCDEFGHIJKLMNOPQSTUVWXYZ":
       print "%s fetch!" % detailurl
       detailpage = fetch(detailurl, "%s.html" % artist.replace("/","_"), artist, nocache = False)
 
+      events = get_events(detailpage)
+      if events:
+        for event in events:
+          detailurl = "%s%s" % (BASE_URL , event)
+          
+          # fetch!
+          print "%s fetch!" % detailurl
+          detailpage = fetch(detailurl, "%s.html" % event.replace("/","_"), event, nocache = False)
+        else:
+          print "no events?"
+    
+      
    

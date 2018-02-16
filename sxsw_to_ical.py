@@ -145,11 +145,9 @@ def valid_artist(artist):
 
 
 def fetch(url, cachefn, nocache=False):
-  # fetch a URL, but if we have the file on disk, return the file instead.
-  # This prevents us from beating on the remote site while developing.
-  cachefn="%s/%s" % (args.cachedir, fn)
-  if not os.path.isdir("%s/venues" % args.cachedir):
-     os.mkdir("%s" % args.cachedir)
+  # fetch a URL, but if we have the file on disk, return the file
+  # instead.  we assume that you've already taken care of the cache
+  # dirs in prior scripts.
 
   if os.path.isfile(cachefn) and nocache == False:
     if args.verbose: 
@@ -174,23 +172,13 @@ def fetch(url, cachefn, nocache=False):
   f.write(r.text)
   f.close()
   print "  ... %d " % r.status_code
-  return r.text 
 
-def get_venue(venue, venue_url):
-  global venues
-  
-  text = fetch(venue_url, venue.replace(" ", "_"))
-  m = re.search(r'<div class=\'venue-details\'>.<h1 class=\'venue-title\'>(.+)</h1>.<h3>(.+?)</h3>', text, re.DOTALL)
-
-  if m: 
-    addr = strip_tags(m.group(2).lstrip().rstrip())
-    venues[venue.replace(" ", "_")] = addr
-    return addr 
+  if r.status_code == 200: 
+    return r.text
   else:
-    venues[venue.replace(" ", "_")] = ""
     return None
 
-def parse_event(filename):
+def parse_event(venue_event, filename):
   global args
   global events
   global perfdates
@@ -199,7 +187,28 @@ def parse_event(filename):
 
   hometown = genre = description = artist = artisturl = timeend = time_s = time_e = a_start = a_end = venue = venueurl = None
 
-  fh = open(filename,"r")
+  try:
+      fh = open(filename,"r")
+  except IOError:
+      print "Can't open Event %s - attempting to fetch" % filename
+
+      # jna shortcircuit the fetching for now
+      # I'm getting alot of inconsistencies in fetches. 293 events can't be found anymore. Lots of changes maybe in run-up to sxsw.
+      return None
+
+      # create the directory
+      if not os.path.isdir(os.path.join(args.cachedir, "2018", "events", venue_event)):
+          os.makedirs(os.path.join(args.cachedir, "2018", "events", venue_event))
+          
+      detailpage = fetch("http://schedule.sxsw.com/2018/events/%s" % venue_event,
+                         os.path.join(args.cachedir, "2018", "events", venue_event, "_2018_events_%s.html" % venue_event))
+
+      if detailpage == None:
+          print "Failed to fetch event %s as well (404 on SXSW?)" % venue_event
+          return None
+      else:
+          fh = open(filename,"r")
+          
   text = fh.read()
 
   m = re.search(r'<div class=\'title\'>.<h1>(.+)</h1>', text, re.DOTALL)
@@ -243,9 +252,6 @@ def parse_event(filename):
   if m:
     venue = m.group(2).lstrip().rstrip().replace('\n','')
     venueurl = m.group(1).lstrip().rstrip().replace('\n','')
-
-    if not venues.has_key(venue):
-       get_venue(venue, venueurl)
 
   m = re.search(r'<div class=\'block description\'>(.+?)</div>', text, re.DOTALL)
   if m:
@@ -291,7 +297,8 @@ def parse_event(filename):
     if not perfdates.has_key(simplify(artist)):
       perfdates[simplify(artist)] = []
     perfdates[simplify(artist)].append({ "start": sxsw_datefix(a_start), "end": sxsw_datefix(a_end), "venue": venue})
-
+    print perfdates[simplify(artist)]
+    
 def get_rated_iartists(stars=3):
   global args
   artistre = re.compile('<key>Artist</key><string>(.+)</string>')
@@ -580,11 +587,13 @@ if __name__ == "__main__":
         venueinfo = parse_venue(os.path.join(args.cachedir, "2018", "venues", fn, "_2018_venues_%s.html" % (fn)))
         # store for later
         venues[fn] = venueinfo
+        venues[fn]['id'] = fn
+
         print venueinfo
 
         if venueinfo['events']:
             for venue_event in venueinfo['events']:
-                parse_event(os.path.join(args.cachedir, "2018", "events", venue_event, "_2018_events_%s.html" % venue_event))
+                parse_event(venue_event, os.path.join(args.cachedir, "2018", "events", venue_event, "_2018_events_%s.html" % venue_event))
 
 
     sys.exit(1)
