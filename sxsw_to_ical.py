@@ -242,8 +242,7 @@ def parse_event(event_id, filename):
   m = re.search(r'property="twitter:description" content="(.+?)"></meta>', text, re.DOTALL)
   if m:
     description = strip_tags(m.group(1)).lstrip().rstrip()
-    description = description.replace('SXSW 2018 Schedule | ', '', 1)
-
+    
   m = re.search(r'<a href="/2018/events/category/(.+?)">(.+?)</a>', text, re.DOTALL)
   if m:
     genre = m.group(2).replace("\n","")
@@ -460,7 +459,7 @@ def make_ics(event):
   # find multiple dates, if any
   md = ""
   if len( perfdates[simplify(event['artist'])] ) > 1:
-    md = u"Multiple Shows:\n"
+    md = "Multiple Shows:\n"
     for e in perfdates[simplify(event['artist'])]:
 
       if e['start'].format('X') != event['time_start'].format('X'):
@@ -475,14 +474,16 @@ def make_ics(event):
 
     md = md + "\n"
 
-  md = md.encode('utf-8')
   # fancy unicode stars
   #  stars = '\xe2\x98\x85' * int(score_artist(event['artist']))
 
   # boring asterisks
   stars = "* " * int(score_artist(event['artist']))
   
-  desc = "".join([ event['genre'] + " " + stars, "\n", event['hometown'], "\n\n" , str(md), desc])
+  desc = event['genre'] + " " + stars
+  desc = desc + "\n" + event['hometown'] + "\n\n"
+  desc = desc + md
+  desc = desc + str(event["description"]).replace("b\'","").replace("SXSW 2018 Schedule | ","").replace("&#39;","\'").replace("&quot;","\"").replace('\xe2\x80\x99',"\'")
 
   entry = "\n".join([ 
           'BEGIN:VEVENT',
