@@ -475,7 +475,7 @@ def make_ics(event):
     md = md + "\n"
 
   # fancy unicode stars
-  #  stars = '\xe2\x98\x85' * int(score_artist(event['artist']))
+  #stars = '\xe2\x98\x85' * int(score_artist(event['artist']))
 
   # boring asterisks
   stars = "* " * int(score_artist(event['artist']))
