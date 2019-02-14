@@ -4,7 +4,7 @@
 #
 # SXSW Music Events Crawler
 # J. Adams <jna@retina.net> 
-# Last update 1/31/2018
+# Last update 2/14/2019
 #
 # Crawl the SXSW site, downloading every venue
 #
@@ -57,12 +57,12 @@ def fetch(url,fn,daynumber,nocache = True):
 
 def get_venues(data):
   events=[]
-  matches = re.findall('href=\"(/2018/venues/V\d+)\"', data, re.DOTALL)
+  matches = re.findall('href=\"(/2019/venues/V\d+)\"', data, re.DOTALL)
   if matches:
     return matches
   
 # http parameters
-vpage = fetch("%s/2018/venues" % ( BASE_URL ) ,"venues.html", "1", nocache = False)
+vpage = fetch("%s/2019/venues" % ( BASE_URL ) ,"venues.html", "1", nocache = False)
 venues = get_venues(vpage)
 
 if venues:

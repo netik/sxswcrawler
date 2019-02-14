@@ -4,7 +4,7 @@
 #
 # SXSW Music Events Crawler
 # J. Adams <jna@retina.net> 
-# Last update 1/31/2018
+# Last update 2/14/2019
 #
 # Crawl the SXSW site, downloading every artist and event page into a
 # cache directory for later parsing by stage2.py
@@ -58,27 +58,37 @@ def fetch(url,fn,daynumber,nocache = True):
 
 def get_events(data):
   events=[]
-  matches = re.findall('href=\"(/2018/events/\w+)\"', data, re.DOTALL)
+  matches = re.findall('href=\"(/2019/events/\w+)\"', data, re.DOTALL)
   if matches:
     return matches
 
-# https://schedule.sxsw.com/2018/artists/18953
+# https://schedule.sxsw.com/2019/artists/18953
 def get_artists(data):
   events=[]
-  matches = re.findall('href=\"(/2018/artists/\d+)\"', data, re.DOTALL)
+  matches = re.findall('href=\"(/2019/artists/\d+)\"', data, re.DOTALL)
   if matches:
     return matches
   
 # http parameters
-# https://schedule.sxsw.com/2018/artists
-artistpage = fetch("%s/2018/artists" % ( BASE_URL ) ,"artists.html", 0 , nocache = False)
-artists = get_artists(artistpage)
-for artist in artists:
-  detailurl = "%s%s" % (BASE_URL , artist)
-  
-  # fetch!
-  print "%s fetch!" % detailurl
-  artistnum = detailurl.split("/")[len(detailurl.split("/"))-1]
-  detailpage = fetch(detailurl, "%s" % artist.replace("/","_"), "artists", nocache = False)
+# https://schedule.sxsw.com/2019/artists
 
-  # example -- <audio src="http://audio.sxsw.com/2018/mp3_by_artist_id/9bcd62f9d36703d530e39503818e2bf9fd84c2d177999c1b2c17be198e976961.mp3"></audio>
+
+# it looks like they went back to their old ways. Now we have to fetch by alpha.
+
+
+for alpha in ['#','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']:
+  # https://schedule.sxsw.com/2019/artists/alpha/A
+  if alpha == '#':
+    alpha = "%23"
+    
+  artistpage = fetch("%s/2019/artists/alpha/%s" % ( BASE_URL, alpha ) ,"artists-%s.html" % alpha, 0 , nocache = False)
+  artists = get_artists(artistpage)
+
+  for artist in artists:
+    detailurl = "%s%s" % (BASE_URL , artist)
+  
+    # fetch!
+    print "%s fetch!" % detailurl
+    artistnum = detailurl.split("/")[len(detailurl.split("/"))-1]
+    detailpage = fetch(detailurl, "%s" % artist.replace("/","_"), "artists", nocache = False)
+

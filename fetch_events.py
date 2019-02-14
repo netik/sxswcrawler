@@ -4,7 +4,7 @@
 #
 # SXSW Music Events Crawler
 # J. Adams <jna@retina.net> 
-# Last update 1/31/2018
+# Last update 2/14/2019
 #
 # Crawl the SXSW site, downloading every artist and event page into a
 # cache directory for later parsing by stage2.py
@@ -58,14 +58,14 @@ def fetch(url,fn,daynumber,nocache = True):
 
 def get_events(data):
   events=[]
-  matches = re.findall('href=\"(/2018/events/\w+)\"', data, re.DOTALL)
+  matches = re.findall('href=\"(/2019/events/\w+)\"', data, re.DOTALL)
   if matches:
     return matches
 
 # http parameters
-for day in [9,10,11,12,13,14,15,16,17]:
-  # https://schedule.sxsw.com/2018/03/09/events
-  eventpage = fetch("%s/2018/03/%d/events" % ( BASE_URL, day ) ,"events_%d.html" % day, day, nocache = False)
+for day in [8,9,10,11,12,13,14,15,16,17]:
+  # https://schedule.sxsw.com/2019/03/09/events
+  eventpage = fetch("%s/2019/03/%d/events" % ( BASE_URL, day ) ,"events_%d.html" % day, day, nocache = False)
   events = get_events(eventpage)
 
   print events
