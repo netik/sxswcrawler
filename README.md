@@ -39,8 +39,8 @@ The process works like this:
 
   1. Crawl SXSW. Get all of the HTML for music events during the festival.
   2. Break the work queue down by type (soundcloud, raw mp3, youtube)
-  3. Download all of thesongs in each type using different mechanisms
-  4. Feed into iTunes
+  3. Download all of the songs in each type using different mechanisms
+  4. Feed into iTunes (manual, just drag the folder into iTunes)
   5. Rate with iTunesRater (github.com/netik/iTunesRater)
   6. Take that library and convert it into a schedule  (./sxsw_to_ical.py)
   7. Take that schedule (as an ICS file) and put it into your phone to have during the event. 
