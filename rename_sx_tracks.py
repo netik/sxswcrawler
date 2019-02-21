@@ -12,7 +12,6 @@ import mutagen.mp3
 from mutagen.mp3 import * 
 
 HTML_MAP={}
-
 BASEDIR="./music/sx"
 
 # load the map file in.
@@ -42,7 +41,7 @@ for f in files:
   try: 
     audio = mutagen.File("%s/%s" % (BASEDIR, f))
   except mutagen.mp3.HeaderNotFoundError:
-    print "Can't process: %s" % fn
+    print "No mp3 header: %s" % fn
     failed = failed + 1
     
   fn = f.replace(" -", "-")
@@ -54,42 +53,48 @@ for f in files:
   title=None
   record = HTML_MAP.get(f, None)
 
+  # if we can't get it maybe we renamed?
+  if record == None:
+    continue
+  
   # can we just use the damn detail record?
   if record["detail"] != "":
     sp = record["detail"].split(" - ") 
     artist, title = sp[0], " - ".join(sp[1:]) # dumb.
-    
-  # well now we have to tear through the ID3 tags. sigh.
-  # ---------- figure out artist ----------
-  if audio.get("artist",None) != None:
-    artist = audio.get("artist")
-  else:
-    # maybe they have TPE1 instead?
-    if audio.get("TPE1",None):
-      artist = audio.get("TPE1")
+
+  if not artist: 
+    # well now we have to tear through the ID3 tags. sigh.
+    # ---------- figure out artist ----------
+    if audio.get("artist",None) != None:
+      artist = audio.get("artist")
     else:
-      if audio.get("\xa9ART", None):   # itunes 12 bullshit?
-        artist = str(audio.get("\xa9ART"))
-        
-  if artist == None:
-    # try html?
-    if record != None:
-      artist = record["artist"]
+      # maybe they have TPE1 instead?
+      if audio.get("TPE1",None):
+        artist = audio.get("TPE1")
+      else:
+        if audio.get("\xa9ART", None):   # itunes 12 bullshit?
+          artist = str(audio.get("\xa9ART"))
+
+    if artist == None:
+      # try html?
+      if record != None:
+        artist = record["artist"]
 
   # ---------- figure out title ----------
-  if audio.get("title",None) != None:
-    title = audio.get("title")
-  else:
-    # maybe they have TALB?
-    if audio.get("TALB",None):
-      title = audio.get("TALB")
+  if title == "" or title == None:
+    if audio.get("title",None) != None:
+      title = audio.get("title")
     else:
-      # maybe they have TIT2?
-      if audio.get("TIT2",None):
-        title = audio.get("TIT2")
+      # maybe they have TALB?
+      if audio.get("TALB",None):
+        title = audio.get("TALB")
       else:
-        if audio.get("\xa9nam", None):
-          title = audio.get("\xa9nam")
+        # maybe they have TIT2?
+        if audio.get("TIT2",None):
+          title = audio.get("TIT2")
+        else:
+          if audio.get("\xa9nam", None):
+            title = audio.get("\xa9nam")
           
   if artist == None or title == None:
     print "%s: can't find artist or title! (a=%s, t=%s)" % (f, artist, title)
@@ -98,10 +103,20 @@ for f in files:
     continue
 
 #  print "%s - %s.mp3" % (artist, title)
-  title = re.sub(r' ',"",str(title)).rstrip("_").lstrip("_")
-  newfile = "%s-%s.mp3" % (artist, title)
-  #print "%s/%s --> %s/%s" % ( BASEDIR, f, BASEDIR, newfile )
+#  artist = re.sub(r" ","_",str(artist)).rstrip("_").lstrip("_")
+#  title = re.sub(r" ","_",str(title)).rstrip("_").lstrip("_")
 
-  #os.rename(BASEDIR+"/"+f,BASEDIR+"/"+fn)
+  artist = str(artist).rstrip("_").lstrip("_")
+  title = str(title).rstrip("_").lstrip("_")
+
+  artist = artist.replace("/", " ")
+  title = title.replace("/", " ")
+  
+  newfile = "%s - %s.mp3" % (artist, title)
+  print "%s/%s --> %s/%s" % ( BASEDIR, f, BASEDIR, newfile )
+  #print newfile
+
+  # actually do it.
+  os.rename(os.path.join(BASEDIR, f), os.path.join(BASEDIR, newfile))
 
 print "failed = %d " % failed
