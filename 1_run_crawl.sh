@@ -16,7 +16,7 @@ cat data/queue.txt | grep " none" > data/none.txt
 cat data/queue.txt | grep -v " none" > data/download_queue.txt
 
 # and this is a map of artist to sound source based on the html
-./create_song_map.py > data/map.txt
+./create_mp3_map.py > data/map.txt
 
 echo "total events:"
 cat data/queue.txt | awk '{ print $2 } ' | sort | uniq -c
