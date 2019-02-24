@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/local/bin/python3.7
 #
 # Build an ICS file of bands of interest at SXSW using the on-disk cache
 # to avoid ratelimits from SXSW
@@ -214,7 +214,7 @@ def parse_event(event_id, filename):
       time_e = " ".join(time_p[0:3]) + time_sp[1]
 
     try:
-      # Mar 14, 2018 | 9:25pm
+      # Mar 14, 2019 | 9:25pm
       a_start = arrow.get(time_s, 'MMM DD, YYYY h:mmA')
       a_start.replace(tzinfo=tz.gettz('US/Central'))
     except arrow.parser.ParserError:
@@ -243,7 +243,7 @@ def parse_event(event_id, filename):
   if m:
     description = strip_tags(m.group(1)).lstrip().rstrip()
     
-  m = re.search(r'<a href="/2018/events/category/(.+?)">(.+?)</a>', text, re.DOTALL)
+  m = re.search(r'<a href="/2019/events/category/(.+?)">(.+?)</a>', text, re.DOTALL)
   if m:
     genre = m.group(2).replace("\n","")
 
@@ -483,7 +483,7 @@ def make_ics(event):
   desc = event['genre'] + " " + stars
   desc = desc + "\n" + event['hometown'] + "\n\n"
   desc = desc + md
-  desc = desc + str(event["description"]).replace("b\'","").replace("SXSW 2018 Schedule | ","").replace("&#39;","\'").replace("&quot;","\"").replace('\xe2\x80\x99',"\'")
+  desc = desc + str(event["description"]).replace("b\'","").replace("SXSW 2019 Schedule | ","").replace("&#39;","\'").replace("&quot;","\"").replace('\xe2\x80\x99',"\'")
 
   entry = "\n".join([ 
           'BEGIN:VEVENT',
@@ -561,9 +561,9 @@ if __name__ == "__main__":
       print ("Found %d qualifying artists in iTunes." % len(iartists))
 
     # Load in all the information about venues. 
-    for fn in os.listdir(os.path.join(args.cachedir,"2018/venues")):
+    for fn in os.listdir(os.path.join(args.cachedir,"2019/venues")):
         # parse venue into the dict
-        venueinfo = parse_venue(os.path.join(args.cachedir, "2018", "venues", fn, "_2018_venues_%s.html" % (fn)))
+        venueinfo = parse_venue(os.path.join(args.cachedir, "2019", "venues", fn, "_2019_venues_%s.html" % (fn)))
         # store for later - we'll store this as the ID and as the name just in case
         venues[fn] = venueinfo
         venues[fn]['id'] = fn
@@ -572,9 +572,9 @@ if __name__ == "__main__":
         venues[venueinfo['name']]['id'] = fn
 
     # Load in all the data from events, specfically, all of the MS* events
-    for fn in os.listdir(os.path.join(args.cachedir,"2018/events")):
+    for fn in os.listdir(os.path.join(args.cachedir,"2019/events")):
         if fn.startswith("MS"):
-            parse_event(fn, os.path.join(args.cachedir, "2018", "events", fn, "_2018_events_%s.html" % fn))
+            parse_event(fn, os.path.join(args.cachedir, "2019", "events", fn, "_2019_events_%s.html" % fn))
 
     valid=0
     # pass #3 match bands to iCal and assemble
@@ -597,14 +597,14 @@ if __name__ == "__main__":
 
     make_vcal(args.outputics)
 
-parser = argparse.ArgumentParser(description="Process the SXSW " + DEFAULT_YEAR + " Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py and all of the fetch_* scripts.")
+parser = argparse.ArgumentParser(description="Process the SXSW " + DEFAULT_YEAR + " Music cache and generate a calendar based on your favorite iTunes songs. Requires that you've already crawled the site with stage1.py and all of the fetch_* scripts. Events are taken from the cache/2019/events/ folder.")
 parser.add_argument('--itunesxml', '-i',  dest='itunesxml',help='The name of your XML file. Default: /Volumes/SafeRoom/MP3s/iTunes/iTunes Library.xml', default="/Volumes/SafeRoom/MP3s/iTunes/iTunes Library.xml")
 
 parser.add_argument('--outputics', '-o',  dest='outputics',help='Ignore disabled tracks in iTunes. Default: sxsw' + DEFAULT_YEAR  +  '.ics', default="sxsw" + DEFAULT_YEAR + ".ics")
 
 parser.add_argument('--stars', '-s', metavar='stars', type=int, nargs="?", default=3, help='minimum number of stars (iTunes rating) for consideration. Default: 3')
 
-parser.add_argument('--nocache', '-nc',dest='cache', help='Disables the artist cache for this read, rebuilding the cache for later use. Default: True', action='store_false', default=True)
+parser.add_argument('--nocache', '-nc',dest='cache', help='Disables the (itunes) cache for this read, rebuilding the cache for later use. Default: Use cache', action='store_false', default=True)
 
 parser.add_argument('--cachedir', '-c', metavar='directorys', nargs="?", default=os.getcwd() + "/cache", help="Location of cache directory. Default: " + os.getcwd() + "/cache")
 
